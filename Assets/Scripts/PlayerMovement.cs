@@ -124,28 +124,33 @@ public class PlayerMovement : MonoBehaviour
             }
             else
             {
-                // Straight reduce
+                // Straight reduce otherwise
                 JumpMovementTimeLeft -= Time.deltaTime;
             }
             // Update the line renderer for the jump
             jumpChargeLine.enabled = true;
             jumpChargeLine.SetPosition(1, new(0, Mathf.Lerp(0, jumpLineMaxLength, timeSpentChargingJump / jumpChargeTime)));
         }
+        // Launch the jump if input up or time runs out
         if ((Input.GetKeyUp(KeyCode.Space) && IsGrounded())
             || (JumpMovementTimeLeft <= 0 && timeSpentChargingJump > 0 && AutoJump))
         {
+            // Lerp the jump force based on how long the player charged the jump
             float jumpForce = Mathf.Lerp(0, maxJumpForce, timeSpentChargingJump / jumpChargeTime);
+            // Apply the force
             refRB.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+            // Reset variables
             timeSpentChargingJump = 0;
             jumpChargeLine.enabled = false;
         }
         if (!IsGrounded())
         {
             timeSpentChargingJump = 0;
+            jumpChargeLine.enabled = false;
         }
 
         // If in air, glide
-        if (Input.GetKey(KeyCode.Space) && !IsGrounded() && refRB.linearVelocityY < -glideFallSpeed)
+        if (Input.GetKey(KeyCode.Space) && !IsGrounded() && refRB.linearVelocityY <= -glideFallSpeed)
         {
             refRB.linearVelocityY = -glideFallSpeed;
             JumpMovementTimeLeft -= Time.deltaTime;

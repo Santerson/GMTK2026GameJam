@@ -283,7 +283,7 @@ Rigidbody2D:
   m_LinearDamping: 0
   m_AngularDamping: 0.05
   m_GravityScale: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: e270cac0d9cea8f41a4a8a5a162ff3c1, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -311,8 +311,8 @@ MonoBehaviour:
   midAirAccelerationDampen: 0.5
   deceleration: 10
   GroundedRaycastOffset: {x: 0, y: -0.6}
-  maxJumpForce: 7
-  jumpChargeTime: 1.5
+  maxJumpForce: 9.1
+  jumpChargeTime: 1
   AutoJump: 1
   glideFallSpeed: 1
   jumpChargeLine: {fileID: 8792431053267898280}
