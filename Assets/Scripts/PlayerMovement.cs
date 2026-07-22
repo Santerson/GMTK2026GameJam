@@ -9,7 +9,9 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] Vector2 GroundedRaycastOffset = new Vector2(0, -1f);
     Rigidbody2D refRB;
 
-
+    public float LeftMovementTimeLeft = 0f;
+    public float RightMovementTimeRight = 0f;
+    public float JumpMovementTimeLeft = 0f;
     private void Start()
     {
         refRB = GetComponent<Rigidbody2D>();
@@ -34,13 +36,15 @@ public class PlayerMovement : MonoBehaviour
     {
         // Horizontal movement
         Vector2 velocity = Vector2.zero;
-        if (Input.GetKey(KeyCode.D))
+        if (Input.GetKey(KeyCode.D) && LeftMovementTimeLeft > 0)
         {
             velocity += Vector2.right;
+            LeftMovementTimeLeft -= Time.deltaTime;
         }
         if (Input.GetKey(KeyCode.A))
         {
             velocity += Vector2.left;
+            RightMovementTimeRight -= Time.deltaTime;
         }
         refRB.linearVelocityX = velocity.x * speed;
 
