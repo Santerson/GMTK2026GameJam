@@ -4,25 +4,42 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     [Header("Movement")]
-    [SerializeField] float maxSpeed = 5f;
-    [SerializeField] float acceleration = 10f;
-    [SerializeField] float midAirAccelerationDampen = 0.5f;
-    [SerializeField] float deceleration = 10f;
+    [Tooltip("The max speed of the player")]
+        [SerializeField] float maxSpeed = 5f;
+    [Tooltip("The acceleration of the player")]
+        [SerializeField] float acceleration = 10f;
+    [Tooltip("The dampening of the acceleration when in mid air (0.5 is half the speed)")]
+        [SerializeField] float midAirAccelerationDampen = 0.5f;
+    [Tooltip("The deceleration of the player when no input is given")]
+        [SerializeField] float deceleration = 10f;
+
     [Header("Jumping")]
-    [SerializeField] Vector2 GroundedRaycastOffset = new Vector2(0, -1f);
-    [SerializeField] float maxJumpForce = 7f;
-    [SerializeField] float jumpChargeTime = 1.5f;
+    [Tooltip("Where the raycast for being grounded is")]
+        [SerializeField] Vector2 GroundedRaycastOffset = new Vector2(0, -1f);
+    [Tooltip("The max jump force of the player")]
+        [SerializeField] float maxJumpForce = 7f;
+    [Tooltip("The time it takes to charge a jump (real time)")]
+        [SerializeField] float jumpChargeTime = 1.5f;
+    [Tooltip("Should the player automatically jump when the jump time runs out")]
+        [SerializeField] bool AutoJump = true;
+    [Tooltip("The speed the player should glide at (should be positive)")]
+        [SerializeField] float glideFallSpeed = 1f;
+    [Tooltip("The line renderer for the jump charge")]
+        [SerializeField] LineRenderer jumpChargeLine;
+    [SerializeField] float jumpLineMaxLength = 1.5f;
+
+
     [Header("Movement Time")]
     [SerializeField] TextMeshProUGUI LeftText;
     [SerializeField] TextMeshProUGUI RightText;
     [SerializeField] TextMeshProUGUI JumpText;
-
     public float LeftMovementTimeLeft = 0f;
     public float RightMovementTimeLeft = 0f;
     public float JumpMovementTimeLeft = 0f;
     Rigidbody2D refRB;
 
-    float timeChargingJump = 0;
+    float timeSpentChargingJump = 0;
+    float jumpChargeTimeLeftWhenStartingJump = 0;
 
     private void Start()
     {
@@ -44,7 +61,7 @@ public class PlayerMovement : MonoBehaviour
     }
 
     /// <summary>
-    /// Handles all movement on the 2d plane for the character, including jumping and moving
+    /// Handles all movement on the x axis for the player, including acceleration and deceleration
     /// </summary>
     void HandleHorizontalMovement()
     {
@@ -81,25 +98,57 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Handles all movement on the y axis for the player, including jumping and gliding
+    /// </summary>
     void HandleVerticalMovement()
     {
         // If input down while grounded
         if (Input.GetKey(KeyCode.Space) && JumpMovementTimeLeft > 0
-            && IsGrounded() && timeChargingJump < jumpChargeTime)
-        {
+            && IsGrounded() && timeSpentChargingJump < jumpChargeTime)
+        { 
+            if (timeSpentChargingJump == 0)
+            {
+                // This is for rounding errors because deltatime sucks
+                jumpChargeTimeLeftWhenStartingJump = JumpMovementTimeLeft;
+            }
             // Charge the jump
-            timeChargingJump += Time.deltaTime;
-            if (timeChargingJump > jumpChargeTime)
-                timeChargingJump = jumpChargeTime;
+            timeSpentChargingJump += Time.deltaTime;
             // Reduce time for jump
-            JumpMovementTimeLeft -= Time.deltaTime;
+            if (timeSpentChargingJump > jumpChargeTime)
+            {
+                // Reset to max charge time
+                timeSpentChargingJump = jumpChargeTime;
+                // Adjust jumpmovementtimeleft to account for deltatime differences
+                JumpMovementTimeLeft = jumpChargeTimeLeftWhenStartingJump - jumpChargeTime;
+            }
+            else
+            {
+                // Straight reduce
+                JumpMovementTimeLeft -= Time.deltaTime;
+            }
+            // Update the line renderer for the jump
+            jumpChargeLine.enabled = true;
+            jumpChargeLine.SetPosition(1, new(0, Mathf.Lerp(0, jumpLineMaxLength, timeSpentChargingJump / jumpChargeTime)));
         }
         if ((Input.GetKeyUp(KeyCode.Space) && IsGrounded())
-            || (JumpMovementTimeLeft <= 0 && timeChargingJump > 0))
+            || (JumpMovementTimeLeft <= 0 && timeSpentChargingJump > 0 && AutoJump))
         {
-            float jumpForce = Mathf.Lerp(0, maxJumpForce, timeChargingJump / jumpChargeTime);
+            float jumpForce = Mathf.Lerp(0, maxJumpForce, timeSpentChargingJump / jumpChargeTime);
             refRB.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
-            timeChargingJump = 0;
+            timeSpentChargingJump = 0;
+            jumpChargeLine.enabled = false;
+        }
+        if (!IsGrounded())
+        {
+            timeSpentChargingJump = 0;
+        }
+
+        // If in air, glide
+        if (Input.GetKey(KeyCode.Space) && !IsGrounded() && refRB.linearVelocityY < -glideFallSpeed)
+        {
+            refRB.linearVelocityY = -glideFallSpeed;
+            JumpMovementTimeLeft -= Time.deltaTime;
         }
     }
 
