@@ -4,7 +4,10 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     [Header("Movement")]
-    [SerializeField] float speed = 5f;
+    [SerializeField] float maxSpeed = 5f;
+    [SerializeField] float acceleration = 10f;
+    [SerializeField] float midAirAccelerationDampen = 0.5f;
+    [SerializeField] float deceleration = 10f;
     [Header("Jumping")]
     [SerializeField] Vector2 GroundedRaycastOffset = new Vector2(0, -1f);
     [SerializeField] float maxJumpForce = 7f;
@@ -35,41 +38,60 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        HandleMovement();
+        HandleHorizontalMovement();
+        HandleVerticalMovement();
         UpdateTimeLeft();
     }
 
     /// <summary>
     /// Handles all movement on the 2d plane for the character, including jumping and moving
     /// </summary>
-    void HandleMovement()
+    void HandleHorizontalMovement()
     {
         // Horizontal movement
         Vector2 velocity = Vector2.zero;
         if (Input.GetKey(KeyCode.D) && RightMovementTimeLeft > 0)
         {
-            velocity += Vector2.right;
+            float currAccel = IsGrounded() ? acceleration : acceleration * midAirAccelerationDampen;
+            velocity += Vector2.right * currAccel;
             RightMovementTimeLeft -= Time.deltaTime;
         }
         if (Input.GetKey(KeyCode.A) && LeftMovementTimeLeft > 0)
         {
-            velocity += Vector2.left;
+            float currAccel = IsGrounded() ? acceleration : acceleration * midAirAccelerationDampen;
+            velocity += Vector2.left * currAccel;
             LeftMovementTimeLeft -= Time.deltaTime;
         }
-        // Only change velocity if the player is moving or grounded
-        if (velocity != Vector2.zero || IsGrounded())
-            refRB.linearVelocityX = velocity.x * speed;
+        // Accelerate the player
+        if (velocity != Vector2.zero)
+        {
+            refRB.linearVelocity = new Vector2(Mathf.Clamp(refRB.linearVelocity.x + velocity.x * Time.deltaTime, -maxSpeed, maxSpeed), refRB.linearVelocity.y);
+        }
+        else if (IsGrounded())
+        {
+            // Decelerate the player when no input is given
+            if (refRB.linearVelocity.x > 0)
+            {
+                refRB.linearVelocity = new Vector2(Mathf.Max(0, refRB.linearVelocity.x - deceleration * Time.deltaTime), refRB.linearVelocity.y);
+            }
+            else if (refRB.linearVelocity.x < 0)
+            {
+                refRB.linearVelocity = new Vector2(Mathf.Min(0, refRB.linearVelocity.x + deceleration * Time.deltaTime), refRB.linearVelocity.y);
+            }
+        }
+    }
 
-        // Jumping
-
+    void HandleVerticalMovement()
+    {
         // If input down while grounded
         if (Input.GetKey(KeyCode.Space) && JumpMovementTimeLeft > 0
             && IsGrounded() && timeChargingJump < jumpChargeTime)
         {
+            // Charge the jump
             timeChargingJump += Time.deltaTime;
-            // only decut jump time if charging
             if (timeChargingJump > jumpChargeTime)
                 timeChargingJump = jumpChargeTime;
+            // Reduce time for jump
             JumpMovementTimeLeft -= Time.deltaTime;
         }
         if ((Input.GetKeyUp(KeyCode.Space) && IsGrounded())
