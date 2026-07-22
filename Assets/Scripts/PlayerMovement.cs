@@ -1,17 +1,26 @@
+using TMPro;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
     [Header("Movement")]
     [SerializeField] float speed = 5f;
-    [SerializeField] float jumpForce = 5f;
     [Header("Jumping")]
     [SerializeField] Vector2 GroundedRaycastOffset = new Vector2(0, -1f);
-    Rigidbody2D refRB;
+    [SerializeField] float maxJumpForce = 7f;
+    [SerializeField] float jumpChargeTime = 1.5f;
+    [Header("Movement Time")]
+    [SerializeField] TextMeshProUGUI LeftText;
+    [SerializeField] TextMeshProUGUI RightText;
+    [SerializeField] TextMeshProUGUI JumpText;
 
     public float LeftMovementTimeLeft = 0f;
-    public float RightMovementTimeRight = 0f;
+    public float RightMovementTimeLeft = 0f;
     public float JumpMovementTimeLeft = 0f;
+    Rigidbody2D refRB;
+
+    float timeChargingJump = 0;
+
     private void Start()
     {
         refRB = GetComponent<Rigidbody2D>();
@@ -27,6 +36,7 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         HandleMovement();
+        UpdateTimeLeft();
     }
 
     /// <summary>
@@ -36,23 +46,46 @@ public class PlayerMovement : MonoBehaviour
     {
         // Horizontal movement
         Vector2 velocity = Vector2.zero;
-        if (Input.GetKey(KeyCode.D) && LeftMovementTimeLeft > 0)
+        if (Input.GetKey(KeyCode.D) && RightMovementTimeLeft > 0)
         {
             velocity += Vector2.right;
-            LeftMovementTimeLeft -= Time.deltaTime;
+            RightMovementTimeLeft -= Time.deltaTime;
         }
-        if (Input.GetKey(KeyCode.A))
+        if (Input.GetKey(KeyCode.A) && LeftMovementTimeLeft > 0)
         {
             velocity += Vector2.left;
-            RightMovementTimeRight -= Time.deltaTime;
+            LeftMovementTimeLeft -= Time.deltaTime;
         }
-        refRB.linearVelocityX = velocity.x * speed;
+        // Only change velocity if the player is moving or grounded
+        if (velocity != Vector2.zero || IsGrounded())
+            refRB.linearVelocityX = velocity.x * speed;
 
         // Jumping
-        if (Input.GetKeyDown(KeyCode.Space) && IsGrounded())
+
+        // If input down while grounded
+        if (Input.GetKey(KeyCode.Space) && JumpMovementTimeLeft > 0
+            && IsGrounded() && timeChargingJump < jumpChargeTime)
         {
-            refRB.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+            timeChargingJump += Time.deltaTime;
+            // only decut jump time if charging
+            if (timeChargingJump > jumpChargeTime)
+                timeChargingJump = jumpChargeTime;
+            JumpMovementTimeLeft -= Time.deltaTime;
         }
+        if ((Input.GetKeyUp(KeyCode.Space) && IsGrounded())
+            || (JumpMovementTimeLeft <= 0 && timeChargingJump > 0))
+        {
+            float jumpForce = Mathf.Lerp(0, maxJumpForce, timeChargingJump / jumpChargeTime);
+            refRB.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+            timeChargingJump = 0;
+        }
+    }
+
+    void UpdateTimeLeft()
+    {
+        LeftText.text = Mathf.Max(0, LeftMovementTimeLeft).ToString("F2");
+        RightText.text = Mathf.Max(0, RightMovementTimeLeft).ToString("F2");
+        JumpText.text = Mathf.Max(0, JumpMovementTimeLeft).ToString("F2");
     }
 
     bool IsGrounded()
