@@ -3,26 +3,70 @@ using TMPro;
 
 public class TimeBank : MonoBehaviour
 {
-    [SerializeField] PlayerMovement pl;
+    [Header("Time Bank")]
+    [Tooltip("The time the player has on this stage")]
+        [SerializeField] float MaxTime = 12f;
+    [Header("Camera Movement")]
+    [Tooltip("The offset the camera will be at while this menu is open")]
+        [SerializeField] Vector2 CameraOffsetPosition = new(0, 3);
+    [Tooltip("The camera zoom in scale for the camera while this menu is open")]
+        [SerializeField] float CameraZoomInScale = 3f;
 
-    [SerializeField] float MaxTime = 12f;
-    [SerializeField] GameObject UI;
-    [SerializeField] TMP_Text text;
+    [Header("References")]
+    [Tooltip("Reference to the player movement script")]
+        [SerializeField] PlayerMovement refPlayer;
+    [Tooltip("Reference to the camera movement script")]
+        [SerializeField] CameraMovement refCameraMovement;
+    [Tooltip("The UI for the time bank (this will be set inactive)")]
+        [SerializeField] GameObject[] UI;
+    [Tooltip("The text for the time bank")]
+        [SerializeField] TMP_Text timeBankText;
+    [Header("Text References")]
+    [Tooltip("The text for the left movement time")]
+        [SerializeField] TMP_Text LeftText;
+    [Tooltip("The text for the right movement time")]
+        [SerializeField] TMP_Text RightText;
+    [Tooltip("The text for the jump movement time")]
+    [   SerializeField] TMP_Text JumpText;
+
+    Vector2 CurrentCameraOffset = Vector2.zero;
 
     private void Awake()
     {
-        Time.timeScale = 0f;
+        ActivateUI();
     }
+
     private void Update()
     {
-        text.text = "Time Bank: " + MaxTime + "/s";
+        timeBankText.text = "Time Bank: " + MaxTime + "/s";
+    }
+
+    /// <summary>
+    /// Enables the UI for selecting the time bank and sets the camera offset to the specified position
+    /// </summary>
+    public void ActivateUI()
+    {
+        // Get a reference to the reference camera
+        if (refCameraMovement == null)
+            refCameraMovement = Camera.main.GetComponent<CameraMovement>();
+        // Set the offset properly
+        CurrentCameraOffset = refCameraMovement.GetOffset();
+        refCameraMovement.SetOffset(CameraOffsetPosition);
+        // Enable the ui
+        foreach (GameObject ui in UI)
+            ui.SetActive(true);
+        // Set the zoom for the camera
+        refCameraMovement.StartCameraZoomin(CameraZoomInScale);
+        // Stop the player from moving
+        refPlayer.canMove = false;
     }
 
     public void LeftButtonTimeAdd()
     {
         if (MaxTime == 0f)
             return;
-        pl.LeftMovementTimeLeft += 1f;
+        refPlayer.LeftMovementTimeLeft += 1f;
+        LeftText.text = "" + refPlayer.LeftMovementTimeLeft;
         MaxTime -= 1f;
     }
 
@@ -30,7 +74,8 @@ public class TimeBank : MonoBehaviour
     {
         if (MaxTime == 12)
             return;
-        pl.LeftMovementTimeLeft -= 1f;
+        refPlayer.LeftMovementTimeLeft -= 1f;
+        LeftText.text = "" + refPlayer.LeftMovementTimeLeft;
         MaxTime += 1f;
     }
 
@@ -38,7 +83,8 @@ public class TimeBank : MonoBehaviour
     {
         if (MaxTime == 0f)
             return;
-        pl.RightMovementTimeLeft += 1f;
+        refPlayer.RightMovementTimeLeft += 1f;
+        RightText.text = "" + refPlayer.RightMovementTimeLeft;
         MaxTime -= 1f;
     }
 
@@ -46,7 +92,8 @@ public class TimeBank : MonoBehaviour
     {
         if (MaxTime == 12)
             return;
-        pl.RightMovementTimeLeft -= 1f;
+        refPlayer.RightMovementTimeLeft -= 1f;
+        RightText.text = "" + refPlayer.RightMovementTimeLeft;
         MaxTime += 1f;
     }
 
@@ -54,7 +101,8 @@ public class TimeBank : MonoBehaviour
     {
         if (MaxTime == 0f)
             return;
-        pl.JumpMovementTimeLeft += 1f;
+        refPlayer.JumpMovementTimeLeft += 1f;
+        RightText.text = "" + refPlayer.JumpMovementTimeLeft;
         MaxTime -= 1f;
     }
 
@@ -62,7 +110,7 @@ public class TimeBank : MonoBehaviour
     {
         if(MaxTime == 12)
             return;
-        pl.JumpMovementTimeLeft -= 1f;
+        RightText.text = "" + refPlayer.JumpMovementTimeLeft;
         MaxTime += 1f;
     }
 
@@ -70,8 +118,14 @@ public class TimeBank : MonoBehaviour
     {
         if (MaxTime == 0f)
         {
-            Time.timeScale = 1.0f;
-            UI.SetActive(false);
+            // Disable the ui
+            foreach (GameObject ui in UI)
+                ui.SetActive(false);
+            // Reset the camera
+            refCameraMovement.SetOffset(CurrentCameraOffset);
+            refCameraMovement.StartCameraZoomout();
+            // Allow the player to move
+            refPlayer.canMove = true;
         }
     }
 }

@@ -46,6 +46,8 @@ public class PlayerMovement : MonoBehaviour
 
     float timeSpentChargingJump = 0;
 
+    public bool canMove = true;
+
     private void Start()
     {
         refRB = GetComponent<Rigidbody2D>();
@@ -63,8 +65,11 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        HandleHorizontalMovement();
-        HandleVerticalMovement();
+        if (canMove)
+        {
+            HandleHorizontalMovement();
+            HandleVerticalMovement();
+        }
         UpdateTimeLeft();
     }
 
