@@ -1,6 +1,7 @@
 using System.Collections;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Assertions.Must;
 using UnityEngine.SceneManagement;
 
 public class PlayerMovement : MonoBehaviour
@@ -86,6 +87,12 @@ public class PlayerMovement : MonoBehaviour
         {
             HandleHorizontalMovement();
             HandleVerticalMovement();
+            CheckForOutOfTime();
+            // Check for r key to reset
+            if (Input.GetKeyDown(KeyCode.R))
+            {
+                Skissue();
+            }
         }
         UpdateTimeLeft();
     }
@@ -251,6 +258,9 @@ public class PlayerMovement : MonoBehaviour
         return false;
     }
 
+    /// <summary>
+    /// Kills the player
+    /// </summary>
     void Skissue()
     {
         // Stop the player from moving
@@ -263,9 +273,20 @@ public class PlayerMovement : MonoBehaviour
         StartCoroutine(WaitOnRespawn());
     }
 
+    /// <summary>
+    /// Waits for the respawn time and then resets the level
+    /// </summary>
     IEnumerator WaitOnRespawn()
     {
         yield return new WaitForSeconds(respawnTime);
+        ResetLevel();
+    }
+
+    /// <summary>
+    /// Resets the level, does NOT reset props as of now
+    /// </summary>
+    void ResetLevel()
+    {
         // Reset the player position to the spawn point
         transform.position = SpawnPoint;
         // Reset the player velocity
@@ -274,6 +295,17 @@ public class PlayerMovement : MonoBehaviour
         refRenderer.flipY = false;
         // TODO: Re-open the time bank menu here
         FindFirstObjectByType<TimeBank>().ActivateUI();
+    }
+
+    /// <summary>
+    /// Kills the player if they are out of time
+    /// </summary>
+    void CheckForOutOfTime()
+    {
+        if (LeftMovementTimeLeft <= 0 && RightMovementTimeLeft <= 0 && JumpMovementTimeLeft <= 0 && refRB.linearVelocity.magnitude < 0.1f)
+        {
+            Skissue();
+        }
     }
 
     public void GamerWin()
