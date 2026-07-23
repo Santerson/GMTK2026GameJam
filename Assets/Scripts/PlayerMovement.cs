@@ -37,6 +37,8 @@ public class PlayerMovement : MonoBehaviour
     [Tooltip("The speed the player should glide at (should be positive)")]
         [SerializeField] float glideFallSpeed = 1f;
 
+
+
     [Header("Movement Time")]
     [SerializeField] TextMeshProUGUI LeftText;
     [SerializeField] TextMeshProUGUI RightText;
@@ -159,7 +161,7 @@ public class PlayerMovement : MonoBehaviour
         }
 
         // If in air, glide
-        if (Input.GetKey(KeyCode.Space) && !IsGrounded() && refRB.linearVelocityY <= -glideFallSpeed)
+        if (Input.GetKey(KeyCode.Space) && !IsGrounded() && refRB.linearVelocityY <= -glideFallSpeed && JumpMovementTimeLeft > 0)
         {
             refRB.linearVelocityY = -glideFallSpeed;
         }
