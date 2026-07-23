@@ -81,7 +81,7 @@ public class TimeBank : MonoBehaviour
 
     public void LeftButtonTimeMinus()
     {
-        if (TimeLeftToAllocate >= MaxTime)
+        if (TimeLeftToAllocate >= MaxTime || allocatedTimeLeft <= 0)
             return;
         refPlayer.LeftMovementTimeLeft -= 1f;
         allocatedTimeLeft -= 1f;
@@ -101,7 +101,7 @@ public class TimeBank : MonoBehaviour
 
     public void RightButtonTimeMinus()
     {
-        if (TimeLeftToAllocate >= MaxTime)
+        if (TimeLeftToAllocate >= MaxTime || allocatedTimeRight <= 0)
             return;
         refPlayer.RightMovementTimeLeft -= 1f;
         allocatedTimeRight -= 1f;
@@ -121,7 +121,7 @@ public class TimeBank : MonoBehaviour
 
     public void JumpButtonTimeMinus()
     {
-        if(TimeLeftToAllocate >= MaxTime)
+        if (TimeLeftToAllocate >= MaxTime || allocatedTimeJump <= 0)
             return;
         refPlayer.JumpMovementTimeLeft -= 1f;
         allocatedTimeJump -= 1f;
