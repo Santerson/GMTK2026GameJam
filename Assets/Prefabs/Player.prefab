@@ -169,8 +169,8 @@ Transform:
   m_GameObject: {fileID: 5331027616943971336}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.95, y: -3.88, z: 0}
-  m_LocalScale: {x: 0.59341, y: 0.59341, z: 0.59341}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 675256997148485493}
@@ -220,12 +220,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -9095717837082945937, guid: 207ee8102dd4143d288186ef0be518ee, type: 3}
+  m_Sprite: {fileID: -4882089926002507964, guid: dad2ee9fcb69f434eaf804601b295bf1, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 2}
+  m_Size: {x: 0.7421875, y: 0.5703125}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -274,8 +274,8 @@ MonoBehaviour:
   acceleration: 10
   midAirAccelerationDampen: 0.5
   deceleration: 10
-  LeftGroundedRaycastOffset: {x: -0.295, y: -0.594}
-  RightGroundedRaycastOffset: {x: 0.295, y: -0.594}
+  LeftGroundedRaycastOffset: {x: -0.738, y: -0.573}
+  RightGroundedRaycastOffset: {x: 0.434, y: -0.573}
   maxJumpForce: 9
   minJumpForce: 2
   jumpChargeTime: 0.5
@@ -336,15 +336,15 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.15231636, y: -0.0066342354}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 2}
-    newSize: {x: 1, y: 2}
+    oldSize: {x: 1.484375, y: 1.140625}
+    newSize: {x: 0.7421875, y: 0.5703125}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1, y: 2}
+  m_Size: {x: 1.1707482, y: 1.1303263}
   m_EdgeRadius: 0
