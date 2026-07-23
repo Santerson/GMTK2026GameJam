@@ -411,6 +411,7 @@ GameObject:
   - component: {fileID: 233474713}
   - component: {fileID: 233474712}
   - component: {fileID: 233474711}
+  - component: {fileID: 233474714}
   m_Layer: 0
   m_Name: Craaaaaaate
   m_TagString: Ground
@@ -528,12 +529,39 @@ Transform:
   m_GameObject: {fileID: 233474710}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.0294, y: -3.8701, z: 0}
-  m_LocalScale: {x: 4.785456, y: 1.3759086, z: 0.92664176}
+  m_LocalPosition: {x: -4.46, y: -4.21, z: 0}
+  m_LocalScale: {x: 0.54348963, y: 0.54348963, z: 0.54348963}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!50 &233474714
+Rigidbody2D:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 233474710}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 2
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 4
 --- !u!1 &1274433163 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5331027616943971336, guid: 77872cd5696840f49a2132261603aa23, type: 3}
@@ -1425,6 +1453,10 @@ PrefabInstance:
       propertyPath: RightText
       value: 
       objectReference: {fileID: 1972342247}
+    - target: {fileID: 3143963318482094414, guid: 77872cd5696840f49a2132261603aa23, type: 3}
+      propertyPath: jumpChargeTime
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 3143963318482094414, guid: 77872cd5696840f49a2132261603aa23, type: 3}
       propertyPath: JumpMovementTimeLeft
       value: 9999
