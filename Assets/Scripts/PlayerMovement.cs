@@ -1,3 +1,4 @@
+using System.Collections;
 using TMPro;
 using UnityEngine;
 
@@ -16,7 +17,6 @@ public class PlayerMovement : MonoBehaviour
         [SerializeField] bool flipSprite = true;
 
     [Header("Jumping")]
-    // TODO: ADD A SECOND RAYCAST
     [Tooltip("Where the raycast for being grounded is")]
         [SerializeField] Vector2 LeftGroundedRaycastOffset = new Vector2(0, -1f);
     [Tooltip("Where the raycast for being grounded is")]
@@ -37,7 +37,9 @@ public class PlayerMovement : MonoBehaviour
     [Tooltip("The speed the player should glide at (should be positive)")]
         [SerializeField] float glideFallSpeed = 1f;
 
-
+    [Header("Death")]
+    [Tooltip("The time it takes for the player to respawn after death")]
+        [SerializeField] float respawnTime = 1f;
 
     [Header("Movement Time")]
     [SerializeField] TextMeshProUGUI LeftText;
@@ -52,11 +54,13 @@ public class PlayerMovement : MonoBehaviour
     float timeSpentChargingJump = 0;
 
     public bool canMove = true;
+    Vector2 SpawnPoint = Vector2.zero;
 
     private void Start()
     {
         refRB = GetComponent<Rigidbody2D>();
         refRenderer = GetComponent<SpriteRenderer>();
+        SpawnPoint = transform.position;
     }
 
     private void OnDrawGizmosSelected()
@@ -77,6 +81,15 @@ public class PlayerMovement : MonoBehaviour
             HandleVerticalMovement();
         }
         UpdateTimeLeft();
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Hazard"))
+        {
+            // Kill the player if they touch a hazard
+            Skissue();
+        }
     }
 
     /// <summary>
@@ -167,6 +180,9 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Handles logic for the charge jump system
+    /// </summary>
     void HandleChargeJumpLogic()
     {
         // Charge the jump
@@ -183,6 +199,9 @@ public class PlayerMovement : MonoBehaviour
         jumpChargeLine.SetPosition(1, new(0, Mathf.Lerp(0, jumpLineMaxLength, timeSpentChargingJump / jumpChargeTime)));
     }
 
+    /// <summary>
+    /// Handles logic for jumping the player
+    /// </summary>
     void HandleJumpLogic()
     {
         // Lerp the jump force based on how long the player charged the jump
@@ -195,7 +214,10 @@ public class PlayerMovement : MonoBehaviour
         timeSpentChargingJump = 0;
         jumpChargeLine.enabled = false;
     }
-    
+
+    /// <summary>
+    /// Updates the time left for each movement type and updates the UI text accordingly. This is temporary
+    /// </summary>
     void UpdateTimeLeft()
     {
         LeftText.text = Mathf.Max(0, LeftMovementTimeLeft).ToString("F2");
@@ -203,6 +225,10 @@ public class PlayerMovement : MonoBehaviour
         JumpText.text = Mathf.Max(0, JumpMovementTimeLeft).ToString("F2");
     }
 
+    /// <summary>
+    /// Checks if the player is grounded by casting two raycasts downwards from the left and right offsets. If either raycast hits a collider with the "Ground" tag, the player is considered grounded.
+    /// </summary>
+    /// <returns>true if grounded, false otherwise</returns>
     bool IsGrounded()
     {
         RaycastHit2D lHit = Physics2D.Raycast((Vector2)transform.position + LeftGroundedRaycastOffset, Vector2.down, 0.1f);
@@ -216,5 +242,30 @@ public class PlayerMovement : MonoBehaviour
             return true;
         }
         return false;
+    }
+
+    void Skissue()
+    {
+        // Stop the player from moving
+        canMove = false;
+        // Do some death animation call here, for now we flip the sprite vertically
+        refRenderer.flipY = true;
+        // Stop the player's velocity
+        refRB.linearVelocity = Vector2.zero;
+        // Wait for a few seconds and then respawn the player
+        StartCoroutine(WaitOnRespawn());
+    }
+
+    IEnumerator WaitOnRespawn()
+    {
+        yield return new WaitForSeconds(respawnTime);
+        // Reset the player position to the spawn point
+        transform.position = SpawnPoint;
+        // Reset the player velocity
+        refRB.linearVelocity = Vector2.zero;
+        // Reset the player sprite
+        refRenderer.flipY = false;
+        // TODO: Re-open the time bank menu here
+        FindFirstObjectByType<TimeBank>().ActivateUI();
     }
 }
