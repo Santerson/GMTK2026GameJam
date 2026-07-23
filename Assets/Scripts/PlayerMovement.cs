@@ -16,17 +16,17 @@ public class PlayerMovement : MonoBehaviour
     [Header("Jumping")]
     // TODO: ADD A SECOND RAYCAST
     [Tooltip("Where the raycast for being grounded is")]
-        [SerializeField] Vector2 GroundedRaycastOffset = new Vector2(0, -1f);
+        [SerializeField] Vector2 LeftGroundedRaycastOffset = new Vector2(0, -1f);
+    [Tooltip("Where the raycast for being grounded is")]
+        [SerializeField] Vector2 RightGroundedRaycastOffset = new Vector2(0, -1f);
     [Tooltip("The max jump force of the player. An instnat jump uses half this jump height")]
         [SerializeField] float maxJumpForce = 7f;
-    [Tooltip("The base cost of a jump (this is deducted instantly on button press)")]
-        [SerializeField] float baseJumpCost = 0.5f;
+    [Tooltip("The minimum jump height")]
+        [SerializeField] float minJumpForce = 2f;
     [Tooltip("The time it takes to charge a jump (real time). Note: half of this will be used instantly on button press")]
         [SerializeField] float jumpChargeTime = 1.5f;
     [Tooltip("Should the player automatically jump when the jump time runs out")]
         [SerializeField] bool AutoJump = true;
-    [Tooltip("The time it takes to start charging the jump after pressing the jump button")]
-        [SerializeField] float timeUntilChargeJump = 0.1f;
     [Tooltip("The line renderer for the jump charge")]
         [SerializeField] LineRenderer jumpChargeLine;
     [SerializeField] float jumpLineMaxLength = 1.5f;
@@ -44,9 +44,7 @@ public class PlayerMovement : MonoBehaviour
     public float JumpMovementTimeLeft = 0f;
     Rigidbody2D refRB;
 
-    float timeUntilStartChargeJump = 0;
     float timeSpentChargingJump = 0;
-    float jumpChargeTimeLeftWhenStartingJump = 0;
 
     private void Start()
     {
@@ -56,8 +54,10 @@ public class PlayerMovement : MonoBehaviour
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawLine((Vector2)transform.position + GroundedRaycastOffset, 
-            (Vector2)transform.position + GroundedRaycastOffset + Vector2.down * 0.1f);
+        Gizmos.DrawLine((Vector2)transform.position + LeftGroundedRaycastOffset, 
+            (Vector2)transform.position + LeftGroundedRaycastOffset + Vector2.down * 0.1f);
+        Gizmos.DrawLine((Vector2)transform.position + RightGroundedRaycastOffset,
+            (Vector2)transform.position + RightGroundedRaycastOffset + Vector2.down * 0.1f);
     }
 
     // Update is called once per frame
@@ -111,31 +111,17 @@ public class PlayerMovement : MonoBehaviour
     /// </summary>
     void HandleVerticalMovement()
     {
+        // Deduct timer if holding space
+        if (Input.GetKey(KeyCode.Space))
+        {
+            JumpMovementTimeLeft -= Time.deltaTime;
+        }
+
         // If input down while grounded
         if (Input.GetKey(KeyCode.Space) && JumpMovementTimeLeft > 0
             && IsGrounded() && timeSpentChargingJump < jumpChargeTime)
-        { 
-            if (timeSpentChargingJump == 0)
-            {
-                // Deduct jump movement time if this is initial jump
-                if (timeUntilStartChargeJump == 0)
-                {
-                    JumpMovementTimeLeft -= baseJumpCost;
-                }
-                // Start counting until starting the charge jump
-                timeUntilStartChargeJump += Time.deltaTime;
-                if (timeUntilStartChargeJump >= timeUntilChargeJump)
-                {
-                    // This is for rounding errors because deltatime sucks
-                    jumpChargeTimeLeftWhenStartingJump = JumpMovementTimeLeft;
-                    // Start charging the jump
-                    HandleChargeJumpLogic();
-                }
-            }
-            else
-            {
-                HandleChargeJumpLogic();
-            }
+        {
+            HandleChargeJumpLogic();
         }
         // Launch the jump if input up or time runs out
         if ((Input.GetKeyUp(KeyCode.Space) && IsGrounded())
@@ -147,7 +133,6 @@ public class PlayerMovement : MonoBehaviour
         if (!IsGrounded())
         {
             timeSpentChargingJump = 0;
-            timeUntilStartChargeJump = 0;
             jumpChargeLine.enabled = false;
         }
 
@@ -155,7 +140,6 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetKey(KeyCode.Space) && !IsGrounded() && refRB.linearVelocityY <= -glideFallSpeed)
         {
             refRB.linearVelocityY = -glideFallSpeed;
-            JumpMovementTimeLeft -= Time.deltaTime;
         }
     }
 
@@ -168,14 +152,8 @@ public class PlayerMovement : MonoBehaviour
         {
             // Reset to max charge time
             timeSpentChargingJump = jumpChargeTime;
-            // Adjust jumpmovementtimeleft to account for deltatime differences
-            JumpMovementTimeLeft = jumpChargeTimeLeftWhenStartingJump - jumpChargeTime;
         }
-        else
-        {
-            // Straight reduce otherwise
-            JumpMovementTimeLeft -= Time.deltaTime;
-        }
+       
         // Update the line renderer for the jump
         jumpChargeLine.enabled = true;
         jumpChargeLine.SetPosition(1, new(0, Mathf.Lerp(0, jumpLineMaxLength, timeSpentChargingJump / jumpChargeTime)));
@@ -184,9 +162,9 @@ public class PlayerMovement : MonoBehaviour
     void HandleJumpLogic()
     {
         // Lerp the jump force based on how long the player charged the jump
-        float jumpForce = Mathf.Lerp(0, maxJumpForce/2, timeSpentChargingJump / jumpChargeTime) / 2;
-        // Add half of the max jump force to the jump force to ensure a minimum jump height
-        jumpForce += maxJumpForce / 2;
+        float jumpForce = Mathf.Lerp(0, maxJumpForce, timeSpentChargingJump / jumpChargeTime);
+
+        jumpForce = Mathf.Max(jumpForce, minJumpForce); // Ensure the jump force is at least the minimum jump force
         // Apply the force
         refRB.linearVelocityY = jumpForce;
         // Reset variables
@@ -203,8 +181,13 @@ public class PlayerMovement : MonoBehaviour
 
     bool IsGrounded()
     {
-        RaycastHit2D hit = Physics2D.Raycast((Vector2)transform.position + GroundedRaycastOffset, Vector2.down, 0.1f);
-        if (hit.collider != null && hit.collider.CompareTag("Ground"))
+        RaycastHit2D lHit = Physics2D.Raycast((Vector2)transform.position + LeftGroundedRaycastOffset, Vector2.down, 0.1f);
+        RaycastHit2D rHit = Physics2D.Raycast((Vector2)transform.position + RightGroundedRaycastOffset, Vector2.down, 0.1f);
+        if (lHit.collider != null && lHit.collider.CompareTag("Ground"))
+        {
+            return true;
+        }
+        if (rHit.collider != null && rHit.collider.CompareTag("Ground"))
         {
             return true;
         }
