@@ -12,6 +12,8 @@ public class PlayerMovement : MonoBehaviour
         [SerializeField] float midAirAccelerationDampen = 0.5f;
     [Tooltip("The deceleration of the player when no input is given")]
         [SerializeField] float deceleration = 10f;
+    [Tooltip("Whether or not to flip the player's sprite depending on which way they are going")]
+        [SerializeField] bool flipSprite = true;
 
     [Header("Jumping")]
     // TODO: ADD A SECOND RAYCAST
@@ -39,10 +41,11 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] TextMeshProUGUI LeftText;
     [SerializeField] TextMeshProUGUI RightText;
     [SerializeField] TextMeshProUGUI JumpText;
-    public float LeftMovementTimeLeft = 0f;
-    public float RightMovementTimeLeft = 0f;
-    public float JumpMovementTimeLeft = 0f;
+    [HideInInspector] public float LeftMovementTimeLeft = 0f;
+    [HideInInspector] public float RightMovementTimeLeft = 0f;
+    [HideInInspector] public float JumpMovementTimeLeft = 0f;
     Rigidbody2D refRB;
+    SpriteRenderer refRenderer;
 
     float timeSpentChargingJump = 0;
 
@@ -51,6 +54,7 @@ public class PlayerMovement : MonoBehaviour
     private void Start()
     {
         refRB = GetComponent<Rigidbody2D>();
+        refRenderer = GetComponent<SpriteRenderer>();
     }
 
     private void OnDrawGizmosSelected()
@@ -107,6 +111,19 @@ public class PlayerMovement : MonoBehaviour
             else if (refRB.linearVelocity.x < 0)
             {
                 refRB.linearVelocity = new Vector2(Mathf.Min(0, refRB.linearVelocity.x + deceleration * Time.deltaTime), refRB.linearVelocity.y);
+            }
+        }
+
+        // Rotate the player
+        if (flipSprite)
+        {
+            if (refRB.linearVelocity.x > 0)
+            {
+                refRenderer.flipX = true;
+            }
+            else if (refRB.linearVelocity.x < 0)
+            {
+                refRenderer.flipX = false;
             }
         }
     }
