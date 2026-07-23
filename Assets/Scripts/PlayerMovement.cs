@@ -45,9 +45,9 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] TextMeshProUGUI LeftText;
     [SerializeField] TextMeshProUGUI RightText;
     [SerializeField] TextMeshProUGUI JumpText;
-    [HideInInspector] public float LeftMovementTimeLeft = 0f;
-    [HideInInspector] public float RightMovementTimeLeft = 0f;
-    [HideInInspector] public float JumpMovementTimeLeft = 0f;
+    public float LeftMovementTimeLeft = 0f;
+    public float RightMovementTimeLeft = 0f;
+    public float JumpMovementTimeLeft = 0f;
     Rigidbody2D refRB;
     SpriteRenderer refRenderer;
 
@@ -161,8 +161,8 @@ public class PlayerMovement : MonoBehaviour
             HandleChargeJumpLogic();
         }
         // Launch the jump if input up or time runs out
-        if ((Input.GetKeyUp(KeyCode.Space) && IsGrounded())
-            || (JumpMovementTimeLeft <= 0 && timeSpentChargingJump > 0 && AutoJump))
+        if ((Input.GetKeyUp(KeyCode.Space) && IsGrounded() && JumpMovementTimeLeft >= 0)
+            || (timeSpentChargingJump > 0 && AutoJump && JumpMovementTimeLeft <= 0))
         {
             HandleJumpLogic();
         }

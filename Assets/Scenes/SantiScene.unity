@@ -1305,18 +1305,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1972342247}
     - target: {fileID: 3143963318482094414, guid: 77872cd5696840f49a2132261603aa23, type: 3}
-      propertyPath: JumpMovementTimeLeft
-      value: 9999
-      objectReference: {fileID: 0}
-    - target: {fileID: 3143963318482094414, guid: 77872cd5696840f49a2132261603aa23, type: 3}
-      propertyPath: LeftMovementTimeLeft
-      value: 9999
-      objectReference: {fileID: 0}
-    - target: {fileID: 3143963318482094414, guid: 77872cd5696840f49a2132261603aa23, type: 3}
-      propertyPath: RightMovementTimeLeft
-      value: 9999
-      objectReference: {fileID: 0}
-    - target: {fileID: 3143963318482094414, guid: 77872cd5696840f49a2132261603aa23, type: 3}
       propertyPath: GroundedRaycastOffset.y
       value: -0.595
       objectReference: {fileID: 0}

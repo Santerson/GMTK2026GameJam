@@ -5,7 +5,7 @@ public class TimeBank : MonoBehaviour
 {
     [Header("Time Bank")]
     [Tooltip("The time the player has on this stage")]
-        [SerializeField] float MaxTime = 12f;
+        [SerializeField] uint MaxTime = 12;
     [Header("Camera Movement")]
     [Tooltip("The offset the camera will be at while this menu is open")]
         [SerializeField] Vector2 CameraOffsetPosition = new(0, 3);
@@ -27,18 +27,18 @@ public class TimeBank : MonoBehaviour
     [Tooltip("The text for the right movement time")]
         [SerializeField] TMP_Text RightText;
     [Tooltip("The text for the jump movement time")]
-    [   SerializeField] TMP_Text JumpText;
+        [SerializeField] TMP_Text JumpText;
 
     Vector2 CurrentCameraOffset = Vector2.zero;
+
+    float TimeLeftToAllocate = 0f;
+    float allocatedTimeLeft = 0;
+    float allocatedTimeRight = 0;
+    float allocatedTimeJump = 0;
 
     private void Awake()
     {
         ActivateUI();
-    }
-
-    private void Update()
-    {
-        timeBankText.text = "Time Bank: " + MaxTime + "/s";
     }
 
     /// <summary>
@@ -46,6 +46,9 @@ public class TimeBank : MonoBehaviour
     /// </summary>
     public void ActivateUI()
     {
+        // Calculate the time left to allocate and reallocate the given applied tiems
+        CalculateTimeToAllocateLeft();
+        ReapplySelectedTimes();
         // Get a reference to the reference camera
         if (refCameraMovement == null)
             refCameraMovement = Camera.main.GetComponent<CameraMovement>();
@@ -63,60 +66,67 @@ public class TimeBank : MonoBehaviour
 
     public void LeftButtonTimeAdd()
     {
-        if (MaxTime == 0f)
+        if (TimeLeftToAllocate <= 0f)
             return;
         refPlayer.LeftMovementTimeLeft += 1f;
+        allocatedTimeLeft += 1f;
         LeftText.text = "" + refPlayer.LeftMovementTimeLeft;
-        MaxTime -= 1f;
+        CalculateTimeToAllocateLeft();
     }
 
     public void LeftButtonTimeMinus()
     {
-        if (MaxTime == 12)
+        if (TimeLeftToAllocate >= MaxTime)
             return;
         refPlayer.LeftMovementTimeLeft -= 1f;
+        allocatedTimeLeft -= 1f;
         LeftText.text = "" + refPlayer.LeftMovementTimeLeft;
-        MaxTime += 1f;
+        CalculateTimeToAllocateLeft();
     }
 
     public void RightButtonTimeAdd()
     {
-        if (MaxTime == 0f)
+        if (TimeLeftToAllocate <= 0f)
             return;
         refPlayer.RightMovementTimeLeft += 1f;
+        allocatedTimeRight += 1f;
         RightText.text = "" + refPlayer.RightMovementTimeLeft;
-        MaxTime -= 1f;
+        CalculateTimeToAllocateLeft();
     }
 
     public void RightButtonTimeMinus()
     {
-        if (MaxTime == 12)
+        if (TimeLeftToAllocate >= MaxTime)
             return;
         refPlayer.RightMovementTimeLeft -= 1f;
+        allocatedTimeRight -= 1f;
         RightText.text = "" + refPlayer.RightMovementTimeLeft;
-        MaxTime += 1f;
+        CalculateTimeToAllocateLeft();
     }
 
     public void JumpButtonTimeAdd()
     {
-        if (MaxTime == 0f)
+        if (TimeLeftToAllocate <= 0f)
             return;
         refPlayer.JumpMovementTimeLeft += 1f;
-        RightText.text = "" + refPlayer.JumpMovementTimeLeft;
-        MaxTime -= 1f;
+        allocatedTimeJump += 1f;
+        JumpText.text = "" + refPlayer.JumpMovementTimeLeft;
+        CalculateTimeToAllocateLeft();
     }
 
     public void JumpButtonTimeMinus()
     {
-        if(MaxTime == 12)
+        if(TimeLeftToAllocate >= MaxTime)
             return;
-        RightText.text = "" + refPlayer.JumpMovementTimeLeft;
-        MaxTime += 1f;
+        refPlayer.JumpMovementTimeLeft -= 1f;
+        allocatedTimeJump -= 1f;
+        JumpText.text = "" + refPlayer.JumpMovementTimeLeft;
+        CalculateTimeToAllocateLeft();
     }
 
     public void StartButton()
     {
-        if (MaxTime == 0f)
+        if (TimeLeftToAllocate <= 0f)
         {
             // Disable the ui
             foreach (GameObject ui in UI)
@@ -127,5 +137,18 @@ public class TimeBank : MonoBehaviour
             // Allow the player to move
             refPlayer.canMove = true;
         }
+    }
+
+    void CalculateTimeToAllocateLeft()
+    {
+        TimeLeftToAllocate = MaxTime - allocatedTimeJump - allocatedTimeLeft - allocatedTimeRight;
+        timeBankText.text = "Time Bank: " + TimeLeftToAllocate + "/s";
+    }
+
+    void ReapplySelectedTimes()
+    {
+        refPlayer.JumpMovementTimeLeft = allocatedTimeJump;
+        refPlayer.LeftMovementTimeLeft = allocatedTimeLeft;
+        refPlayer.RightMovementTimeLeft = allocatedTimeRight;
     }
 }
