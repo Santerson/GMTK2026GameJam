@@ -151,11 +151,12 @@ GameObject:
   - component: {fileID: 2433814807632917440}
   - component: {fileID: 2015839588756719200}
   - component: {fileID: 3143963318482094414}
+  - component: {fileID: 4223630024208803559}
   - component: {fileID: 3040585433696900844}
   - component: {fileID: 257658475075677966}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -285,6 +286,8 @@ MonoBehaviour:
   jumpLineMaxLength: 2
   glideFallSpeed: 1
   respawnTime: 1
+  timeUntilLevelChangeOnWin: 1
+  breakdanceOnWin: 0
   LeftText: {fileID: 0}
   RightText: {fileID: 0}
   JumpText: {fileID: 0}
@@ -292,6 +295,18 @@ MonoBehaviour:
   RightMovementTimeLeft: 0
   JumpMovementTimeLeft: 0
   canMove: 1
+--- !u!114 &4223630024208803559
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5331027616943971336}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1eda9b2d5b1b6544ca0935e8af34b10c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &3040585433696900844
 MonoBehaviour:
   m_ObjectHideFlags: 0

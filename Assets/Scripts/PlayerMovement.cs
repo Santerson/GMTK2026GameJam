@@ -1,6 +1,7 @@
 using System.Collections;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -40,6 +41,12 @@ public class PlayerMovement : MonoBehaviour
     [Header("Death")]
     [Tooltip("The time it takes for the player to respawn after death")]
         [SerializeField] float respawnTime = 1f;
+
+    [Header("Win")]
+    [Tooltip("Time unitl the level changes when reaching the goal")]
+        [SerializeField] float timeUntilLevelChangeOnWin = 1f;
+    [Tooltip("¯\\_:)_/¯")]
+        [SerializeField] bool breakdanceOnWin = false;
 
     [Header("Movement Time")]
     [SerializeField] TextMeshProUGUI LeftText;
@@ -267,5 +274,20 @@ public class PlayerMovement : MonoBehaviour
         refRenderer.flipY = false;
         // TODO: Re-open the time bank menu here
         FindFirstObjectByType<TimeBank>().ActivateUI();
+    }
+
+    public void GamerWin()
+    {
+        // Wait a bit
+        canMove = false;
+        flipSprite = true;
+        StartCoroutine(LevelChange());
+    }
+
+    IEnumerator LevelChange()
+    {
+        yield return new WaitForSeconds(timeUntilLevelChangeOnWin);
+        // Change the level here
+        FindFirstObjectByType<GameSceneManager>().LoadLevel((int)FindFirstObjectByType<LevelGoal>().LevelIndex + 1);
     }
 }
