@@ -60,6 +60,7 @@ public class PlayerMovement : MonoBehaviour
     Rigidbody2D refRB;
     SpriteRenderer refRenderer;
     GameObject heldObject;
+    Animator refAnimator;
 
     // float timeSpentChargingJump = 0;
     [SerializeField] float currentSwimSpeedCap = 3f;
@@ -68,10 +69,23 @@ public class PlayerMovement : MonoBehaviour
     public bool canMove = true;
     public bool IsHoldingObject { get; private set; } = false;
 
+    enum AnimState
+    {
+        Idle,
+        Walking,
+        Swimming,
+        Landing,
+        Dying,
+        Sleeping,
+        EpicDub
+    }
+    AnimState currentState = AnimState.Idle;
+
     private void Start()
     {
         refRB = GetComponent<Rigidbody2D>();
         refRenderer = GetComponent<SpriteRenderer>();
+        refAnimator = GetComponent<Animator>();
         currentSwimSpeedCap = maxSwimSpeed;
     }
 
@@ -104,6 +118,7 @@ public class PlayerMovement : MonoBehaviour
             }
         }
         UpdateTimeLeft();
+        UpdateAnimState();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -117,6 +132,38 @@ public class PlayerMovement : MonoBehaviour
         {
             Skissue(false);
         }
+    }
+
+    void UpdateAnimState()
+    {
+        if (currentState == AnimState.Dying || currentState == AnimState.Sleeping || currentState == AnimState.EpicDub)
+        {
+            refAnimator.SetInteger("PlayerState", (int)currentState);
+            return;
+        }
+        if (IsGrounded())
+        {
+            if (Mathf.Abs(refRB.linearVelocity.x) > 0.1f)
+            {
+                currentState = AnimState.Walking;
+            }
+            else
+            {
+                currentState = AnimState.Idle;
+            }
+        }
+        else
+        {
+            if (refRB.linearVelocity.y > 0.1f)
+            {
+                currentState = AnimState.Swimming;
+            }
+            else
+            {
+                currentState = AnimState.Landing;
+            }
+        }
+        refAnimator.SetInteger("PlayerState", (int)currentState);
     }
 
     /// <summary>
