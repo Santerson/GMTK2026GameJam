@@ -248,7 +248,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDamping: 0
   m_AngularDamping: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0.52
   m_Material: {fileID: 6200000, guid: e270cac0d9cea8f41a4a8a5a162ff3c1, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
@@ -274,17 +274,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxSpeed: 5
   acceleration: 10
-  midAirAccelerationDampen: 0.5
   deceleration: 10
   flipSprite: 1
   LeftGroundedRaycastOffset: {x: -0.59, y: -0.573}
   RightGroundedRaycastOffset: {x: 0.586, y: -0.573}
-  maxJumpForce: 9
-  minJumpForce: 2
-  jumpChargeTime: 0.5
-  AutoJump: 1
-  jumpChargeLine: {fileID: 8792431053267898280}
-  jumpLineMaxLength: 2
+  maxSwimSpeed: 2.88
+  swimAcceleration: 13.5
+  swimImpulse: 3.89
+  SwimSpeedChangeTime: 0.18
+  midAirAccelerationDampen: 0.5
+  midAirDecelerationDampen: 0.12
   glideFallSpeed: 1
   respawnTime: 1
   timeUntilLevelChangeOnWin: 1
@@ -294,6 +293,7 @@ MonoBehaviour:
   LeftMovementTimeLeft: 0
   RightMovementTimeLeft: 0
   JumpMovementTimeLeft: 0
+  currentSwimSpeedCap: 3
   canMove: 1
 --- !u!114 &4223630024208803559
 MonoBehaviour:
