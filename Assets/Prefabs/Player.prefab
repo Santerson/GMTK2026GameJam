@@ -311,12 +311,14 @@ MonoBehaviour:
   midAirAccelerationDampen: 0.5
   deceleration: 10
   GroundedRaycastOffset: {x: 0, y: -0.6}
-  maxJumpForce: 9.1
-  jumpChargeTime: 1
+  maxJumpForce: 11
+  baseJumpCost: 0.5
+  jumpChargeTime: 0.5
   AutoJump: 1
-  glideFallSpeed: 1
+  timeUntilChargeJump: 0.1
   jumpChargeLine: {fileID: 8792431053267898280}
   jumpLineMaxLength: 2
+  glideFallSpeed: 1
   LeftText: {fileID: 0}
   RightText: {fileID: 0}
   JumpText: {fileID: 0}

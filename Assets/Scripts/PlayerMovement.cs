@@ -184,11 +184,11 @@ public class PlayerMovement : MonoBehaviour
     void HandleJumpLogic()
     {
         // Lerp the jump force based on how long the player charged the jump
-        float jumpForce = Mathf.Lerp(0, maxJumpForce/2, timeSpentChargingJump / jumpChargeTime);
+        float jumpForce = Mathf.Lerp(0, maxJumpForce/2, timeSpentChargingJump / jumpChargeTime) / 2;
         // Add half of the max jump force to the jump force to ensure a minimum jump height
         jumpForce += maxJumpForce / 2;
         // Apply the force
-        refRB.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+        refRB.linearVelocityY = jumpForce;
         // Reset variables
         timeSpentChargingJump = 0;
         jumpChargeLine.enabled = false;
