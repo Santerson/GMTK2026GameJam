@@ -284,8 +284,7 @@ MonoBehaviour:
   SwimSpeedChangeTime: 0.18
   midAirAccelerationDampen: 0.5
   midAirDecelerationDampen: 0.12
-  glideFallSpeed: 1
-  respawnTime: 1
+  respawnTime: 2.5
   timeUntilLevelChangeOnWin: 1
   LeftText: {fileID: 0}
   RightText: {fileID: 0}

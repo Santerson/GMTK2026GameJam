@@ -18,6 +18,7 @@ public class CameraMovement : MonoBehaviour
     cameraStates currentCameraState = cameraStates.normal;
     float zoomInScale = 5f;
     float cameraDefaultScale = 9f;
+    bool camTracking = true;
 
     /// <summary>
     /// Contains states for the camera depending on what it is doing regarding to zooming in and out
@@ -54,7 +55,7 @@ public class CameraMovement : MonoBehaviour
     private void FixedUpdate()
     {
         // slowly move towards the target position
-        if (TargetObject != null)
+        if (TargetObject != null && camTracking)
         {
             Vector2 targetPos = (Vector2)TargetObject.transform.position + offset;
             Vector2 newPos = Vector2.Lerp(transform.position, targetPos, FollowSpeed);
@@ -83,6 +84,11 @@ public class CameraMovement : MonoBehaviour
     public Vector2 GetOffset()
     {
         return offset;
+    }
+
+    public void SetCamTracking(bool tracking)
+    {
+        camTracking = tracking;
     }
 
     public void StartCameraZoomin(float zoominAmount)

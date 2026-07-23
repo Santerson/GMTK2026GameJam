@@ -47,9 +47,9 @@ public class PlayerMovement : MonoBehaviour
     [Tooltip("The dampening of the deceleration when in mid air (0.5 is half the speed)")]
         [SerializeField] float midAirDecelerationDampen = 0.5f;
 
-    [Header("Glide")]
-    [Tooltip("The speed the player should glide at (should be positive)")]
-        [SerializeField] float glideFallSpeed = 1f;
+    //[Header("Glide")]
+    //[Tooltip("The speed the player should glide at (should be positive)")]
+    //    [SerializeField] float glideFallSpeed = 1f;
 
     [Header("Death")]
     [Tooltip("The time it takes for the player to respawn after death")]
@@ -103,18 +103,22 @@ public class PlayerMovement : MonoBehaviour
             // Check for r key to reset
             if (Input.GetKeyDown(KeyCode.R))
             {
-                Skissue();
+                Skissue(true);
             }
         }
         UpdateTimeLeft();
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Hazard"))
         {
             // Kill the player if they touch a hazard
-            Skissue();
+            Skissue(true);
+        }
+        if (collision.gameObject.CompareTag("Bomb"))
+        {
+            Skissue(false);
         }
     }
 
@@ -228,14 +232,14 @@ public class PlayerMovement : MonoBehaviour
     /// <summary>
     /// Kills the player
     /// </summary>
-    void Skissue()
+    void Skissue(bool stopPlayer)
     {
         // Stop the player from moving
         canMove = false;
         // Do some death animation call here, for now we flip the sprite vertically
         refRenderer.flipY = true;
         // Stop the player's velocity
-        refRB.linearVelocity = Vector2.zero;
+        if (stopPlayer) refRB.linearVelocity = Vector2.zero;
         // Wait for a few seconds and then respawn the player
         StartCoroutine(WaitOnRespawn());
     }
@@ -264,7 +268,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (LeftMovementTimeLeft <= 0 && RightMovementTimeLeft <= 0 && JumpMovementTimeLeft <= 0 && refRB.linearVelocity.magnitude < 0.1f)
         {
-            Skissue();
+            Skissue(true);
         }
     }
 
