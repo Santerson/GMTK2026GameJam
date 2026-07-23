@@ -36,8 +36,11 @@ public class TimeBank : MonoBehaviour
     float allocatedTimeRight = 0;
     float allocatedTimeJump = 0;
 
+    AllocatedTimeStorage refTimeStorage;
+
     private void Awake()
     {
+        refTimeStorage = FindFirstObjectByType<AllocatedTimeStorage>();
         ActivateUI();
     }
 
@@ -46,6 +49,8 @@ public class TimeBank : MonoBehaviour
     /// </summary>
     public void ActivateUI()
     {
+        // Pull the selected times from the global object for this stage
+        PullSelectedTimes();
         // Calculate the time left to allocate and reallocate the given applied tiems
         CalculateTimeToAllocateLeft();
         ReapplySelectedTimes();
@@ -124,6 +129,9 @@ public class TimeBank : MonoBehaviour
         CalculateTimeToAllocateLeft();
     }
 
+    /// <summary>
+    /// Starts the level if all time has been allocated
+    /// </summary>
     public void StartButton()
     {
         if (TimeLeftToAllocate <= 0f)
@@ -131,6 +139,8 @@ public class TimeBank : MonoBehaviour
             // Disable the ui
             foreach (GameObject ui in UI)
                 ui.SetActive(false);
+            // Save the selected times
+            SaveSelectedTimes();
             // Reset the camera
             refCameraMovement.SetOffset(CurrentCameraOffset);
             refCameraMovement.StartCameraZoomout();
@@ -150,5 +160,38 @@ public class TimeBank : MonoBehaviour
         refPlayer.JumpMovementTimeLeft = allocatedTimeJump;
         refPlayer.LeftMovementTimeLeft = allocatedTimeLeft;
         refPlayer.RightMovementTimeLeft = allocatedTimeRight;
+    }
+
+    /// <summary>
+    /// Saves the selected times to the global object for this stage
+    /// </summary>
+    void SaveSelectedTimes()
+    {
+        if (refTimeStorage == null)
+        {
+            Debug.LogWarning("No Time Storage Gameobject found on this scene! This might be because you forgot to put the empty on this scene!");
+            return;
+        }
+        refTimeStorage.allocatedTimeJump = allocatedTimeJump;
+        refTimeStorage.allocatedTimeLeft = allocatedTimeLeft;
+        refTimeStorage.allocatedTimeRight = allocatedTimeRight;
+    }
+
+    /// <summary>
+    /// Pulls selected save times from the global object for this stage
+    /// </summary>
+    void PullSelectedTimes()
+    {
+        if (refTimeStorage == null)
+        {
+            Debug.LogWarning("No Time Storage Gameobject found on this scene! This might be because you forgot to put the empty on this scene!");
+            return;
+        }
+        allocatedTimeJump = refTimeStorage.allocatedTimeJump;
+        allocatedTimeLeft = refTimeStorage.allocatedTimeLeft;
+        allocatedTimeRight = refTimeStorage.allocatedTimeRight;
+        RightText.text = "" + allocatedTimeRight;
+        LeftText.text = "" + allocatedTimeLeft;
+        JumpText.text = "" + allocatedTimeJump;
     }
 }

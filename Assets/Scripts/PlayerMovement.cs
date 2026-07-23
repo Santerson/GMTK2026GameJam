@@ -46,8 +46,6 @@ public class PlayerMovement : MonoBehaviour
     [Header("Win")]
     [Tooltip("Time unitl the level changes when reaching the goal")]
         [SerializeField] float timeUntilLevelChangeOnWin = 1f;
-    [Tooltip("¯\\_:)_/¯")]
-        [SerializeField] bool breakdanceOnWin = false;
 
     [Header("Movement Time")]
     [SerializeField] TextMeshProUGUI LeftText;
@@ -287,14 +285,17 @@ public class PlayerMovement : MonoBehaviour
     /// </summary>
     void ResetLevel()
     {
-        // Reset the player position to the spawn point
-        transform.position = SpawnPoint;
-        // Reset the player velocity
-        refRB.linearVelocity = Vector2.zero;
-        // Reset the player sprite
-        refRenderer.flipY = false;
-        // TODO: Re-open the time bank menu here
-        FindFirstObjectByType<TimeBank>().ActivateUI();
+        //// Reset the player position to the spawn point
+        //transform.position = SpawnPoint;
+        //// Reset the player velocity
+        //refRB.linearVelocity = Vector2.zero;
+        //// Reset the player sprite
+        //refRenderer.flipY = false;
+        //// TODO: Re-open the time bank menu here
+        //FindFirstObjectByType<TimeBank>().ActivateUI();
+        // Reload the current scene
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+
     }
 
     /// <summary>
@@ -312,13 +313,20 @@ public class PlayerMovement : MonoBehaviour
     {
         // Wait a bit
         canMove = false;
-        flipSprite = true;
+        refRB.linearVelocity = Vector2.zero;
+        refRenderer.flipY = true;
         StartCoroutine(LevelChange());
     }
 
     IEnumerator LevelChange()
     {
         yield return new WaitForSeconds(timeUntilLevelChangeOnWin);
+        // Destroy the current time storage object
+        AllocatedTimeStorage[] objs = FindObjectsByType<AllocatedTimeStorage>(FindObjectsSortMode.None);
+        foreach (AllocatedTimeStorage obj in objs)
+        {
+            Destroy(obj.gameObject);
+        }
         // Change the level here
         FindFirstObjectByType<GameSceneManager>().LoadLevel((int)FindFirstObjectByType<LevelGoal>().LevelIndex + 1);
     }
