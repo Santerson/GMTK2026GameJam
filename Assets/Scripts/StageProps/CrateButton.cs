@@ -60,7 +60,8 @@ public class CrateButton : MonoBehaviour
         // Enable all gameobjects
         foreach (GameObject obj in Objects)
         {
-            obj.SetActive(true);
+            if (obj != null)
+                obj.SetActive(true);
         }
         // Invoke all disable actions
         foreach (UnityEvent action in DisableActions)

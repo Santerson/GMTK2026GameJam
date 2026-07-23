@@ -21,17 +21,6 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] Vector2 LeftGroundedRaycastOffset = new Vector2(0, -1f);
     [Tooltip("Where the raycast for being grounded is")]
     [SerializeField] Vector2 RightGroundedRaycastOffset = new Vector2(0, -1f);
-    //[Tooltip("The max jump force of the player. An instnat jump uses half this jump height")]
-    //    [SerializeField] float maxJumpForce = 7f;
-    //[Tooltip("The minimum jump height")]
-    //    [SerializeField] float minJumpForce = 2f;
-    //[Tooltip("The time it takes to charge a jump (real time). Note: half of this will be used instantly on button press")]
-    //    [SerializeField] float jumpChargeTime = 1.5f;
-    //[Tooltip("Should the player automatically jump when the jump time runs out")]
-    //    [SerializeField] bool AutoJump = true;
-    //[Tooltip("The line renderer for the jump charge")]
-    //    [SerializeField] LineRenderer jumpChargeLine;
-    //[SerializeField] float jumpLineMaxLength = 1.5f;
 
     [Header("Swimming")]
     [Tooltip("The speed the player should swim at (should be positive)")]
@@ -47,10 +36,6 @@ public class PlayerMovement : MonoBehaviour
     [Tooltip("The dampening of the deceleration when in mid air (0.5 is half the speed)")]
         [SerializeField] float midAirDecelerationDampen = 0.5f;
 
-    //[Header("Glide")]
-    //[Tooltip("The speed the player should glide at (should be positive)")]
-    //    [SerializeField] float glideFallSpeed = 1f;
-
     [Header("Death")]
     [Tooltip("The time it takes for the player to respawn after death")]
         [SerializeField] float respawnTime = 1f;
@@ -58,6 +43,12 @@ public class PlayerMovement : MonoBehaviour
     [Header("Win")]
     [Tooltip("Time unitl the level changes when reaching the goal")]
         [SerializeField] float timeUntilLevelChangeOnWin = 1f;
+
+    [Header("Grabbing")]
+    [Tooltip("The left offset of the object")]
+        [SerializeField] Vector2 leftGrabOffset = new Vector2(-1f, 0f);
+    [Tooltip("The right offset of the object")]
+        [SerializeField] Vector2 rightGrabOffset = new Vector2(1f, 0f);
 
     [Header("Movement Time")]
     [SerializeField] TextMeshProUGUI LeftText;
@@ -68,12 +59,14 @@ public class PlayerMovement : MonoBehaviour
     public float JumpMovementTimeLeft = 0f;
     Rigidbody2D refRB;
     SpriteRenderer refRenderer;
+    GameObject heldObject;
 
     // float timeSpentChargingJump = 0;
     [SerializeField] float currentSwimSpeedCap = 3f;
     float timeSpentSwimming = 0f;
 
     public bool canMove = true;
+    public bool IsHoldingObject { get; private set; } = false;
 
     private void Start()
     {
@@ -89,6 +82,9 @@ public class PlayerMovement : MonoBehaviour
             (Vector2)transform.position + LeftGroundedRaycastOffset + Vector2.down * 0.1f);
         Gizmos.DrawLine((Vector2)transform.position + RightGroundedRaycastOffset,
             (Vector2)transform.position + RightGroundedRaycastOffset + Vector2.down * 0.1f);
+        Gizmos.color = Color.green;
+        Gizmos.DrawLine((Vector2) transform.position + leftGrabOffset, (Vector2)transform.position + leftGrabOffset + Vector2.up * 0.1f);
+        Gizmos.DrawLine((Vector2)transform.position + rightGrabOffset, (Vector2)transform.position + rightGrabOffset + Vector2.up * 0.1f);
     }
 
     // Update is called once per frame
@@ -100,6 +96,7 @@ public class PlayerMovement : MonoBehaviour
             // HandleVerticalMovement();
             HandleSwimLogic();
             CheckForOutOfTime();
+            CheckDropItem();
             // Check for r key to reset
             if (Input.GetKeyDown(KeyCode.R))
             {
@@ -166,10 +163,18 @@ public class PlayerMovement : MonoBehaviour
             if (refRB.linearVelocity.x > 0)
             {
                 refRenderer.flipX = true;
+                if (IsHoldingObject)
+                {
+                    heldObject.transform.localPosition = rightGrabOffset;
+                }
             }
             else if (refRB.linearVelocity.x < 0)
             {
                 refRenderer.flipX = false;
+                if (IsHoldingObject)
+                {
+                    heldObject.transform.localPosition = leftGrabOffset;
+                }
             }
         }
     }
@@ -274,11 +279,63 @@ public class PlayerMovement : MonoBehaviour
 
     public void GamerWin()
     {
+        // No win if player dead
+        if (canMove == false)
+            return;
         // Wait a bit
         canMove = false;
         refRB.linearVelocity = Vector2.zero;
         refRenderer.flipY = true;
         StartCoroutine(LevelChange());
+    }
+
+    void CheckDropItem()
+    {
+        if (Input.GetKeyDown(KeyCode.E) && IsHoldingObject)
+        {
+            // Drop the object
+            Transform heldObject = this.heldObject.transform;
+            heldObject.SetParent(null);
+            // Enable the object's collider
+            Collider2D objCollider = heldObject.GetComponent<Collider2D>();
+            if (objCollider != null)
+                objCollider.enabled = true;
+            // Enable the object's rigidbody
+            Rigidbody2D objRB = heldObject.GetComponent<Rigidbody2D>();
+            if (objRB != null)
+                objRB.simulated = true;
+            // Stop holding it
+            IsHoldingObject = false;
+            this.heldObject = null;
+        }
+    }
+
+    public void GrabObject(GameObject obj)
+    {
+        if (IsHoldingObject)
+            return;
+        // Make the object a child of the player
+        obj.transform.SetParent(transform);
+        // Set the object's position based on the direction of the player
+        if (refRenderer.flipX)
+        {
+            obj.transform.localPosition = rightGrabOffset;
+        }
+        else
+        {
+            obj.transform.localPosition = leftGrabOffset;
+        }
+        // Disable the object's collider so it doesn't interfere with the player
+        Collider2D objCollider = obj.GetComponent<Collider2D>();
+        if (objCollider != null)
+            objCollider.enabled = false;
+        // Disable the object's rigidbody
+        Rigidbody2D objRB = obj.GetComponent<Rigidbody2D>();
+        if (objRB != null)
+            objRB.simulated = false;
+        // Hold it
+        IsHoldingObject = true;
+        heldObject = obj;
     }
 
     IEnumerator LevelChange()
