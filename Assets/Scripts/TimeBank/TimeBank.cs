@@ -175,6 +175,9 @@ public class TimeBank : MonoBehaviour
         refTimeStorage.allocatedTimeJump = allocatedTimeJump;
         refTimeStorage.allocatedTimeLeft = allocatedTimeLeft;
         refTimeStorage.allocatedTimeRight = allocatedTimeRight;
+        refPlayer.MaxJumpMovementTime = allocatedTimeJump;
+        refPlayer.MaxLeftMovementTime = allocatedTimeLeft;
+        refPlayer.MaxRightMovementTime = allocatedTimeRight;
     }
 
     /// <summary>

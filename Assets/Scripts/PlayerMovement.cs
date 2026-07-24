@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using TMPro;
 using UnityEngine;
@@ -50,6 +51,13 @@ public class PlayerMovement : MonoBehaviour
     [Tooltip("The right offset of the object")]
         [SerializeField] Vector2 rightGrabOffset = new Vector2(1f, 0f);
 
+    [Header("Audio - Timer")]
+    [SerializeField][Range(0, 1)] float lowTimeThreshold = 0.2f;
+    [SerializeField] float tickInterval = 1f;
+    [SerializeField] AudioSource SFX_NormalTick;
+    [SerializeField] AudioSource SFX_LowTick;
+    [SerializeField] AudioSource SFX_RunOutTick;
+
     [Header("Movement Time")]
     [SerializeField] TextMeshProUGUI LeftText;
     [SerializeField] TextMeshProUGUI RightText;
@@ -57,6 +65,14 @@ public class PlayerMovement : MonoBehaviour
     public float LeftMovementTimeLeft = 0f;
     public float RightMovementTimeLeft = 0f;
     public float JumpMovementTimeLeft = 0f;
+    float L_timeUntilNextTickSound = 0f;
+    float R_timeUntilNextTickSound = 0f;
+    float J_timeUntilNextTickSound = 0f;
+
+    [HideInInspector] public float MaxLeftMovementTime = 0f;
+    [HideInInspector] public float MaxRightMovementTime = 0f;
+    [HideInInspector] public float MaxJumpMovementTime = 0f;
+
     Rigidbody2D refRB;
     SpriteRenderer refRenderer;
     GameObject heldObject;
@@ -111,6 +127,7 @@ public class PlayerMovement : MonoBehaviour
             HandleSwimLogic();
             CheckForOutOfTime();
             CheckDropItem();
+            CheckPlayTickSounds();
             // Check for r key to reset
             if (Input.GetKeyDown(KeyCode.R))
             {
@@ -178,12 +195,14 @@ public class PlayerMovement : MonoBehaviour
             float currAccel = IsGrounded() ? acceleration : acceleration * midAirAccelerationDampen;
             velocity += Vector2.right * currAccel;
             RightMovementTimeLeft -= Time.deltaTime;
+            R_timeUntilNextTickSound -= Time.deltaTime;
         }
         if (Input.GetKey(KeyCode.A) && LeftMovementTimeLeft > 0)
         {
             float currAccel = IsGrounded() ? acceleration : acceleration * midAirAccelerationDampen;
             velocity += Vector2.left * currAccel;
             LeftMovementTimeLeft -= Time.deltaTime;
+            L_timeUntilNextTickSound -= Time.deltaTime;
         }
         // Accelerate the player
         if (velocity != Vector2.zero)
@@ -230,8 +249,6 @@ public class PlayerMovement : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.Space) && JumpMovementTimeLeft > 0)
         {
-
-
             // Check if grounded and give a big impulse instead of swimming if so
             if (IsGrounded())
             {
@@ -248,9 +265,79 @@ public class PlayerMovement : MonoBehaviour
             }
             // Reduce time for jump
             JumpMovementTimeLeft -= Time.deltaTime;
+            J_timeUntilNextTickSound -= Time.deltaTime;
         }
     }
 
+    /// <summary>
+    /// Plays the ticks sounds depending on the time left for each movement type and the input given. Also plays the run out sound if the player is out of time and still holding the key.
+    /// </summary>
+    void CheckPlayTickSounds()
+    {
+        // Play the tick sounds
+        if (LeftMovementTimeLeft > 0 && Input.GetKey(KeyCode.A) && L_timeUntilNextTickSound <= 0)
+        {
+            if (LeftMovementTimeLeft <= MaxLeftMovementTime * lowTimeThreshold)
+            {
+                SFX_LowTick.Play();
+            }
+            else
+            {
+                SFX_NormalTick.Play();
+            }
+            L_timeUntilNextTickSound = tickInterval;
+        }
+        if (RightMovementTimeLeft > 0 && Input.GetKey(KeyCode.D) && R_timeUntilNextTickSound <= 0)
+        {
+            if (RightMovementTimeLeft <= MaxRightMovementTime * lowTimeThreshold)
+            {
+                SFX_LowTick.Play();
+            }
+            else
+            {
+                SFX_NormalTick.Play();
+            }
+            R_timeUntilNextTickSound = tickInterval;
+        }
+        if (JumpMovementTimeLeft > 0 && Input.GetKey(KeyCode.Space) && J_timeUntilNextTickSound <= 0)
+        {
+            if (JumpMovementTimeLeft <= MaxJumpMovementTime * lowTimeThreshold)
+            {
+                SFX_LowTick.Play();
+            }
+            else
+            {
+                SFX_NormalTick.Play();
+            }
+            J_timeUntilNextTickSound = tickInterval;
+        }
+        // Reset the tick timers if the player is not holding the key
+        if (!Input.GetKey(KeyCode.A))
+        {
+            L_timeUntilNextTickSound = 0;
+        }
+        if (!Input.GetKey(KeyCode.D))
+        {
+            R_timeUntilNextTickSound = 0;
+        }
+        if (!Input.GetKey(KeyCode.Space))
+        {
+            J_timeUntilNextTickSound = 0;
+        }
+        // Check for timers out of time
+        if (LeftMovementTimeLeft - Time.deltaTime <= 0 && Input.GetKey(KeyCode.A) && LeftMovementTimeLeft > 0)
+        {
+            SFX_RunOutTick.Play();
+        }
+        if (RightMovementTimeLeft - Time.deltaTime <= 0 && Input.GetKey(KeyCode.D) && RightMovementTimeLeft > 0)
+        {
+            SFX_RunOutTick.Play();
+        }
+        if (JumpMovementTimeLeft - Time.deltaTime <= 0 && Input.GetKey(KeyCode.Space) && JumpMovementTimeLeft > 0)
+        {
+            SFX_RunOutTick.Play();
+        }
+    }
 
     /// <summary>
     /// Updates the time left for each movement type and updates the UI text accordingly. This is temporary
