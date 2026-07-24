@@ -712,6 +712,7 @@ MonoBehaviour:
   midAirAccelerationDampen: 0.5
   midAirDecelerationDampen: 0.12
   respawnTime: 2.5
+  deadPhysicsMaterial: {fileID: 6200000, guid: 1a234a8acf946a041a3fb2d9f1ae423a, type: 2}
   timeUntilLevelChangeOnWin: 2.5
   leftGrabOffset: {x: -0.44, y: -0.32}
   rightGrabOffset: {x: 0.45, y: -0.32}

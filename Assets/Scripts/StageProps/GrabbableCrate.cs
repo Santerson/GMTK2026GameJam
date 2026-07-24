@@ -7,10 +7,26 @@ public class GrabbableCrate : MonoBehaviour
     [SerializeField] AudioSource dropSound;
     bool grabbable = false;
     Collider2D PlayerCollider;
+    PlayerMovement refPlayer;
+
+    private void Start()
+    {
+        refPlayer = FindFirstObjectByType<PlayerMovement>();
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
         {
+            // Dis shet unoptimized as shit its 9pm im eepy
+            if (refPlayer.IsHoldingObject)
+            {
+                return;
+            }
+            else if (refPlayer.canMove == false)
+            {
+                return;
+            }
             grabbable = true;
             PlayerCollider = collision;
         }
@@ -27,6 +43,10 @@ public class GrabbableCrate : MonoBehaviour
 
     void Update()
     {
+        if (refPlayer.canMove == false)
+        {
+            grabbable = false;
+        }
         if (grabbable)
         {
             refGrabTooltip.SetActive(true);
@@ -41,6 +61,14 @@ public class GrabbableCrate : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.E) && grabbable)
         {
+            if (refPlayer.IsHoldingObject)
+            {
+                return;
+            }
+            else if (refPlayer.canMove == false)
+            {
+                return;
+            }
             GrabObject(PlayerCollider);
             grabSound.Play();
         }
