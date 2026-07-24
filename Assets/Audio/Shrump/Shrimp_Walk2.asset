@@ -1,0 +1,181 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1233149941 &-6504784317344018746
+AudioContainerElement:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Shrimp_Walk2-012_{-6504784317344018746}
+  m_AudioClip: {fileID: 8300000, guid: a54d49986fab49440a9f081aa82dcbe8, type: 3}
+  m_Volume: 0
+  m_Enabled: 1
+--- !u!1233149941 &-2729564918293123413
+AudioContainerElement:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Shrimp_Walk2-004_{-2729564918293123413}
+  m_AudioClip: {fileID: 8300000, guid: ccd9d96165cdb994bb35341123526c48, type: 3}
+  m_Volume: 0
+  m_Enabled: 1
+--- !u!1233149941 &-2114719390990770867
+AudioContainerElement:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Shrimp_Walk2-010_{-2114719390990770867}
+  m_AudioClip: {fileID: 8300000, guid: 9b21da77111698d48a40066da68aaede, type: 3}
+  m_Volume: 0
+  m_Enabled: 1
+--- !u!1233149941 &-1684716434899936422
+AudioContainerElement:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Shrimp_Walk2-001_{-1684716434899936422}
+  m_AudioClip: {fileID: 8300000, guid: b43142ef8fb785e41baf1a314ecc5de3, type: 3}
+  m_Volume: 0
+  m_Enabled: 1
+--- !u!1233149941 &-1204444450802065267
+AudioContainerElement:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Shrimp_Walk2-006_{-1204444450802065267}
+  m_AudioClip: {fileID: 8300000, guid: 302d4732908be7a42a0b23d483c4ee6b, type: 3}
+  m_Volume: 0
+  m_Enabled: 1
+--- !u!1233149941 &467623339726219452
+AudioContainerElement:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Shrimp_Walk2-002_{467623339726219452}
+  m_AudioClip: {fileID: 8300000, guid: 7968e7e1660e73c45a4e7c30848d1340, type: 3}
+  m_Volume: 0
+  m_Enabled: 1
+--- !u!1233149941 &1440617385243813204
+AudioContainerElement:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Shrimp_Walk2-013_{1440617385243813204}
+  m_AudioClip: {fileID: 8300000, guid: 67349cf28f7511146be4bb2ea71032c0, type: 3}
+  m_Volume: 0
+  m_Enabled: 1
+--- !u!1233149941 &2186478810124335241
+AudioContainerElement:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Shrimp_Walk2-003_{2186478810124335241}
+  m_AudioClip: {fileID: 8300000, guid: 60c3ee937608d154786c9685d90ab4ac, type: 3}
+  m_Volume: 0
+  m_Enabled: 1
+--- !u!1233149941 &2930898116964336150
+AudioContainerElement:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Shrimp_Walk2-009_{2930898116964336150}
+  m_AudioClip: {fileID: 8300000, guid: 719f11dce16c26948bfdc5b589223ff4, type: 3}
+  m_Volume: 0
+  m_Enabled: 1
+--- !u!1233149941 &4132372065300557592
+AudioContainerElement:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Shrimp_Walk2-008_{4132372065300557592}
+  m_AudioClip: {fileID: 8300000, guid: 2e67b62eb26361243938999217b55199, type: 3}
+  m_Volume: 0
+  m_Enabled: 1
+--- !u!1233149941 &4254983960480932408
+AudioContainerElement:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Shrimp_Walk2-005_{4254983960480932408}
+  m_AudioClip: {fileID: 8300000, guid: 269359e595537d445a64210454a6a158, type: 3}
+  m_Volume: 0
+  m_Enabled: 1
+--- !u!1233149941 &4369989518868743834
+AudioContainerElement:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Shrimp_Walk2-011_{4369989518868743834}
+  m_AudioClip: {fileID: 8300000, guid: ed782729c54ffab4aa1d425402e8590f, type: 3}
+  m_Volume: 0
+  m_Enabled: 1
+--- !u!1233149941 &6216254800428672137
+AudioContainerElement:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Shrimp_Walk2-014_{6216254800428672137}
+  m_AudioClip: {fileID: 8300000, guid: 95b0a8353c163434cb159dad77ab7168, type: 3}
+  m_Volume: 0
+  m_Enabled: 1
+--- !u!1307931743 &6418180475301049370
+AudioRandomContainer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Shrimp_Walk2
+  m_Volume: 0
+  m_Pitch: 0
+  m_AutomaticTriggerTime: 0
+  m_LoopCount: 1
+  m_VolumeRandomizationRange: {x: 0, y: 0}
+  m_PitchRandomizationRange: {x: 0, y: 0}
+  m_AutomaticTriggerTimeRandomizationRange: {x: 0, y: 0}
+  m_LoopCountRandomizationRange: {x: 0, y: 0}
+  m_Elements:
+  - {fileID: -1684716434899936422}
+  - {fileID: 467623339726219452}
+  - {fileID: 2186478810124335241}
+  - {fileID: -2729564918293123413}
+  - {fileID: 4254983960480932408}
+  - {fileID: -1204444450802065267}
+  - {fileID: 8176895989281359011}
+  - {fileID: 4132372065300557592}
+  - {fileID: 2930898116964336150}
+  - {fileID: -2114719390990770867}
+  - {fileID: 4369989518868743834}
+  - {fileID: -6504784317344018746}
+  - {fileID: 1440617385243813204}
+  - {fileID: 6216254800428672137}
+  m_AvoidRepeatingLast: 0
+  m_PlaybackMode: 1
+  m_TriggerMode: 1
+  m_AutomaticTriggerMode: 1
+  m_LoopMode: 1
+  m_VolumeRandomizationEnabled: 0
+  m_PitchRandomizationEnabled: 0
+  m_AutomaticTriggerTimeRandomizationEnabled: 0
+  m_LoopCountRandomizationEnabled: 0
+--- !u!1233149941 &8176895989281359011
+AudioContainerElement:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Shrimp_Walk2-007_{8176895989281359011}
+  m_AudioClip: {fileID: 8300000, guid: 1a1fab0689b5ec8429dd2a7e17678655, type: 3}
+  m_Volume: 0
+  m_Enabled: 1
