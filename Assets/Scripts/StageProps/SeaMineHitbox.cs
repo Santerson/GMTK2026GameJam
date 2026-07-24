@@ -7,7 +7,21 @@ public class SeaMineHitbox : MonoBehaviour
     [Tooltip("The speed the player gets yeeted at if they touch it")]
     [SerializeField] float PlayerYeetSpeed = 10f;
     [SerializeField] float PlayerRotationSpeed = 50f;
+    [SerializeField] AudioSource IdleSound;
     [SerializeField] AudioSource kablamoSound;
+    PlayerMovement refPlayer;
+
+    private void Start()
+    {
+        refPlayer = FindFirstObjectByType<PlayerMovement>();
+    }
+    private void Update()
+    {
+        if (refPlayer.canMove && !IdleSound.isPlaying)
+        {
+            IdleSound.Play();
+        }
+    }
 
     Vector2 playerVelocity = Vector2.zero;
     private void OnTriggerEnter2D(Collider2D collision)
