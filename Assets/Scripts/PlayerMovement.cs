@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Assertions.Must;
@@ -96,6 +97,15 @@ public class PlayerMovement : MonoBehaviour
         EpicDub
     }
     AnimState currentState = AnimState.Idle;
+
+    enum MoveType
+    {
+        None,
+        Left,
+        Right,
+        Jump
+    }
+    MoveType AudioPriority = MoveType.None;
 
     private void Start()
     {
@@ -196,6 +206,10 @@ public class PlayerMovement : MonoBehaviour
             velocity += Vector2.right * currAccel;
             RightMovementTimeLeft -= Time.deltaTime;
             R_timeUntilNextTickSound -= Time.deltaTime;
+            if (AudioPriority == MoveType.None)
+            {
+                AudioPriority = MoveType.Right;
+            }
         }
         if (Input.GetKey(KeyCode.A) && LeftMovementTimeLeft > 0)
         {
@@ -203,6 +217,10 @@ public class PlayerMovement : MonoBehaviour
             velocity += Vector2.left * currAccel;
             LeftMovementTimeLeft -= Time.deltaTime;
             L_timeUntilNextTickSound -= Time.deltaTime;
+            if (AudioPriority == MoveType.None)
+            {
+                AudioPriority = MoveType.Left;
+            }
         }
         // Accelerate the player
         if (velocity != Vector2.zero)
@@ -266,6 +284,10 @@ public class PlayerMovement : MonoBehaviour
             // Reduce time for jump
             JumpMovementTimeLeft -= Time.deltaTime;
             J_timeUntilNextTickSound -= Time.deltaTime;
+            if (AudioPriority == MoveType.None)
+            {
+                AudioPriority = MoveType.Jump;
+            }
         }
     }
 
@@ -274,8 +296,31 @@ public class PlayerMovement : MonoBehaviour
     /// </summary>
     void CheckPlayTickSounds()
     {
+        //Priority:
+        // Lowest tick if it is in the threshold
+        // otherwise, most old press
+
+        // See if any movement type is in the low time threshold and set the priority to that if so
+        MoveType PlayAudioPriority = AudioPriority;
+        if (LeftMovementTimeLeft <= MaxLeftMovementTime * lowTimeThreshold && LeftMovementTimeLeft > 0 && Input.GetKey(KeyCode.A))
+        {
+            PlayAudioPriority = MoveType.Left;
+        }
+        else if (RightMovementTimeLeft <= MaxRightMovementTime * lowTimeThreshold && RightMovementTimeLeft > 0 && Input.GetKey(KeyCode.D))
+        {
+            PlayAudioPriority = MoveType.Right;
+        }
+        else if (JumpMovementTimeLeft <= MaxJumpMovementTime * lowTimeThreshold && JumpMovementTimeLeft > 0 && Input.GetKey(KeyCode.Space))
+        {
+            PlayAudioPriority = MoveType.Jump;
+        }
+        else
+        {
+            PlayAudioPriority = AudioPriority;
+        }
+
         // Play the tick sounds
-        if (LeftMovementTimeLeft > 0 && Input.GetKey(KeyCode.A) && L_timeUntilNextTickSound <= 0)
+        if (LeftMovementTimeLeft > 0 && Input.GetKey(KeyCode.A) && L_timeUntilNextTickSound <= 0 && PlayAudioPriority == MoveType.Left)
         {
             if (LeftMovementTimeLeft <= MaxLeftMovementTime * lowTimeThreshold)
             {
@@ -287,7 +332,7 @@ public class PlayerMovement : MonoBehaviour
             }
             L_timeUntilNextTickSound = tickInterval;
         }
-        if (RightMovementTimeLeft > 0 && Input.GetKey(KeyCode.D) && R_timeUntilNextTickSound <= 0)
+        if (RightMovementTimeLeft > 0 && Input.GetKey(KeyCode.D) && R_timeUntilNextTickSound <= 0 && PlayAudioPriority == MoveType.Right)
         {
             if (RightMovementTimeLeft <= MaxRightMovementTime * lowTimeThreshold)
             {
@@ -299,7 +344,7 @@ public class PlayerMovement : MonoBehaviour
             }
             R_timeUntilNextTickSound = tickInterval;
         }
-        if (JumpMovementTimeLeft > 0 && Input.GetKey(KeyCode.Space) && J_timeUntilNextTickSound <= 0)
+        if (JumpMovementTimeLeft > 0 && Input.GetKey(KeyCode.Space) && J_timeUntilNextTickSound <= 0 && PlayAudioPriority == MoveType.Jump)
         {
             if (JumpMovementTimeLeft <= MaxJumpMovementTime * lowTimeThreshold)
             {
@@ -327,15 +372,31 @@ public class PlayerMovement : MonoBehaviour
         // Check for timers out of time
         if (LeftMovementTimeLeft - Time.deltaTime <= 0 && Input.GetKey(KeyCode.A) && LeftMovementTimeLeft > 0)
         {
+            SFX_RunOutTick.Stop();
             SFX_RunOutTick.Play();
         }
         if (RightMovementTimeLeft - Time.deltaTime <= 0 && Input.GetKey(KeyCode.D) && RightMovementTimeLeft > 0)
         {
+            SFX_RunOutTick.Stop();
             SFX_RunOutTick.Play();
         }
         if (JumpMovementTimeLeft - Time.deltaTime <= 0 && Input.GetKey(KeyCode.Space) && JumpMovementTimeLeft > 0)
         {
+            SFX_RunOutTick.Stop();
             SFX_RunOutTick.Play();
+        }
+        // Check for keyups for priority
+        if (Input.GetKeyUp(KeyCode.A) && AudioPriority == MoveType.Left)
+        {
+            AudioPriority = MoveType.None;
+        }
+        if (Input.GetKeyUp(KeyCode.D) && AudioPriority == MoveType.Right)
+        {
+            AudioPriority = MoveType.None;
+        }
+        if (Input.GetKeyUp(KeyCode.Space) && AudioPriority == MoveType.Jump)
+        {
+            AudioPriority = MoveType.None;
         }
     }
 
