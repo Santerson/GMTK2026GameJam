@@ -113,7 +113,6 @@ public class PlayerMovement : MonoBehaviour
         Idle,
         Walking,
         Swimming,
-        Landing,
         Dying,
         Sleeping,
         EpicDub
@@ -206,14 +205,7 @@ public class PlayerMovement : MonoBehaviour
         }
         else
         {
-            if (refRB.linearVelocity.y > 0.1f)
-            {
-                currentState = AnimState.Swimming;
-            }
-            else
-            {
-                currentState = AnimState.Landing;
-            }
+            currentState = AnimState.Swimming;
         }
         refAnimator.SetInteger("PlayerState", (int)currentState);
     }

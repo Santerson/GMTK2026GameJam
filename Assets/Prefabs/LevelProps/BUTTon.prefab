@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 2262717153191751639}
   - component: {fileID: 8615941302712777271}
   - component: {fileID: 1786312342034564741}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: BUTTon
-  m_TagString: Ground
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -165,7 +165,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6661168036322957215}
   - component: {fileID: 8742263800507742782}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: ButtonUp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -294,7 +294,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4337801577653250477}
   - component: {fileID: 4191022587433756415}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: ButtonDown
   m_TagString: Untagged
   m_Icon: {fileID: 0}
