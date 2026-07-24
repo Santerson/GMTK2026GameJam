@@ -104,6 +104,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float currentSwimSpeedCap = 3f;
     float timeSpentSwimming = 0f;
     float tickStoppedTime = 0f;
+    float timeHoldingR = 0f;
 
     public bool canMove = true;
     public bool IsHoldingObject { get; private set; } = false;
@@ -164,9 +165,15 @@ public class PlayerMovement : MonoBehaviour
             CheckDropItem();
             CheckPlayTickSounds();
             // Check for r key to reset
-            if (Input.GetKeyDown(KeyCode.R))
+            if (Input.GetKey(KeyCode.R))
             {
-                Skissue(true);
+                timeHoldingR += Time.deltaTime;
+                if (timeHoldingR > 1f)
+                    Skissue(true);
+            }
+            else if (timeHoldingR != 0)
+            {
+                timeHoldingR = 0f;
             }
         }
         UpdateTimeLeft();

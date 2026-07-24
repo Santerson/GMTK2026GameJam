@@ -1167,6 +1167,63 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!1001 &524316593
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 5909212139519853901, guid: a8aa705f44a1a8b469c04f261e0a7d66, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -7.311331
+      objectReference: {fileID: 0}
+    - target: {fileID: 5909212139519853901, guid: a8aa705f44a1a8b469c04f261e0a7d66, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.9085686
+      objectReference: {fileID: 0}
+    - target: {fileID: 5909212139519853901, guid: a8aa705f44a1a8b469c04f261e0a7d66, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5909212139519853901, guid: a8aa705f44a1a8b469c04f261e0a7d66, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5909212139519853901, guid: a8aa705f44a1a8b469c04f261e0a7d66, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5909212139519853901, guid: a8aa705f44a1a8b469c04f261e0a7d66, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5909212139519853901, guid: a8aa705f44a1a8b469c04f261e0a7d66, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5909212139519853901, guid: a8aa705f44a1a8b469c04f261e0a7d66, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5909212139519853901, guid: a8aa705f44a1a8b469c04f261e0a7d66, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5909212139519853901, guid: a8aa705f44a1a8b469c04f261e0a7d66, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9050481213025698473, guid: a8aa705f44a1a8b469c04f261e0a7d66, type: 3}
+      propertyPath: m_Name
+      value: Sea Mine
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: a8aa705f44a1a8b469c04f261e0a7d66, type: 3}
 --- !u!1 &529344829
 GameObject:
   m_ObjectHideFlags: 0
@@ -4556,3 +4613,4 @@ SceneRoots:
   - {fileID: 296493837}
   - {fileID: 1667367346}
   - {fileID: 8397176817247886963}
+  - {fileID: 524316593}
