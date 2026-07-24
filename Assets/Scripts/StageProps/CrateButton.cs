@@ -72,6 +72,6 @@ public class CrateButton : MonoBehaviour
         {
             action.Invoke();
         }
-        ButtonUp.Play();
+        ButtonUp?.Play();
     }
 }

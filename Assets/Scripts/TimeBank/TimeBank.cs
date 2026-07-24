@@ -44,6 +44,7 @@ public class TimeBank : MonoBehaviour
     float allocatedTimeLeft = 0;
     float allocatedTimeRight = 0;
     float allocatedTimeJump = 0;
+    public bool IsUIActive { get; private set; } = false;
 
     AllocatedTimeStorage refTimeStorage;
 
@@ -77,6 +78,7 @@ public class TimeBank : MonoBehaviour
         refCameraMovement.StartCameraZoomin(CameraZoomInScale);
         // Stop the player from moving
         refPlayer.canMove = false;
+        IsUIActive = true;
     }
 
     public void LeftButtonTimeAdd()
@@ -165,6 +167,7 @@ public class TimeBank : MonoBehaviour
             refCameraMovement.StartCameraZoomout();
             // Allow the player to move
             refPlayer.canMove = true;
+            IsUIActive = false;
         }
     }
 
@@ -174,7 +177,7 @@ public class TimeBank : MonoBehaviour
         timeBankText.text = "Time Bank: " + TimeLeftToAllocate + "/s";
     }
 
-    void ReapplySelectedTimes()
+    public void ReapplySelectedTimes()
     {
         refPlayer.JumpMovementTimeLeft = allocatedTimeJump;
         refPlayer.LeftMovementTimeLeft = allocatedTimeLeft;
