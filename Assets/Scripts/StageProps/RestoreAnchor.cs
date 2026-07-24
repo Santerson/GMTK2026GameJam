@@ -56,9 +56,14 @@ public class RestoreAnchor : MonoBehaviour
         if (BringUpUI)
         {
             FindFirstObjectByType<TimeBank>().ActivateUI();
+            FindFirstObjectByType<PlayerMovement>().GetComponent<Rigidbody2D>().linearVelocityX = 0;
             if (!repeatable)
             {
                 Disable();
+            }
+            else
+            {
+                StartCoroutine(justWaitForPlayerToFinish());
             }
         }
         else
@@ -66,6 +71,12 @@ public class RestoreAnchor : MonoBehaviour
             FindFirstObjectByType<TimeBank>().ReapplySelectedTimes();
             StartCoroutine(waitForPlayerToFinish());
         }
+    }
+
+    IEnumerator justWaitForPlayerToFinish()
+    {
+        yield return new WaitUntil(() => FindFirstObjectByType<TimeBank>().IsUIActive == false);
+        activatable = true;
     }
 
     IEnumerator waitForPlayerToFinish()

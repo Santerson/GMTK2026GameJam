@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class GrabbableCrate : MonoBehaviour
@@ -45,7 +46,7 @@ public class GrabbableCrate : MonoBehaviour
     {
         if (refPlayer.canMove == false)
         {
-            grabbable = false;
+            StartCoroutine(waitForPlayerToGainControl());
         }
         if (grabbable)
         {
@@ -90,5 +91,15 @@ public class GrabbableCrate : MonoBehaviour
     public void PlayDropSound()
     {
         dropSound.Play();
+    }
+
+    IEnumerator waitForPlayerToGainControl()
+    {
+        grabbable = false;
+        yield return new WaitUntil(() => refPlayer.canMove);
+        if (PlayerCollider != null)
+        {
+            grabbable = true;
+        }
     }
 }
