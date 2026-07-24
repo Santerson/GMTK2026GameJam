@@ -22,4 +22,9 @@ public class GameSceneManager : MonoBehaviour
     {
         SceneManager.LoadScene("WinScene");
     }
+
+    public void PlayClickSound()
+    {
+        FindFirstObjectByType<PlayUIClickSFX>()?.PlayUIClick();
+    }
 }
