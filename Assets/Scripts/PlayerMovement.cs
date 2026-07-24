@@ -53,11 +53,27 @@ public class PlayerMovement : MonoBehaviour
         [SerializeField] Vector2 rightGrabOffset = new Vector2(1f, 0f);
 
     [Header("Audio - Timer")]
+    [Tooltip("The percentage of time left for a movement type that will trigger the low time tick sound")]
     [SerializeField][Range(0, 1)] float lowTimeThreshold = 0.2f;
+    [Tooltip("The interval between tick sounds")]
     [SerializeField] float tickInterval = 1f;
+    [Tooltip("The time the tick sound will stop for when the player runs out of a time. This does not override other tick ends.")]
+    [SerializeField] float runOutTickStop = 0.5f;
     [SerializeField] AudioSource SFX_NormalTick;
     [SerializeField] AudioSource SFX_LowTick;
     [SerializeField] AudioSource SFX_RunOutTick;
+
+    [Header("Audio - Movement and Death and Such")]
+    [Tooltip("How long it takes a repeating sound to play again, these are walk, swim idle, and swim up")]
+    [SerializeField] float RepeatTime = 0.5f;
+    [SerializeField] AudioSource SFX_Jump;
+    [SerializeField] AudioSource SFX_Land;
+    [SerializeField] AudioSource SFX_Death;
+    [SerializeField] AudioSource SFX_Win;
+    [SerializeField] AudioSource SFX_SwimUp;
+    [SerializeField] AudioSource SFX_SwimIdle;
+    [SerializeField] AudioSource SFX_Walk;
+    [SerializeField] AudioSource SFX_Sleep;
 
     [Header("Movement Time")]
     [SerializeField] TextMeshProUGUI LeftText;
@@ -69,6 +85,9 @@ public class PlayerMovement : MonoBehaviour
     float L_timeUntilNextTickSound = 0f;
     float R_timeUntilNextTickSound = 0f;
     float J_timeUntilNextTickSound = 0f;
+    float walkingTimeUntilNextSound = 0f;
+    float swimmingTimeUntilNextSound = 0f;
+    float swimmingUpTimeUntilNextSound = 0f;
 
     [HideInInspector] public float MaxLeftMovementTime = 0f;
     [HideInInspector] public float MaxRightMovementTime = 0f;
@@ -82,6 +101,7 @@ public class PlayerMovement : MonoBehaviour
     // float timeSpentChargingJump = 0;
     [SerializeField] float currentSwimSpeedCap = 3f;
     float timeSpentSwimming = 0f;
+    float tickStoppedTime = 0f;
 
     public bool canMove = true;
     public bool IsHoldingObject { get; private set; } = false;
@@ -130,6 +150,9 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (walkingTimeUntilNextSound > 0) walkingTimeUntilNextSound -= Time.deltaTime;
+        if (swimmingTimeUntilNextSound > 0) swimmingTimeUntilNextSound -= Time.deltaTime;
+        if (swimmingUpTimeUntilNextSound > 0) swimmingUpTimeUntilNextSound -= Time.deltaTime;
         if (canMove)
         {
             HandleHorizontalMovement();
@@ -261,8 +284,22 @@ public class PlayerMovement : MonoBehaviour
                 }
             }
         }
+
+        // Play walk sound if moving and grounded
+        if (IsGrounded() && Mathf.Abs(refRB.linearVelocity.x) > 0.1f)
+        {
+            
+            if (!SFX_Walk.isPlaying && walkingTimeUntilNextSound <= 0)
+            { 
+                SFX_Walk.Play();
+                walkingTimeUntilNextSound = RepeatTime;
+            }
+        }
     }
 
+    /// <summary>
+    /// Handles logif for swiming
+    /// </summary>
     void HandleSwimLogic()
     {
         if (Input.GetKey(KeyCode.Space) && JumpMovementTimeLeft > 0)
@@ -270,11 +307,17 @@ public class PlayerMovement : MonoBehaviour
             // Check if grounded and give a big impulse instead of swimming if so
             if (IsGrounded())
             {
+                if (!SFX_Jump.isPlaying) SFX_Jump.Play();
                 timeSpentSwimming = 0;
                 refRB.linearVelocity = new(refRB.linearVelocity.x, Mathf.Max(refRB.linearVelocityY + swimImpulse * Time.deltaTime, swimImpulse));
             }
             else
             {
+                if (!SFX_SwimUp.isPlaying && swimmingUpTimeUntilNextSound <= 0)
+                {
+                    SFX_SwimUp.Play();
+                    swimmingUpTimeUntilNextSound = RepeatTime;
+                }
                 // Calculate the current swim speed cap
                 timeSpentSwimming += Time.deltaTime;
                 currentSwimSpeedCap  = Mathf.Lerp(swimImpulse, maxSwimSpeed, timeSpentSwimming / SwimSpeedChangeTime);
@@ -284,9 +327,22 @@ public class PlayerMovement : MonoBehaviour
             // Reduce time for jump
             JumpMovementTimeLeft -= Time.deltaTime;
             J_timeUntilNextTickSound -= Time.deltaTime;
+            // Adjust audio priority
             if (AudioPriority == MoveType.None)
             {
                 AudioPriority = MoveType.Jump;
+            }
+        }
+        if (IsGrounded() && refRB.linearVelocityY < -0.1f)
+        {
+            if (!SFX_Land.isPlaying) SFX_Land.Play();
+        }
+        if (!IsGrounded() && !Input.GetKey(KeyCode.Space))
+        {
+            if (!SFX_SwimIdle.isPlaying && swimmingTimeUntilNextSound <= 0)
+            {
+                SFX_SwimIdle.Play();
+                swimmingTimeUntilNextSound = RepeatTime;
             }
         }
     }
@@ -320,7 +376,8 @@ public class PlayerMovement : MonoBehaviour
         }
 
         // Play the tick sounds
-        if (LeftMovementTimeLeft > 0 && Input.GetKey(KeyCode.A) && L_timeUntilNextTickSound <= 0 && PlayAudioPriority == MoveType.Left)
+        if (LeftMovementTimeLeft > 0 && Input.GetKey(KeyCode.A) && L_timeUntilNextTickSound <= 0 && PlayAudioPriority == MoveType.Left
+            && tickStoppedTime <= 0)
         {
             if (LeftMovementTimeLeft <= MaxLeftMovementTime * lowTimeThreshold)
             {
@@ -332,7 +389,8 @@ public class PlayerMovement : MonoBehaviour
             }
             L_timeUntilNextTickSound = tickInterval;
         }
-        if (RightMovementTimeLeft > 0 && Input.GetKey(KeyCode.D) && R_timeUntilNextTickSound <= 0 && PlayAudioPriority == MoveType.Right)
+        if (RightMovementTimeLeft > 0 && Input.GetKey(KeyCode.D) && R_timeUntilNextTickSound <= 0 && PlayAudioPriority == MoveType.Right 
+            && tickStoppedTime <= 0)
         {
             if (RightMovementTimeLeft <= MaxRightMovementTime * lowTimeThreshold)
             {
@@ -344,7 +402,8 @@ public class PlayerMovement : MonoBehaviour
             }
             R_timeUntilNextTickSound = tickInterval;
         }
-        if (JumpMovementTimeLeft > 0 && Input.GetKey(KeyCode.Space) && J_timeUntilNextTickSound <= 0 && PlayAudioPriority == MoveType.Jump)
+        if (JumpMovementTimeLeft > 0 && Input.GetKey(KeyCode.Space) && J_timeUntilNextTickSound <= 0 && PlayAudioPriority == MoveType.Jump
+            && tickStoppedTime <= 0)
         {
             if (JumpMovementTimeLeft <= MaxJumpMovementTime * lowTimeThreshold)
             {
@@ -374,16 +433,19 @@ public class PlayerMovement : MonoBehaviour
         {
             SFX_RunOutTick.Stop();
             SFX_RunOutTick.Play();
+            tickStoppedTime = runOutTickStop;
         }
         if (RightMovementTimeLeft - Time.deltaTime <= 0 && Input.GetKey(KeyCode.D) && RightMovementTimeLeft > 0)
         {
             SFX_RunOutTick.Stop();
             SFX_RunOutTick.Play();
+            tickStoppedTime = runOutTickStop;
         }
         if (JumpMovementTimeLeft - Time.deltaTime <= 0 && Input.GetKey(KeyCode.Space) && JumpMovementTimeLeft > 0)
         {
             SFX_RunOutTick.Stop();
             SFX_RunOutTick.Play();
+            tickStoppedTime = runOutTickStop;
         }
         // Check for keyups for priority
         if (Input.GetKeyUp(KeyCode.A) && AudioPriority == MoveType.Left)
@@ -397,6 +459,12 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetKeyUp(KeyCode.Space) && AudioPriority == MoveType.Jump)
         {
             AudioPriority = MoveType.None;
+        }
+
+        // Subtrack tick stop time
+        if (tickStoppedTime > 0)
+        {
+            tickStoppedTime -= Time.deltaTime;
         }
     }
 
@@ -440,6 +508,28 @@ public class PlayerMovement : MonoBehaviour
         refRenderer.flipY = true;
         // Stop the player's velocity
         if (stopPlayer) refRB.linearVelocity = Vector2.zero;
+        // Play death sound
+        if (SFX_Death != null)
+        {
+            SFX_Death.Play();
+        }
+        // Wait for a few seconds and then respawn the player
+        StartCoroutine(WaitOnRespawn());
+    }
+
+    void Sleep()
+    {
+        // Stop the player from moving
+        canMove = false;
+        // Do some death animation call here, for now we flip the sprite vertically
+        refRenderer.flipY = true;
+        // Stop the player's velocity
+        refRB.linearVelocity = Vector2.zero;
+        // Play death sound
+        if (SFX_Sleep != null)
+        {
+            SFX_Sleep.Play();
+        }
         // Wait for a few seconds and then respawn the player
         StartCoroutine(WaitOnRespawn());
     }
@@ -466,9 +556,9 @@ public class PlayerMovement : MonoBehaviour
     /// </summary>
     void CheckForOutOfTime()
     {
-        if (LeftMovementTimeLeft <= 0 && RightMovementTimeLeft <= 0 && JumpMovementTimeLeft <= 0 && refRB.linearVelocity.magnitude < 0.1f)
+        if (LeftMovementTimeLeft <= 0 && RightMovementTimeLeft <= 0 && JumpMovementTimeLeft <= 0 && refRB.linearVelocity.magnitude < 0.1f && IsGrounded())
         {
-            Skissue(true);
+            Sleep();
         }
     }
 
@@ -482,6 +572,28 @@ public class PlayerMovement : MonoBehaviour
         refRB.linearVelocity = Vector2.zero;
         refRenderer.flipY = true;
         StartCoroutine(LevelChange());
+        // drop any held object
+        if (IsHoldingObject)
+        {
+            Transform heldObject = this.heldObject.transform;
+            heldObject.SetParent(null);
+            // Enable the object's collider
+            Collider2D objCollider = heldObject.GetComponent<Collider2D>();
+            if (objCollider != null)
+                objCollider.enabled = true;
+            // Enable the object's rigidbody
+            Rigidbody2D objRB = heldObject.GetComponent<Rigidbody2D>();
+            if (objRB != null)
+                objRB.simulated = true;
+            // Stop holding it
+            IsHoldingObject = false;
+            this.heldObject = null;
+        }
+        // Play win sound
+        if (SFX_Win != null)
+        {
+            SFX_Win.Play();
+        }
     }
 
     void CheckDropItem()

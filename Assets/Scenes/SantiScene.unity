@@ -1436,22 +1436,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1972342247}
     - target: {fileID: 3143963318482094414, guid: 77872cd5696840f49a2132261603aa23, type: 3}
-      propertyPath: leftGrabOffset.x
-      value: -0.44
-      objectReference: {fileID: 0}
-    - target: {fileID: 3143963318482094414, guid: 77872cd5696840f49a2132261603aa23, type: 3}
-      propertyPath: leftGrabOffset.y
-      value: -0.32
-      objectReference: {fileID: 0}
-    - target: {fileID: 3143963318482094414, guid: 77872cd5696840f49a2132261603aa23, type: 3}
-      propertyPath: rightGrabOffset.x
-      value: 0.45
-      objectReference: {fileID: 0}
-    - target: {fileID: 3143963318482094414, guid: 77872cd5696840f49a2132261603aa23, type: 3}
-      propertyPath: rightGrabOffset.y
-      value: -0.32
-      objectReference: {fileID: 0}
-    - target: {fileID: 3143963318482094414, guid: 77872cd5696840f49a2132261603aa23, type: 3}
       propertyPath: GroundedRaycastOffset.y
       value: -0.595
       objectReference: {fileID: 0}
