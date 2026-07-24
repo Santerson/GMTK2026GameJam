@@ -86,9 +86,9 @@ public class PlayerMovement : MonoBehaviour
     public float LeftMovementTimeLeft = 0f;
     public float RightMovementTimeLeft = 0f;
     public float JumpMovementTimeLeft = 0f;
-    float L_timeUntilNextTickSound = 0f;
-    float R_timeUntilNextTickSound = 0f;
-    float J_timeUntilNextTickSound = 0f;
+    float L_timeUntilNextTickSound = 1f;
+    float R_timeUntilNextTickSound = 1f;
+    float J_timeUntilNextTickSound = 1f;
     float walkingTimeUntilNextSound = 0f;
     float swimmingTimeUntilNextSound = 0f;
     float swimmingUpTimeUntilNextSound = 0f;
@@ -423,19 +423,19 @@ public class PlayerMovement : MonoBehaviour
             }
             J_timeUntilNextTickSound = tickInterval;
         }
-        // Reset the tick timers if the player is not holding the key
-        if (!Input.GetKey(KeyCode.A))
-        {
-            L_timeUntilNextTickSound = 1;
-        }
-        if (!Input.GetKey(KeyCode.D))
-        {
-            R_timeUntilNextTickSound = 1;
-        }
-        if (!Input.GetKey(KeyCode.Space))
-        {
-            J_timeUntilNextTickSound = 1;
-        }
+        //// Reset the tick timers if the player is not holding the key
+        //if (!Input.GetKey(KeyCode.A))
+        //{
+        //    L_timeUntilNextTickSound = 1;
+        //}
+        //if (!Input.GetKey(KeyCode.D))
+        //{
+        //    R_timeUntilNextTickSound = 1;
+        //}
+        //if (!Input.GetKey(KeyCode.Space))
+        //{
+        //    J_timeUntilNextTickSound = 1;
+        //}
         // Check for timers out of time
         if (LeftMovementTimeLeft - Time.deltaTime <= 0 && Input.GetKey(KeyCode.A) && LeftMovementTimeLeft > 0)
         {
