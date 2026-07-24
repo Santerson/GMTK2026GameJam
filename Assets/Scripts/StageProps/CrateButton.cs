@@ -9,6 +9,8 @@ public class CrateButton : MonoBehaviour
     [SerializeField] GameObject[] Objects;
     [SerializeField] UnityEvent[] EnableActions;
     [SerializeField] UnityEvent[] DisableActions;
+    [SerializeField] AudioSource ButtonDown;
+    [SerializeField] AudioSource ButtonUp;
 
     List<GameObject> ButtonEligibleCollisions = new List<GameObject>();
 
@@ -52,6 +54,7 @@ public class CrateButton : MonoBehaviour
         {
             action.Invoke();
         }
+        ButtonDown.Play();
     }
 
     void DisableButton()
@@ -68,5 +71,6 @@ public class CrateButton : MonoBehaviour
         {
             action.Invoke();
         }
+        ButtonUp.Play();
     }
 }
