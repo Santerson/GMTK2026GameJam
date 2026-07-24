@@ -845,7 +845,7 @@ CircleCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5331027616943971336}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Density: 1
   m_Material: {fileID: 0}
@@ -1353,7 +1353,7 @@ AudioSource:
   m_Resource: {fileID: 8300000, guid: 0b0d68b60e2572746bff82db3716e7af, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
-  m_Pitch: -3
+  m_Pitch: 1
   Loop: 0
   Mute: 0
   Spatialize: 0

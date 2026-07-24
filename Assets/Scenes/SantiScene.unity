@@ -571,6 +571,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 650624315928697115, guid: 77872cd5696840f49a2132261603aa23, type: 3}
+      propertyPath: m_Pitch
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 654723879353114761, guid: 77872cd5696840f49a2132261603aa23, type: 3}
+      propertyPath: m_Pitch
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1444062119143053308, guid: 77872cd5696840f49a2132261603aa23, type: 3}
+      propertyPath: m_Pitch
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2148308682029586206, guid: 77872cd5696840f49a2132261603aa23, type: 3}
       propertyPath: m_LocalPosition.x
       value: -8.16
@@ -613,7 +625,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2433814807632917440, guid: 77872cd5696840f49a2132261603aa23, type: 3}
       propertyPath: m_FlipX
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3143963318482094414, guid: 77872cd5696840f49a2132261603aa23, type: 3}
       propertyPath: JumpText
@@ -639,9 +651,17 @@ PrefabInstance:
       propertyPath: SFX_RunOutTick
       value: 
       objectReference: {fileID: 1477614368}
+    - target: {fileID: 3551429815872639586, guid: 77872cd5696840f49a2132261603aa23, type: 3}
+      propertyPath: m_Pitch
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5331027616943971336, guid: 77872cd5696840f49a2132261603aa23, type: 3}
       propertyPath: m_Name
       value: BEAN
+      objectReference: {fileID: 0}
+    - target: {fileID: 8900819747145906643, guid: 77872cd5696840f49a2132261603aa23, type: 3}
+      propertyPath: m_Pitch
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

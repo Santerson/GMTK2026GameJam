@@ -603,7 +603,9 @@ public class PlayerMovement : MonoBehaviour
         // Wait a bit
         canMove = false;
         refRB.linearVelocity = Vector2.zero;
-        refRenderer.flipY = true;
+        currentState = AnimState.EpicDub;
+        refRB.constraints = RigidbodyConstraints2D.FreezeRotation;
+        refRB.rotation = 0f;
         StartCoroutine(LevelChange());
         // drop any held object
         if (IsHoldingObject)
