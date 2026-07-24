@@ -1,4 +1,5 @@
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class SeaMineHitbox : MonoBehaviour
@@ -10,16 +11,10 @@ public class SeaMineHitbox : MonoBehaviour
     Vector2 playerVelocity = Vector2.zero;
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player"))
+        if (collision.CompareTag("Player") || collision.GetComponent<ButtonEligible>() != null)
         {
-            // Kill the player
-            //yield return new WaitForEndOfFrame();
-            // Do something cool here eventaully
-            //Destroy(transform.parent.gameObject);
-            // Yeet the player the other way
             StartCoroutine(YeetPlayer(collision));
         }
-
     }
 
     IEnumerator YeetPlayer(Collider2D collision)
@@ -30,10 +25,14 @@ public class SeaMineHitbox : MonoBehaviour
         playerVelocity = delta.normalized * PlayerYeetSpeed * -1;
         collision.GetComponent<Rigidbody2D>().linearVelocity = playerVelocity;
         // Hold the camera still
-        CameraMovement cam = FindFirstObjectByType<CameraMovement>();
-        if (cam != null)
+        if (collision.GetComponent<PlayerMovement>() != null)
         {
-            cam.SetCamTracking(false);
+            CameraMovement cam = FindFirstObjectByType<CameraMovement>();
+
+            if (cam != null)
+            {
+                cam.SetCamTracking(false);
+            }
         }
         // Play kablamo sound
         Instantiate(kablamoSound, transform.position, Quaternion.identity);

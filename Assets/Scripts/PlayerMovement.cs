@@ -41,6 +41,8 @@ public class PlayerMovement : MonoBehaviour
     [Header("Death")]
     [Tooltip("The time it takes for the player to respawn after death")]
         [SerializeField] float respawnTime = 1f;
+    [Tooltip("The physics the player gets while dead")]
+        [SerializeField] PhysicsMaterial2D deadPhysicsMaterial;
 
     [Header("Win")]
     [Tooltip("Time unitl the level changes when reaching the goal")]
@@ -502,16 +504,27 @@ public class PlayerMovement : MonoBehaviour
     /// </summary>
     void Skissue(bool stopPlayer)
     {
-        // Stop the player from moving
-        canMove = false;
-        // Do some death animation call here, for now we flip the sprite vertically
-        refRenderer.flipY = true;
-        // Stop the player's velocity
-        if (stopPlayer) refRB.linearVelocity = Vector2.zero;
-        // Play death sound
-        if (SFX_Death != null)
+        // if already dead, skip this stuff and just reset and restart the coroutine
+        if (currentState != AnimState.Dying && currentState != AnimState.Sleeping)
         {
-            SFX_Death.Play();
+            // Stop the player from moving
+            canMove = false;
+            currentState = AnimState.Dying;
+            // Apply dead physics
+            refRB.sharedMaterial = deadPhysicsMaterial;
+            // Do some death animation call here, for now we flip the sprite vertically
+            refRenderer.flipY = true;
+            // Stop the player's velocity
+            if (stopPlayer) refRB.linearVelocity = Vector2.zero;
+            // Play death sound
+            if (SFX_Death != null)
+            {
+                SFX_Death.Play();
+            }
+        }
+        else
+        {
+            StopAllCoroutines();
         }
         // Wait for a few seconds and then respawn the player
         StartCoroutine(WaitOnRespawn());
@@ -523,6 +536,8 @@ public class PlayerMovement : MonoBehaviour
         canMove = false;
         // Do some death animation call here, for now we flip the sprite vertically
         refRenderer.flipY = true;
+        // Set the state to sleeping
+        currentState = AnimState.Sleeping;
         // Stop the player's velocity
         refRB.linearVelocity = Vector2.zero;
         // Play death sound
@@ -540,6 +555,13 @@ public class PlayerMovement : MonoBehaviour
     IEnumerator WaitOnRespawn()
     {
         yield return new WaitForSeconds(respawnTime);
+        // wait while the player has speeeeed
+        if (refRB.linearVelocity.magnitude > 0.1f)
+        {
+            yield return new WaitUntil(() => refRB.linearVelocity.magnitude < 0.1f);
+            yield return new WaitForSeconds(0.5f);
+        }
+        
         ResetLevel();
     }
 
