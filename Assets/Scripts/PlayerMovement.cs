@@ -113,6 +113,7 @@ public class PlayerMovement : MonoBehaviour
         Idle,
         Walking,
         Swimming,
+        Jumping,
         Dying,
         Sleeping,
         EpicDub
@@ -194,7 +195,11 @@ public class PlayerMovement : MonoBehaviour
         }
         if (IsGrounded())
         {
-            if (Mathf.Abs(refRB.linearVelocity.x) > 0.1f)
+            if (Input.GetKey(KeyCode.Space) && JumpMovementTimeLeft > 0)
+            {
+                currentState = AnimState.Jumping;
+            }
+            else if (Mathf.Abs(refRB.linearVelocity.x) > 0.1f)
             {
                 currentState = AnimState.Walking;
             }
