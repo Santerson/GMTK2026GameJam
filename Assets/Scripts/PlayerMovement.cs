@@ -564,9 +564,10 @@ public class PlayerMovement : MonoBehaviour
 
     public void GamerWin()
     {
-        // No win if player dead
-        if (canMove == false)
-            return;
+        // win if player dead
+        StopAllCoroutines();
+        // Track the camera on the player again
+        FindFirstObjectByType<CameraMovement>().SetCamTracking(true);
         // Wait a bit
         canMove = false;
         refRB.linearVelocity = Vector2.zero;

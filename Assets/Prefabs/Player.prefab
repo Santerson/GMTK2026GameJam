@@ -712,7 +712,7 @@ MonoBehaviour:
   midAirAccelerationDampen: 0.5
   midAirDecelerationDampen: 0.12
   respawnTime: 2.5
-  timeUntilLevelChangeOnWin: 1
+  timeUntilLevelChangeOnWin: 2.5
   leftGrabOffset: {x: -0.44, y: -0.32}
   rightGrabOffset: {x: 0.45, y: -0.32}
   lowTimeThreshold: 0.4
