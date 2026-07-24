@@ -43,6 +43,8 @@ public class PlayerMovement : MonoBehaviour
         [SerializeField] float respawnTime = 1f;
     [Tooltip("The physics the player gets while dead")]
         [SerializeField] PhysicsMaterial2D deadPhysicsMaterial;
+    [SerializeField] BoxCollider2D normalCollider;
+    [SerializeField] BoxCollider2D deadBoxCollider;
 
     [Header("Win")]
     [Tooltip("Time unitl the level changes when reaching the goal")]
@@ -518,8 +520,6 @@ public class PlayerMovement : MonoBehaviour
             currentState = AnimState.Dying;
             // Apply dead physics
             refRB.sharedMaterial = deadPhysicsMaterial;
-            // Do some death animation call here, for now we flip the sprite vertically
-            refRenderer.flipY = true;
             // Stop the player's velocity
             if (stopPlayer) refRB.linearVelocity = Vector2.zero;
             // Play death sound
@@ -527,6 +527,12 @@ public class PlayerMovement : MonoBehaviour
             {
                 SFX_Death.Play();
             }
+            // Circle collider instead of box collider
+            normalCollider.enabled = false;
+            deadBoxCollider.enabled = true;
+            gameObject.GetComponent<CircleCollider2D>().enabled = true;
+            // unlock z
+            refRB.constraints = RigidbodyConstraints2D.None;
         }
         else
         {
@@ -540,8 +546,6 @@ public class PlayerMovement : MonoBehaviour
     {
         // Stop the player from moving
         canMove = false;
-        // Do some death animation call here, for now we flip the sprite vertically
-        refRenderer.flipY = true;
         // Set the state to sleeping
         currentState = AnimState.Sleeping;
         // Stop the player's velocity
