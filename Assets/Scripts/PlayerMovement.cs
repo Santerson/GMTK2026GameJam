@@ -575,19 +575,7 @@ public class PlayerMovement : MonoBehaviour
         // drop any held object
         if (IsHoldingObject)
         {
-            Transform heldObject = this.heldObject.transform;
-            heldObject.SetParent(null);
-            // Enable the object's collider
-            Collider2D objCollider = heldObject.GetComponent<Collider2D>();
-            if (objCollider != null)
-                objCollider.enabled = true;
-            // Enable the object's rigidbody
-            Rigidbody2D objRB = heldObject.GetComponent<Rigidbody2D>();
-            if (objRB != null)
-                objRB.simulated = true;
-            // Stop holding it
-            IsHoldingObject = false;
-            this.heldObject = null;
+            DropHeldItem();
         }
         // Play win sound
         if (SFX_Win != null)
@@ -600,21 +588,27 @@ public class PlayerMovement : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.E) && IsHoldingObject)
         {
-            // Drop the object
-            Transform heldObject = this.heldObject.transform;
-            heldObject.SetParent(null);
-            // Enable the object's collider
-            Collider2D objCollider = heldObject.GetComponent<Collider2D>();
-            if (objCollider != null)
-                objCollider.enabled = true;
-            // Enable the object's rigidbody
-            Rigidbody2D objRB = heldObject.GetComponent<Rigidbody2D>();
-            if (objRB != null)
-                objRB.simulated = true;
-            // Stop holding it
-            IsHoldingObject = false;
-            this.heldObject = null;
+            DropHeldItem();
         }
+    }
+
+    private void DropHeldItem()
+    {
+        // Drop the object
+        Transform heldObject = this.heldObject.transform;
+        heldObject.GetComponent<GrabbableCrate>().PlayDropSound();
+        heldObject.SetParent(null);
+        // Enable the object's collider
+        Collider2D objCollider = heldObject.GetComponent<Collider2D>();
+        if (objCollider != null)
+            objCollider.enabled = true;
+        // Enable the object's rigidbody
+        Rigidbody2D objRB = heldObject.GetComponent<Rigidbody2D>();
+        if (objRB != null)
+            objRB.simulated = true;
+        // Stop holding it
+        IsHoldingObject = false;
+        this.heldObject = null;
     }
 
     public void GrabObject(GameObject obj)

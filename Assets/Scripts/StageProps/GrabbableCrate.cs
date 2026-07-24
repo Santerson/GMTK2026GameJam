@@ -3,6 +3,8 @@ using UnityEngine;
 public class GrabbableCrate : MonoBehaviour
 {
     [SerializeField] GameObject refGrabTooltip;
+    [SerializeField] AudioSource grabSound;
+    [SerializeField] AudioSource dropSound;
     bool grabbable = false;
     Collider2D PlayerCollider;
     private void OnTriggerEnter2D(Collider2D collision)
@@ -40,6 +42,7 @@ public class GrabbableCrate : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.E) && grabbable)
         {
             GrabObject(PlayerCollider);
+            grabSound.Play();
         }
     }
 
@@ -54,5 +57,10 @@ public class GrabbableCrate : MonoBehaviour
             // Call the GrabObject method on the player controller and pass this crate as the object to grab
             playerController.GrabObject(this.gameObject);
         }
+    }
+
+    public void PlayDropSound()
+    {
+        dropSound.Play();
     }
 }
