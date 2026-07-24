@@ -189,7 +189,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd4ac44c1f8536249b4dac9cfdc72378, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BumpSound: {fileID: 0}
+  BumpSound: {fileID: 524794350833591678}
 --- !u!1 &6973078758188107662
 GameObject:
   m_ObjectHideFlags: 0
