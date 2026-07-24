@@ -63,9 +63,14 @@ public class CameraMovement : MonoBehaviour
         }
         // Zooms out and in the camera depending on the state
         if (currentCameraState == cameraStates.zoomingIn)
-            ZoomInCamera();
+        {
+            if (refCamera.orthographicSize > zoomInScale)
+                ZoomInCamera();
+            else
+                ZoomOutCamera();
+        }
         if (currentCameraState == cameraStates.zoomingOut)
-            ZoomOutCamera();
+            ZoomToDefaultCamera();
     }
 
     /// <summary>
@@ -91,7 +96,17 @@ public class CameraMovement : MonoBehaviour
         camTracking = tracking;
     }
 
-    public void StartCameraZoomin(float zoominAmount)
+    public GameObject getTrackingObject()
+    {
+        return TargetObject;
+    }
+
+    public void SetTrackingObject(GameObject newTarget)
+    {
+        TargetObject = newTarget;
+    }
+
+    public void ChangeCameraZoom(float zoominAmount)
     {
         zoomInScale = zoominAmount;
         currentCameraState = cameraStates.zoomingIn;
@@ -114,12 +129,29 @@ public class CameraMovement : MonoBehaviour
         }
     }
 
+    void ZoomOutCamera()
+    {
+        // Calculate the difference between current and target scale
+        float distance = zoomInScale - refCamera.orthographicSize;
+
+        // Use a fraction of the distance to slow down as it approaches the target
+        float step = Mathf.Max(Mathf.Abs(distance) * zoomInDivider, zoomInRate);
+
+        refCamera.orthographicSize += step;
+
+        if (refCamera.orthographicSize > zoomInScale)
+        {
+            refCamera.orthographicSize = zoomInScale;
+            currentCameraState = cameraStates.zoomedIn;
+        }
+    }
+
     public void StartCameraZoomout()
     {
         currentCameraState = cameraStates.zoomingOut;
     }
 
-    void ZoomOutCamera()
+    void ZoomToDefaultCamera()
     {
         // Calculate the difference between current and target scale
         float distance = cameraDefaultScale - refCamera.orthographicSize;
