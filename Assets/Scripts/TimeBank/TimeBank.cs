@@ -35,6 +35,8 @@ public class TimeBank : MonoBehaviour
         [SerializeField] AudioSource SFX_Allocate;
     [Tooltip("The audio source for the time bank")]
         [SerializeField] AudioSource SFX_Deallocate;
+    [SerializeField] AudioSource FadeInSFX;
+    [SerializeField] AudioSource FadeOutSFX;
 
     Vector2 CurrentCameraOffset = Vector2.zero;
 
@@ -71,6 +73,7 @@ public class TimeBank : MonoBehaviour
         foreach (GameObject ui in UI)
             ui.SetActive(true);
         // Set the zoom for the camera
+        FadeInSFX.Play();
         refCameraMovement.StartCameraZoomin(CameraZoomInScale);
         // Stop the player from moving
         refPlayer.canMove = false;
@@ -149,6 +152,9 @@ public class TimeBank : MonoBehaviour
     {
         if (TimeLeftToAllocate <= 0f)
         {
+            // SFXs
+            FadeOutSFX.Play();
+            FindFirstObjectByType<PlayUIClickSFX>()?.PlayUIClick();
             // Disable the ui
             foreach (GameObject ui in UI)
                 ui.SetActive(false);
