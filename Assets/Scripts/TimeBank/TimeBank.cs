@@ -51,7 +51,7 @@ public class TimeBank : MonoBehaviour
     private void Awake()
     {
         refTimeStorage = FindFirstObjectByType<AllocatedTimeStorage>();
-        ActivateUI();
+        // ActivateUI();
     }
 
     /// <summary>
@@ -75,7 +75,7 @@ public class TimeBank : MonoBehaviour
             ui.SetActive(true);
         // Set the zoom for the camera
         FadeInSFX.Play();
-        refCameraMovement.StartCameraZoomin(CameraZoomInScale);
+        refCameraMovement.ChangeCameraZoom(CameraZoomInScale);
         // Stop the player from moving
         refPlayer.canMove = false;
         IsUIActive = true;

@@ -734,9 +734,9 @@ MonoBehaviour:
   LeftText: {fileID: 0}
   RightText: {fileID: 0}
   JumpText: {fileID: 0}
-  LeftMovementTimeLeft: 0
-  RightMovementTimeLeft: 0
-  JumpMovementTimeLeft: 0
+  LeftMovementTimeLeft: 1
+  RightMovementTimeLeft: 1
+  JumpMovementTimeLeft: 1
   MaxLeftMovementTime: 0
   MaxRightMovementTime: 0
   MaxJumpMovementTime: 0
