@@ -21,6 +21,7 @@ public class TimeBank : MonoBehaviour
         [SerializeField] GameObject[] UI;
     [Tooltip("The text for the time bank")]
         [SerializeField] TMP_Text timeBankText;
+
     [Header("Text References")]
     [Tooltip("The text for the left movement time")]
         [SerializeField] TMP_Text LeftText;
@@ -28,6 +29,12 @@ public class TimeBank : MonoBehaviour
         [SerializeField] TMP_Text RightText;
     [Tooltip("The text for the jump movement time")]
         [SerializeField] TMP_Text JumpText;
+
+    [Header("Audio References")]
+    [Tooltip("The audio source for the time bank")]
+        [SerializeField] AudioSource SFX_Allocate;
+    [Tooltip("The audio source for the time bank")]
+        [SerializeField] AudioSource SFX_Deallocate;
 
     Vector2 CurrentCameraOffset = Vector2.zero;
 
@@ -74,6 +81,7 @@ public class TimeBank : MonoBehaviour
         if (TimeLeftToAllocate <= 0f)
             return;
         refPlayer.LeftMovementTimeLeft += 1f;
+        SFX_Allocate.Play();
         allocatedTimeLeft += 1f;
         LeftText.text = "" + refPlayer.LeftMovementTimeLeft;
         CalculateTimeToAllocateLeft();
@@ -84,6 +92,7 @@ public class TimeBank : MonoBehaviour
         if (TimeLeftToAllocate >= MaxTime || allocatedTimeLeft <= 0)
             return;
         refPlayer.LeftMovementTimeLeft -= 1f;
+        SFX_Deallocate.Play();
         allocatedTimeLeft -= 1f;
         LeftText.text = "" + refPlayer.LeftMovementTimeLeft;
         CalculateTimeToAllocateLeft();
@@ -94,6 +103,7 @@ public class TimeBank : MonoBehaviour
         if (TimeLeftToAllocate <= 0f)
             return;
         refPlayer.RightMovementTimeLeft += 1f;
+        SFX_Allocate.Play();
         allocatedTimeRight += 1f;
         RightText.text = "" + refPlayer.RightMovementTimeLeft;
         CalculateTimeToAllocateLeft();
@@ -104,6 +114,7 @@ public class TimeBank : MonoBehaviour
         if (TimeLeftToAllocate >= MaxTime || allocatedTimeRight <= 0)
             return;
         refPlayer.RightMovementTimeLeft -= 1f;
+        SFX_Deallocate.Play();
         allocatedTimeRight -= 1f;
         RightText.text = "" + refPlayer.RightMovementTimeLeft;
         CalculateTimeToAllocateLeft();
@@ -114,6 +125,7 @@ public class TimeBank : MonoBehaviour
         if (TimeLeftToAllocate <= 0f)
             return;
         refPlayer.JumpMovementTimeLeft += 1f;
+        SFX_Allocate.Play();
         allocatedTimeJump += 1f;
         JumpText.text = "" + refPlayer.JumpMovementTimeLeft;
         CalculateTimeToAllocateLeft();
@@ -124,6 +136,7 @@ public class TimeBank : MonoBehaviour
         if (TimeLeftToAllocate >= MaxTime || allocatedTimeJump <= 0)
             return;
         refPlayer.JumpMovementTimeLeft -= 1f;
+        SFX_Deallocate.Play();
         allocatedTimeJump -= 1f;
         JumpText.text = "" + refPlayer.JumpMovementTimeLeft;
         CalculateTimeToAllocateLeft();
