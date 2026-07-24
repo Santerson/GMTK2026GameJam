@@ -24,16 +24,7 @@ public class SeaMineHitbox : MonoBehaviour
         Vector2 delta = transform.position - collision.transform.position;
         playerVelocity = delta.normalized * PlayerYeetSpeed * -1;
         collision.GetComponent<Rigidbody2D>().linearVelocity = playerVelocity;
-        // Hold the camera still
-        if (collision.GetComponent<PlayerMovement>() != null)
-        {
-            CameraMovement cam = FindFirstObjectByType<CameraMovement>();
 
-            if (cam != null)
-            {
-                cam.SetCamTracking(false);
-            }
-        }
         // Play kablamo sound
         Instantiate(kablamoSound, transform.position, Quaternion.identity);
         // Destroy mine
