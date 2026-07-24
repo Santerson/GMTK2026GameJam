@@ -5,6 +5,7 @@ public class SeaMineHitbox : MonoBehaviour
 {
     [Tooltip("The speed the player gets yeeted at if they touch it")]
     [SerializeField] float PlayerYeetSpeed = 10f;
+    [SerializeField] AudioSource kablamoSound;
 
     Vector2 playerVelocity = Vector2.zero;
     private void OnTriggerEnter2D(Collider2D collision)
@@ -34,6 +35,8 @@ public class SeaMineHitbox : MonoBehaviour
         {
             cam.SetCamTracking(false);
         }
+        // Play kablamo sound
+        Instantiate(kablamoSound, transform.position, Quaternion.identity);
         // Destroy mine
         Destroy(transform.parent.gameObject);
     }

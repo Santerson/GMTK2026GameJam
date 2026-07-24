@@ -138,6 +138,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PlayerYeetSpeed: 15
+  kablamoSound: {fileID: 7823417304141556828, guid: f77b38c3cb00e1142b1f0256eab4fe9a, type: 3}
 --- !u!1 &9050481213025698473
 GameObject:
   m_ObjectHideFlags: 0

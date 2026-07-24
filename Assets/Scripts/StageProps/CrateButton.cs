@@ -2,6 +2,7 @@ using System;
 using UnityEngine;
 using UnityEngine.Events;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 
 public class CrateButton : MonoBehaviour
 {
