@@ -91,27 +91,62 @@ public class CameraTrack : MonoBehaviour
         refCamera.SetTrackingObject(gameObject);
         refCamera.transform.position = new(StartPoint.x, StartPoint.y, refCamera.transform.position.z);
         refCamera.GetComponent<Camera>().orthographicSize = InitialCameraZoom;
-        yield return new WaitForSeconds(StartDelay);
-        for (int i = 0; i < TrackNodes.Count; i++)
+        float timeElapsed = 0f;
+        bool breakout = false;
+        while (timeElapsed < StartDelay)
         {
-            CameraTrackNode trackNode = TrackNodes[i];
-            // Set the zoom of the camera
-            refCamera.ChangeCameraZoom(trackNode.camZoom);
-            // Apply a velocity towards the next node at the speed speed
-            float speed = trackNode.camSpeed;
-            Vector2 direction = (trackNode.Position - (Vector2)transform.position).normalized;
-            // After reaching the node, stop it for the set stop time
-            while (refCamera.getTrackingObject() == gameObject && Vector2.Distance(transform.position, trackNode.Position) > 0.1f)
+            timeElapsed += Time.deltaTime;
+            if (Input.GetKeyDown(KeyCode.Space))
             {
-                refRB.linearVelocity = direction * speed;
-                yield return null;
-            }
-            refRB.linearVelocity = Vector2.zero;
-            // change the camera's zoom if final node
-            if (i == TrackNodes.Count - 1)
                 refCamera.ChangeCameraZoom(EndZoom);
-            // Wait for end time
-            yield return new WaitForSeconds(trackNode.camPauseTime);
+                refCamera.transform.position = new(TrackNodes[TrackNodes.Count - 1].Position.x, TrackNodes[TrackNodes.Count - 1].Position.y, refCamera.transform.position.z);
+                break;
+            }
+            yield return null;
+        }
+        if (!breakout)
+        {
+            for (int i = 0; i < TrackNodes.Count; i++)
+            {
+                CameraTrackNode trackNode = TrackNodes[i];
+                // Set the zoom of the camera
+                refCamera.ChangeCameraZoom(trackNode.camZoom);
+                // Apply a velocity towards the next node at the speed speed
+                float speed = trackNode.camSpeed;
+                Vector2 direction = (trackNode.Position - (Vector2)transform.position).normalized;
+                // After reaching the node, stop it for the set stop time
+                while (refCamera.getTrackingObject() == gameObject && Vector2.Distance(transform.position, trackNode.Position) > 0.1f)
+                {
+                    refRB.linearVelocity = direction * speed;
+                    // Check space to skip
+                    if (Input.GetKeyDown(KeyCode.Space))
+                    {
+                        refCamera.ChangeCameraZoom(EndZoom);
+                        refCamera.transform.position = new(TrackNodes[TrackNodes.Count - 1].Position.x, TrackNodes[TrackNodes.Count - 1].Position.y, refCamera.transform.position.z);
+                        breakout = true;
+                        break;
+                    }
+                    yield return null;
+                }
+                refRB.linearVelocity = Vector2.zero;
+                if (breakout) break;
+                // change the camera's zoom if final node
+                if (i == TrackNodes.Count - 1)
+                    refCamera.ChangeCameraZoom(EndZoom);
+                // Wait for end time
+                timeElapsed = 0;
+                while (timeElapsed < trackNode.camPauseTime)
+                {
+                    timeElapsed += Time.deltaTime;
+                    if (Input.GetKeyDown(KeyCode.Space))
+                    {
+                        refCamera.ChangeCameraZoom(EndZoom);
+                        refCamera.transform.position = new(TrackNodes[TrackNodes.Count - 1].Position.x, TrackNodes[TrackNodes.Count - 1].Position.y, refCamera.transform.position.z);
+                        break;
+                    }
+                    yield return null;
+                }
+            }
         }
         // Reset the camera to follow the original object
         refCamera.SetTrackingObject(trackingObj);

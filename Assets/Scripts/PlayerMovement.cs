@@ -424,15 +424,15 @@ public class PlayerMovement : MonoBehaviour
         // Reset the tick timers if the player is not holding the key
         if (!Input.GetKey(KeyCode.A))
         {
-            L_timeUntilNextTickSound = 0;
+            L_timeUntilNextTickSound = 1;
         }
         if (!Input.GetKey(KeyCode.D))
         {
-            R_timeUntilNextTickSound = 0;
+            R_timeUntilNextTickSound = 1;
         }
         if (!Input.GetKey(KeyCode.Space))
         {
-            J_timeUntilNextTickSound = 0;
+            J_timeUntilNextTickSound = 1;
         }
         // Check for timers out of time
         if (LeftMovementTimeLeft - Time.deltaTime <= 0 && Input.GetKey(KeyCode.A) && LeftMovementTimeLeft > 0)
@@ -472,6 +472,8 @@ public class PlayerMovement : MonoBehaviour
         {
             tickStoppedTime -= Time.deltaTime;
         }
+
+        // Check if the 
     }
 
     /// <summary>
