@@ -53,7 +53,7 @@ public class CameraTrack : MonoBehaviour
         }
     }
 
-    private void Awake()
+    private void Start()
     {
         refCamera = FindFirstObjectByType<CameraMovement>();
         refRB = GetComponent<Rigidbody2D>();

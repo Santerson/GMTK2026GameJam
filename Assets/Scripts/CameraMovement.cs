@@ -44,7 +44,7 @@ public class CameraMovement : MonoBehaviour
         }
     }
 
-    private void Start()
+    private void Awake()
     {
         refCamera = GetComponent<Camera>();
         if (refCamera == null)
