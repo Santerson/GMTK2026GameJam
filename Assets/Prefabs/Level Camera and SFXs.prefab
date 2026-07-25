@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3305758412520374742}
   - component: {fileID: 5774535148761595627}
   - component: {fileID: 5940783159863909031}
+  - component: {fileID: 5699438141745526098}
   m_Layer: 0
   m_Name: Canvas
   m_TagString: Untagged
@@ -102,6 +103,21 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &5699438141745526098
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2810723101835659826}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66d75011bf66fa044a785c6aca5397b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  RightSeaDragonPrefab: {fileID: 2343531067157454193, guid: 0d0a575f67c37c9409ed5d4c4e28fb30, type: 3}
+  SeaDragon_SpawnInterval: {x: 20, y: 30}
+  SeaDragon_SpawnHeight: {x: -200, y: 200}
 --- !u!1 &2917554976432852979
 GameObject:
   m_ObjectHideFlags: 0
