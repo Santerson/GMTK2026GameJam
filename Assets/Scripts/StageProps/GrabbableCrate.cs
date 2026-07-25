@@ -6,6 +6,7 @@ public class GrabbableCrate : MonoBehaviour
     [SerializeField] GameObject refGrabTooltip;
     [SerializeField] AudioSource grabSound;
     [SerializeField] AudioSource dropSound;
+    public float MuteTime = 0f;
     bool grabbable = false;
     Collider2D PlayerCollider;
     PlayerMovement refPlayer;
@@ -44,6 +45,7 @@ public class GrabbableCrate : MonoBehaviour
 
     void Update()
     {
+        if (MuteTime > 0) MuteTime -= Time.deltaTime;
         if (refPlayer.canMove == false)
         {
             StartCoroutine(waitForPlayerToGainControl());
@@ -58,6 +60,9 @@ public class GrabbableCrate : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// There is a reason this is late update, to prevent dropping and immediately after picking up the crate
+    /// </summary>
     private void LateUpdate()
     {
         if (Input.GetKeyDown(KeyCode.E) && grabbable)

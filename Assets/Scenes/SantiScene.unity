@@ -2314,7 +2314,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1077125622
 Transform:
   m_ObjectHideFlags: 0
@@ -7467,6 +7467,22 @@ PrefabInstance:
       propertyPath: RightText
       value: 
       objectReference: {fileID: 1266383068}
+    - target: {fileID: 3143963318482094414, guid: 77872cd5696840f49a2132261603aa23, type: 3}
+      propertyPath: leftDropOffset.x
+      value: -0.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 3143963318482094414, guid: 77872cd5696840f49a2132261603aa23, type: 3}
+      propertyPath: leftDropOffset.y
+      value: -0.35
+      objectReference: {fileID: 0}
+    - target: {fileID: 3143963318482094414, guid: 77872cd5696840f49a2132261603aa23, type: 3}
+      propertyPath: rightDropOffset.x
+      value: 0.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 3143963318482094414, guid: 77872cd5696840f49a2132261603aa23, type: 3}
+      propertyPath: rightDropOffset.y
+      value: -0.3
+      objectReference: {fileID: 0}
     - target: {fileID: 3143963318482094414, guid: 77872cd5696840f49a2132261603aa23, type: 3}
       propertyPath: GroundedRaycastOffset.y
       value: -0.595

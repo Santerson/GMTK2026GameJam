@@ -715,7 +715,7 @@ GameObject:
   - component: {fileID: 771627108264040607}
   - component: {fileID: 2839972182181442780}
   - component: {fileID: 8527360583789394201}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -856,6 +856,8 @@ MonoBehaviour:
   timeUntilLevelChangeOnWin: 2.5
   leftGrabOffset: {x: -0.44, y: -0.32}
   rightGrabOffset: {x: 0.45, y: -0.32}
+  leftDropOffset: {x: -0.9, y: -0.35}
+  rightDropOffset: {x: 0.9, y: -0.3}
   lowTimeThreshold: 0.4
   tickInterval: 1
   runOutTickStop: 0.5

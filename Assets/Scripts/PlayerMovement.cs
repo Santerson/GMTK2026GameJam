@@ -1,7 +1,9 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Globalization;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Assertions.Must;
 using UnityEngine.InputSystem.Editor;
@@ -60,6 +62,8 @@ public class PlayerMovement : MonoBehaviour
         [SerializeField] Vector2 leftGrabOffset = new Vector2(-1f, 0f);
     [Tooltip("The right offset of the object")]
         [SerializeField] Vector2 rightGrabOffset = new Vector2(1f, 0f);
+    [SerializeField] Vector2 leftDropOffset = new Vector2(-1f, 0f);
+    [SerializeField] Vector2 rightDropOffset = new Vector2(1f, 0f);
 
     [Header("Audio - Timer")]
     [Tooltip("The percentage of time left for a movement type that will trigger the low time tick sound")]
@@ -163,6 +167,9 @@ public class PlayerMovement : MonoBehaviour
         Gizmos.color = Color.green;
         Gizmos.DrawLine((Vector2) transform.position + leftGrabOffset, (Vector2)transform.position + leftGrabOffset + Vector2.up * 0.1f);
         Gizmos.DrawLine((Vector2)transform.position + rightGrabOffset, (Vector2)transform.position + rightGrabOffset + Vector2.up * 0.1f);
+        Gizmos.color = Color.blue;
+        Gizmos.DrawLine((Vector2)transform.position + leftDropOffset, (Vector2)transform.position + leftDropOffset + Vector2.up * 0.1f);
+        Gizmos.DrawLine((Vector2)transform.position + rightDropOffset, (Vector2)transform.position + rightDropOffset + Vector2.up * 0.1f);
     }
 
     // Update is called once per frame
@@ -666,7 +673,9 @@ public class PlayerMovement : MonoBehaviour
         FindFirstObjectByType<CameraMovement>().SetCamTracking(true);
         // Wait a bit
         canMove = false;
-        refRB.linearVelocity = Vector2.zero;
+        refRB.linearVelocityX = 0;
+        if (refRB.linearVelocityY > 0)
+            refRB.linearVelocityY = 0;
         currentState = AnimState.EpicDub;
         refRB.constraints = RigidbodyConstraints2D.FreezeRotation;
         refRB.rotation = 0f;
@@ -696,6 +705,22 @@ public class PlayerMovement : MonoBehaviour
         // Drop the object
         Transform heldObject = this.heldObject.transform;
         heldObject.GetComponent<GrabbableCrate>().PlayDropSound();
+        heldObject.GetComponent<BoxPlaySoundOnContact>().timeUntilPlay = 0.1f;
+        // Try to move the player back if they are against a wall
+        RaycastHit2D hitcast = Physics2D.Raycast(transform.position, (!refRenderer.flipX ? Vector2.left : Vector2.right), (Mathf.Abs(!refRenderer.flipX ? leftDropOffset.x : rightDropOffset.x)));
+        Vector2 dir = !refRenderer.flipX ? Vector2.left : Vector2.right;
+        float dist = Mathf.Abs(!refRenderer.flipX ? leftDropOffset.x : rightDropOffset.x);
+        Debug.DrawRay(transform.position, dir * dist, Color.blue); 
+        while (hitcast.collider != null && hitcast.collider.gameObject.CompareTag("Ground"))
+        {
+            // Debug.Log(hitcast.collider.gameObject.name);
+            // Move the player back a small distance
+            Vector2 direction = refRenderer.flipX ? Vector2.left : Vector2.right;
+            transform.position = new Vector2(transform.position.x + (direction * 0.03f).x, transform.position.y);
+            hitcast = Physics2D.Raycast(transform.position, (!refRenderer.flipX ? Vector2.left : Vector2.right), Mathf.Abs((!refRenderer.flipX ? leftDropOffset.x : rightDropOffset.x)));
+        }
+
+        heldObject.transform.position = (!refRenderer.flipX ? (Vector2)transform.position + leftDropOffset : (Vector2)transform.position + rightDropOffset);
         heldObject.SetParent(null);
         // Enable the object's collider
         Collider2D objCollider = heldObject.GetComponent<Collider2D>();
