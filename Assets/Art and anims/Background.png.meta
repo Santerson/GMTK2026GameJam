@@ -1,16 +1,10 @@
 fileFormatVersion: 2
-guid: b40269566d05621429bfa9fbcb964c2f
+guid: 1829e7ad5c319cc478838eee75e4f725
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 522783777421811819
-    second: Mine_rework_0
-  - first:
-      213: -8934547273758783285
-    second: Mine_rework_1
-  - first:
-      213: 7991480304595781517
-    second: Mine_rework_2
+      213: -1955448553306655712
+    second: Background_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -119,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Mine_rework_0
+      name: Background_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 13
-        width: 64
-        height: 82
+        y: 0
+        width: 800
+        height: 452
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -134,52 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: b606093631d414700800000000000000
-      internalID: 522783777421811819
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Mine_rework_1
-      rect:
-        serializedVersion: 2
-        x: 128
-        y: 14
-        width: 64
-        height: 82
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: bc84cae779c120480800000000000000
-      internalID: -8934547273758783285
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Mine_rework_2
-      rect:
-        serializedVersion: 2
-        x: 256
-        y: 13
-        width: 64
-        height: 83
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: d8746f01ff077ee60800000000000000
-      internalID: 7991480304595781517
+      spriteID: 024fa93b6e9dcd4e0800000000000000
+      internalID: -1955448553306655712
       vertices: []
       indices: 
       edges: []
@@ -188,7 +138,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 15fee320e5f4cad44b06c562bd104186
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -198,9 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Mine_rework_0: 522783777421811819
-      Mine_rework_1: -8934547273758783285
-      Mine_rework_2: 7991480304595781517
+      Background_0: -1955448553306655712
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
