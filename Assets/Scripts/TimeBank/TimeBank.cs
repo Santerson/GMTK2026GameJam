@@ -20,8 +20,7 @@ public class TimeBank : MonoBehaviour
     [Header("References")]
     [Tooltip("Reference to the player movement script")]
         [SerializeField] PlayerMovement refPlayer;
-    [Tooltip("Reference to the camera movement script")]
-        [SerializeField] CameraMovement refCameraMovement;
+    CameraMovement refCameraMovement;
     [Tooltip("The UI for the time bank (this will be set inactive)")]
         [SerializeField] GameObject[] UI;
     [Tooltip("The actual game UI CANVAS")]
@@ -63,6 +62,7 @@ public class TimeBank : MonoBehaviour
     {
         refTimeStorage = FindFirstObjectByType<AllocatedTimeStorage>();
         TextOutOfHowMuch.text = $"/{MaxTime}s";
+        refCameraMovement = FindFirstObjectByType<CameraMovement>(FindObjectsInactive.Exclude);
     }
 
     /// <summary>

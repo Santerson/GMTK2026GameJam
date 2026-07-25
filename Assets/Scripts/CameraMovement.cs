@@ -58,6 +58,7 @@ public class CameraMovement : MonoBehaviour
         CameraMovement[] objs = FindObjectsByType<CameraMovement>(FindObjectsSortMode.None);
         if (objs.Count() > 1)
         {
+            gameObject.SetActive(false);
             Destroy(gameObject);
             return;
         }
