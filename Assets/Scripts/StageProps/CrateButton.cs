@@ -6,13 +6,13 @@ using UnityEngine.SceneManagement;
 
 public class CrateButton : MonoBehaviour
 {
-    [SerializeField] bool EnableColorSwaps = false;
     [SerializeField] GameObject[] Objects;
     [SerializeField] UnityEvent[] EnableActions;
     [SerializeField] UnityEvent[] DisableActions;
     [SerializeField] AudioSource ButtonDown;
     [SerializeField] AudioSource ButtonUp;
     bool buttonEnabled = false;
+    Animator refAnimator;
 
     List<GameObject> ButtonEligibleCollisions = new List<GameObject>();
 
@@ -21,6 +21,7 @@ public class CrateButton : MonoBehaviour
     private void Start()
     {
         refRenderer = GetComponent<SpriteRenderer>();
+        refAnimator = GetComponent<Animator>();
     }
 
 
@@ -49,7 +50,7 @@ public class CrateButton : MonoBehaviour
 
     void EnableButton()
     {
-        if (EnableColorSwaps) refRenderer.color = Color.green;
+        refAnimator.SetBool("Active", true);
         // Disable all gameobjects
         foreach (GameObject obj in Objects)
         {
@@ -65,7 +66,7 @@ public class CrateButton : MonoBehaviour
 
     void DisableButton()
     {
-        if (EnableColorSwaps) refRenderer.color = Color.red;
+        refAnimator.SetBool("Active", false);
         // Enable all gameobjects
         foreach (GameObject obj in Objects)
         {
