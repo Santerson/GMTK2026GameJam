@@ -1,5 +1,6 @@
 using UnityEngine;
 using TMPro;
+using System.Collections;
 
 public class TimeBank : MonoBehaviour
 {
@@ -11,6 +12,8 @@ public class TimeBank : MonoBehaviour
         [SerializeField] Vector2 CameraOffsetPosition = new(0, 3);
     [Tooltip("The camera zoom in scale for the camera while this menu is open")]
         [SerializeField] float CameraZoomInScale = 3f;
+    [SerializeField] float UIFlyinTime = 0.5f;
+    [SerializeField] GameObject FlyinTargetObj;
 
     [Header("References")]
     [Tooltip("Reference to the player movement script")]
@@ -47,11 +50,14 @@ public class TimeBank : MonoBehaviour
     public bool IsUIActive { get; private set; } = false;
 
     AllocatedTimeStorage refTimeStorage;
+    Vector2 UIBasePositions = Vector2.zero;
+    Vector2 UITargetPos = Vector2.zero;
 
     private void Awake()
     {
         refTimeStorage = FindFirstObjectByType<AllocatedTimeStorage>();
-        // ActivateUI();
+        UIBasePositions = UI[0].transform.position;
+        UITargetPos = FlyinTargetObj.transform.position;
     }
 
     /// <summary>
@@ -70,15 +76,33 @@ public class TimeBank : MonoBehaviour
         // Set the offset properly
         CurrentCameraOffset = refCameraMovement.GetOffset();
         refCameraMovement.SetOffset(CameraOffsetPosition);
-        // Enable the ui
-        foreach (GameObject ui in UI)
-            ui.SetActive(true);
         // Set the zoom for the camera
         FadeInSFX.Play();
         refCameraMovement.ChangeCameraZoom(CameraZoomInScale);
         // Stop the player from moving
         refPlayer.canMove = false;
         IsUIActive = true;
+        // Move in the ui
+        StartCoroutine(UISlideInAnimLoop());
+    }
+
+    private IEnumerator UISlideInAnimLoop()
+    {
+        // Get the delta in the positions
+        float startx = UI[0].transform.position.x;
+        float timeElapsed = 0f;
+        while (UI[0].transform.position.x - UITargetPos.x > 0.1f)
+        {
+            // Move the UI towards the target position
+            foreach (GameObject ui in UI)
+                ui.transform.position = new(Mathf.SmoothStep(startx, UITargetPos.x, timeElapsed / UIFlyinTime), UITargetPos.y);
+            timeElapsed += Time.deltaTime;
+            yield return null;
+        }
+        foreach (GameObject ui in UI)
+        {
+            ui.transform.position = new(UITargetPos.x, UITargetPos.y);
+        }
     }
 
     public void LeftButtonTimeAdd()
