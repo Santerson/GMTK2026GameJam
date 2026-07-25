@@ -480,8 +480,6 @@ public class PlayerMovement : MonoBehaviour
         {
             tickStoppedTime -= Time.deltaTime;
         }
-
-        // Check if the 
     }
 
     /// <summary>

@@ -12,6 +12,7 @@ public class CrateButton : MonoBehaviour
     [SerializeField] UnityEvent[] DisableActions;
     [SerializeField] AudioSource ButtonDown;
     [SerializeField] AudioSource ButtonUp;
+    bool buttonEnabled = false;
 
     List<GameObject> ButtonEligibleCollisions = new List<GameObject>();
 
@@ -25,20 +26,24 @@ public class CrateButton : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.GetComponent<ButtonEligible>() != null)
+        if (collision.GetComponent<ButtonEligible>() != null && !buttonEnabled)
         {
             EnableButton();
             ButtonEligibleCollisions.Add(collision.gameObject);
+            buttonEnabled = true;
         }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.GetComponent<ButtonEligible>() != null)
+        if (collision.GetComponent<ButtonEligible>() != null && buttonEnabled)
         {
             ButtonEligibleCollisions.Remove(collision.gameObject);
             if (ButtonEligibleCollisions.Count == 0)
+            {
                 DisableButton();
+                buttonEnabled = false;
+            }
         }
     }
 
