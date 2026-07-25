@@ -60,16 +60,17 @@ public class CameraTrack : MonoBehaviour
         if (PlayOnStart)
         {
             // Look for the timebank data script
-            AllocatedTimeStorage allocatedTimeStorage = FindFirstObjectByType<AllocatedTimeStorage>();
+            AllocatedTimeStorage[] allocatedTimeStorage = FindObjectsByType<AllocatedTimeStorage>(FindObjectsSortMode.None);
             // check if it exists
-            if (allocatedTimeStorage != null)
+            if (allocatedTimeStorage.Length != 0)
             {
-                // Check it's variables and see if they're all 0 to play the intro
-                if (allocatedTimeStorage.allocatedTimeLeft != 0 || allocatedTimeStorage.allocatedTimeRight != 0 || allocatedTimeStorage.allocatedTimeJump != 0)
-                {
-                    PullUpTimeAllocationUI();
-                    return;
-                }
+                foreach (AllocatedTimeStorage obj in allocatedTimeStorage)
+                    // Check it's variables and see if they're all 0 to play the intro
+                    if (obj.allocatedTimeLeft != 0 || obj.allocatedTimeRight != 0 || obj.allocatedTimeJump != 0)
+                    {
+                        PullUpTimeAllocationUI();
+                        return;
+                    }
             }
             StartCoroutine(PlayCameraPan());
         }

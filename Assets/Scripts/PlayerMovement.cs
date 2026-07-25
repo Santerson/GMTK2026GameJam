@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Assertions.Must;
+using UnityEngine.InputSystem.Editor;
 using UnityEngine.SceneManagement;
 
 public class PlayerMovement : MonoBehaviour
@@ -333,11 +334,6 @@ public class PlayerMovement : MonoBehaviour
             }
             else
             {
-                if (!SFX_SwimUp.isPlaying && swimmingUpTimeUntilNextSound <= 0)
-                {
-                    SFX_SwimUp.Play();
-                    swimmingUpTimeUntilNextSound = RepeatTime;
-                }
                 // Calculate the current swim speed cap
                 timeSpentSwimming += Time.deltaTime;
                 currentSwimSpeedCap  = Mathf.Lerp(swimImpulse, maxSwimSpeed, timeSpentSwimming / SwimSpeedChangeTime);
@@ -364,6 +360,16 @@ public class PlayerMovement : MonoBehaviour
                 SFX_SwimIdle.Play();
                 swimmingTimeUntilNextSound = RepeatTime;
             }
+        }
+        if (Input.GetKey(KeyCode.Space) && !IsGrounded() && JumpMovementTimeLeft > 0 && !SFX_SwimUp.isPlaying)
+        {
+            Debug.Log("Swim up play");
+            SFX_SwimUp.Play();
+            SFX_SwimUp.loop = true;
+        }
+        else if (!Input.GetKey(KeyCode.Space)) 
+        {
+            SFX_SwimUp.loop = false;
         }
     }
 
@@ -583,6 +589,8 @@ public class PlayerMovement : MonoBehaviour
         currentState = AnimState.Sleeping;
         // Stop the player's velocity
         refRB.linearVelocity = Vector2.zero;
+        // Rotate the player a little
+        refRB.AddTorque(5f);
         // Play death sound
         if (SFX_Sleep != null)
         {

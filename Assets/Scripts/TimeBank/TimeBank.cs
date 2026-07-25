@@ -263,7 +263,7 @@ public class TimeBank : MonoBehaviour
     {
         if (refTimeStorage == null)
         {
-            refTimeStorage = FindFirstObjectByType<AllocatedTimeStorage>();
+            refTimeStorage = FindFirstObjectByType<AllocatedTimeStorage>(FindObjectsInactive.Exclude);
             if (refTimeStorage == null)
             {
                 Debug.LogWarning("No Time Storage Gameobject found on this scene! This might be because you forgot to put the empty on this scene!");

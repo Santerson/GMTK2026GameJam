@@ -12,6 +12,7 @@ public class AllocatedTimeStorage : MonoBehaviour
         AllocatedTimeStorage[] objs = FindObjectsByType<AllocatedTimeStorage>(FindObjectsSortMode.None);
         if (objs.Length > 1)
         {
+            gameObject.SetActive(false);
             Destroy(this.gameObject);
         }
         else

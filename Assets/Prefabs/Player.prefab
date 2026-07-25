@@ -1882,11 +1882,11 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_Resource: {fileID: 8300000, guid: acde6abf12ad9bd41819f10904a68b79, type: 3}
+  m_Resource: {fileID: 6418180475301049370, guid: 9cf1bcd08ca03f940a11a0154df91adf, type: 2}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
