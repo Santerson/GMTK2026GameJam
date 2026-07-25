@@ -23,6 +23,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] Vector2 LeftGroundedRaycastOffset = new Vector2(0, -1f);
     [Tooltip("Where the raycast for being grounded is")]
     [SerializeField] Vector2 RightGroundedRaycastOffset = new Vector2(0, -1f);
+    [SerializeField] Vector2 CLGroundedRaycastOffset = new Vector2(0, 0f);
+    [SerializeField] Vector2 CRGroundedRaycastOffset = new Vector2(0, 0f);
 
     [Header("Swimming")]
     [Tooltip("The speed the player should swim at (should be positive)")]
@@ -147,6 +149,10 @@ public class PlayerMovement : MonoBehaviour
             (Vector2)transform.position + LeftGroundedRaycastOffset + Vector2.down * 0.1f);
         Gizmos.DrawLine((Vector2)transform.position + RightGroundedRaycastOffset,
             (Vector2)transform.position + RightGroundedRaycastOffset + Vector2.down * 0.1f);
+        Gizmos.DrawLine((Vector2)transform.position + CLGroundedRaycastOffset,
+            (Vector2)transform.position + CLGroundedRaycastOffset + Vector2.down * 0.1f);
+        Gizmos.DrawLine((Vector2)transform.position + CRGroundedRaycastOffset,
+            (Vector2)transform.position + CRGroundedRaycastOffset + Vector2.down * 0.1f);
         Gizmos.color = Color.green;
         Gizmos.DrawLine((Vector2) transform.position + leftGrabOffset, (Vector2)transform.position + leftGrabOffset + Vector2.up * 0.1f);
         Gizmos.DrawLine((Vector2)transform.position + rightGrabOffset, (Vector2)transform.position + rightGrabOffset + Vector2.up * 0.1f);
@@ -496,7 +502,12 @@ public class PlayerMovement : MonoBehaviour
     {
         RaycastHit2D lHit = Physics2D.Raycast((Vector2)transform.position + LeftGroundedRaycastOffset, Vector2.down, 0.1f);
         RaycastHit2D rHit = Physics2D.Raycast((Vector2)transform.position + RightGroundedRaycastOffset, Vector2.down, 0.1f);
+        RaycastHit2D cHit = Physics2D.Raycast((Vector2)transform.position + CLGroundedRaycastOffset, Vector2.down, 0.1f);
         if (lHit.collider != null && lHit.collider.CompareTag("Ground"))
+        {
+            return true;
+        }
+        if (cHit.collider != null && cHit.collider.CompareTag("Ground"))
         {
             return true;
         }

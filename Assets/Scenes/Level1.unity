@@ -400,16 +400,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 204996574}
   m_CullTransparentMesh: 1
---- !u!82 &354450196 stripped
-AudioSource:
-  m_CorrespondingSourceObject: {fileID: 8732926013865920994, guid: 71aa445ada3d32248aa0dd4d614b908a, type: 3}
-  m_PrefabInstance: {fileID: 9173926953028779033}
-  m_PrefabAsset: {fileID: 0}
---- !u!82 &697311456 stripped
-AudioSource:
-  m_CorrespondingSourceObject: {fileID: 938011482160000735, guid: 71aa445ada3d32248aa0dd4d614b908a, type: 3}
-  m_PrefabInstance: {fileID: 9173926953028779033}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &766494428
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -711,11 +701,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71ceaddd529ccd14a83aaaab3decce6e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!82 &1573554489 stripped
-AudioSource:
-  m_CorrespondingSourceObject: {fileID: 2856161043682209745, guid: 71aa445ada3d32248aa0dd4d614b908a, type: 3}
-  m_PrefabInstance: {fileID: 9173926953028779033}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1671371838
 GameObject:
   m_ObjectHideFlags: 0
@@ -1380,18 +1365,6 @@ PrefabInstance:
       propertyPath: RightText
       value: 
       objectReference: {fileID: 1972342247}
-    - target: {fileID: 3143963318482094414, guid: 77872cd5696840f49a2132261603aa23, type: 3}
-      propertyPath: SFX_LowTick
-      value: 
-      objectReference: {fileID: 1573554489}
-    - target: {fileID: 3143963318482094414, guid: 77872cd5696840f49a2132261603aa23, type: 3}
-      propertyPath: SFX_NormalTick
-      value: 
-      objectReference: {fileID: 354450196}
-    - target: {fileID: 3143963318482094414, guid: 77872cd5696840f49a2132261603aa23, type: 3}
-      propertyPath: SFX_RunOutTick
-      value: 
-      objectReference: {fileID: 697311456}
     - target: {fileID: 3143963318482094414, guid: 77872cd5696840f49a2132261603aa23, type: 3}
       propertyPath: GroundedRaycastOffset.y
       value: -0.595
