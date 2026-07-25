@@ -150,6 +150,23 @@ public class TimeBank : MonoBehaviour
         }
         GameUINotCanvas.transform.localScale = Vector3.one * 1f;
     }
+    private IEnumerator GameUISlideOut()
+    {
+        GameUICanvas.SetActive(true);
+        // set the scale of the actual ui gameobject
+        GameUINotCanvas.transform.localScale = Vector3.one * 1f;
+        float elapsedTime = 0;
+        // make it fly in at the same speed as the UI slide out
+        while (GameUINotCanvas.transform.localScale.x > 1)
+        {
+            float currentScale = GameUINotCanvas.transform.localScale.x;
+            float newScale = Mathf.SmoothStep(1f, 1.5f, elapsedTime / GameUIFlyinTime);
+            GameUINotCanvas.transform.localScale = new(newScale, newScale, 1);
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+        GameUINotCanvas.transform.localScale = Vector3.one * 1.5f;
+    }
 
     public void LeftButtonTimeAdd()
     {

@@ -6,10 +6,15 @@ public class RestoreAnchor : MonoBehaviour
 {
     [SerializeField] bool BringUpUI = false;
     [SerializeField] bool repeatable = false;
-    [SerializeField] Color disableColorTint = Color.gray;
     [SerializeField] GameObject popupUI;
     bool activatable = false;
     bool deactivated = false;
+    Animator RefAnimator;
+
+    private void Start()
+    {
+        RefAnimator = GetComponent<Animator>();
+    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -46,8 +51,8 @@ public class RestoreAnchor : MonoBehaviour
 
     void Disable()
     {
-        GetComponent<SpriteRenderer>().color *= disableColorTint;
         deactivated = true;
+        RefAnimator.SetBool("Dead", true);
     }
 
     void RestoreAnchorFunction()
