@@ -23,16 +23,18 @@ public class TimeBank : MonoBehaviour
         [SerializeField] CameraMovement refCameraMovement;
     [Tooltip("The UI for the time bank (this will be set inactive)")]
         [SerializeField] GameObject[] UI;
-    [Tooltip("The text for the time bank")]
-        [SerializeField] TMP_Text timeBankText;
 
     [Header("Text References")]
+    [Tooltip("The text for the time bank")]
+        [SerializeField] TMP_Text timeBankText;
     [Tooltip("The text for the left movement time")]
         [SerializeField] TMP_Text LeftText;
     [Tooltip("The text for the right movement time")]
         [SerializeField] TMP_Text RightText;
     [Tooltip("The text for the jump movement time")]
         [SerializeField] TMP_Text JumpText;
+    [SerializeField] TMP_Text LeftToAssignText;
+    [SerializeField] TMP_Text TextOutOfHowMuch;
 
     [Header("Audio References")]
     [Tooltip("The audio source for the time bank")]
@@ -55,6 +57,7 @@ public class TimeBank : MonoBehaviour
     private void Awake()
     {
         refTimeStorage = FindFirstObjectByType<AllocatedTimeStorage>();
+        TextOutOfHowMuch.text = $"/{MaxTime}s";
     }
 
     /// <summary>
@@ -189,6 +192,16 @@ public class TimeBank : MonoBehaviour
         CalculateTimeToAllocateLeft();
     }
 
+    private void UpdatePointsLeftText()
+    {
+        if (TimeLeftToAllocate <= 0f)
+            LeftToAssignText.text = "";
+        else
+        {
+            LeftToAssignText.text = $"Allocate the remaining {TimeLeftToAllocate}s to start!";
+        }
+    }
+
     /// <summary>
     /// Starts the level if all time has been allocated
     /// </summary>
@@ -214,7 +227,8 @@ public class TimeBank : MonoBehaviour
     void CalculateTimeToAllocateLeft()
     {
         TimeLeftToAllocate = MaxTime - allocatedTimeJump - allocatedTimeLeft - allocatedTimeRight;
-        timeBankText.text = "Time Bank: " + TimeLeftToAllocate + "/s";
+        timeBankText.text = "Energy: " + TimeLeftToAllocate;
+        UpdatePointsLeftText();
     }
 
     public void ReapplySelectedTimes()

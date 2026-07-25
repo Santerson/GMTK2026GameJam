@@ -563,7 +563,6 @@ public class PlayerMovement : MonoBehaviour
         {
             StopAllCoroutines();
             if (stopPlayer) refRB.linearVelocity *= DeadVelocityMultiplier;
-            refRB.rotation = 0;
             refRB.linearDamping = DeadLinearDamping;
             refRB.angularVelocity = 0;
         }
