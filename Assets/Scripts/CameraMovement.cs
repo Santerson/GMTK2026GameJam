@@ -1,6 +1,8 @@
+using System.Linq;
 using UnityEditor.Rendering.LookDev;
 using UnityEngine;
 using UnityEngine.Rendering;
+using UnityEngine.SceneManagement;
 
 public class CameraMovement : MonoBehaviour
 {
@@ -46,7 +48,18 @@ public class CameraMovement : MonoBehaviour
 
     private void Awake()
     {
-        refCamera = GetComponent<Camera>();
+        // Dont destroy on load stuff
+        CameraMovement[] objs = FindObjectsByType<CameraMovement>(FindObjectsSortMode.None);
+        if (objs.Count() > 1)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        else
+        {
+            DontDestroyOnLoad(gameObject);
+        }
+            refCamera = GetComponent<Camera>();
         if (refCamera == null)
             Debug.LogError("CameraMovement: No camera component found on this object.");
         cameraDefaultScale = refCamera.orthographicSize;
@@ -71,6 +84,10 @@ public class CameraMovement : MonoBehaviour
         }
         if (currentCameraState == cameraStates.zoomingOut)
             ZoomToDefaultCamera();
+        if (TargetObject == null)
+        {
+            Debug.LogError("Target object is null, bad stuff will happen");
+        }
     }
 
     /// <summary>
@@ -80,6 +97,11 @@ public class CameraMovement : MonoBehaviour
     public void SetOffset(Vector2 newOffset)
     {
         offset = newOffset;
+        if (TargetObject == null)
+        {
+            TargetObject = FindFirstObjectByType<PlayerMovement>().gameObject;
+        }
+        Debug.Log($"Set offset to {newOffset.x}, {newOffset.y}");
     }
 
     /// <summary>
