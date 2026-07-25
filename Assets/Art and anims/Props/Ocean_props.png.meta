@@ -203,12 +203,12 @@ TextureImporter:
       name: Ocean_props_0
       rect:
         serializedVersion: 2
-        x: 29
-        y: 377
-        width: 164
-        height: 55
+        x: 30
+        y: 378
+        width: 162
+        height: 53
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -225,12 +225,12 @@ TextureImporter:
       name: Ocean_props_1
       rect:
         serializedVersion: 2
-        x: 238
-        y: 387
-        width: 170
-        height: 51
+        x: 239
+        y: 388
+        width: 168
+        height: 49
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -247,12 +247,12 @@ TextureImporter:
       name: Ocean_props_2
       rect:
         serializedVersion: 2
-        x: 562
-        y: 358
-        width: 42
-        height: 13
+        x: 652
+        y: 372
+        width: 40
+        height: 11
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -269,12 +269,12 @@ TextureImporter:
       name: Ocean_props_3
       rect:
         serializedVersion: 2
-        x: 651
-        y: 371
-        width: 42
-        height: 13
+        x: 714
+        y: 362
+        width: 40
+        height: 11
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -291,12 +291,12 @@ TextureImporter:
       name: Ocean_props_4
       rect:
         serializedVersion: 2
-        x: 713
-        y: 361
-        width: 42
-        height: 13
+        x: 563
+        y: 359
+        width: 40
+        height: 11
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -313,12 +313,12 @@ TextureImporter:
       name: Ocean_props_5
       rect:
         serializedVersion: 2
-        x: 605
-        y: 354
-        width: 42
-        height: 13
+        x: 606
+        y: 355
+        width: 40
+        height: 11
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -335,12 +335,12 @@ TextureImporter:
       name: Ocean_props_6
       rect:
         serializedVersion: 2
-        x: 658
-        y: 353
-        width: 42
-        height: 13
+        x: 659
+        y: 354
+        width: 40
+        height: 11
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -357,12 +357,12 @@ TextureImporter:
       name: Ocean_props_7
       rect:
         serializedVersion: 2
-        x: 711
-        y: 348
-        width: 42
-        height: 13
+        x: 712
+        y: 349
+        width: 40
+        height: 11
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -379,12 +379,12 @@ TextureImporter:
       name: Ocean_props_8
       rect:
         serializedVersion: 2
-        x: 31
-        y: 287
-        width: 164
-        height: 55
+        x: 32
+        y: 288
+        width: 162
+        height: 53
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -401,12 +401,12 @@ TextureImporter:
       name: Ocean_props_9
       rect:
         serializedVersion: 2
-        x: 240
-        y: 297
-        width: 170
-        height: 51
+        x: 241
+        y: 298
+        width: 168
+        height: 49
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -423,12 +423,12 @@ TextureImporter:
       name: Ocean_props_10
       rect:
         serializedVersion: 2
-        x: 534
-        y: 336
-        width: 42
-        height: 13
+        x: 535
+        y: 337
+        width: 40
+        height: 11
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -445,12 +445,12 @@ TextureImporter:
       name: Ocean_props_11
       rect:
         serializedVersion: 2
-        x: 584
-        y: 338
-        width: 42
-        height: 13
+        x: 585
+        y: 339
+        width: 40
+        height: 11
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -467,12 +467,12 @@ TextureImporter:
       name: Ocean_props_12
       rect:
         serializedVersion: 2
-        x: 629
-        y: 331
-        width: 42
-        height: 13
+        x: 630
+        y: 332
+        width: 40
+        height: 11
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -489,12 +489,12 @@ TextureImporter:
       name: Ocean_props_13
       rect:
         serializedVersion: 2
-        x: 683
-        y: 336
-        width: 42
-        height: 13
+        x: 684
+        y: 337
+        width: 40
+        height: 11
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -511,12 +511,12 @@ TextureImporter:
       name: Ocean_props_14
       rect:
         serializedVersion: 2
-        x: 734
-        y: 328
-        width: 42
-        height: 13
+        x: 735
+        y: 329
+        width: 40
+        height: 11
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -533,12 +533,12 @@ TextureImporter:
       name: Ocean_props_15
       rect:
         serializedVersion: 2
-        x: 563
-        y: 323
-        width: 42
-        height: 13
+        x: 564
+        y: 324
+        width: 40
+        height: 11
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -555,12 +555,12 @@ TextureImporter:
       name: Ocean_props_16
       rect:
         serializedVersion: 2
-        x: 613
-        y: 315
-        width: 42
-        height: 13
+        x: 614
+        y: 316
+        width: 40
+        height: 11
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -577,12 +577,12 @@ TextureImporter:
       name: Ocean_props_17
       rect:
         serializedVersion: 2
-        x: 656
-        y: 319
-        width: 42
-        height: 13
+        x: 657
+        y: 320
+        width: 40
+        height: 11
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -599,12 +599,12 @@ TextureImporter:
       name: Ocean_props_18
       rect:
         serializedVersion: 2
-        x: 727
-        y: 316
-        width: 42
-        height: 13
+        x: 728
+        y: 317
+        width: 40
+        height: 11
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -621,12 +621,12 @@ TextureImporter:
       name: Ocean_props_19
       rect:
         serializedVersion: 2
-        x: 531
-        y: 181
-        width: 109
-        height: 133
+        x: 532
+        y: 182
+        width: 107
+        height: 131
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -643,12 +643,12 @@ TextureImporter:
       name: Ocean_props_20
       rect:
         serializedVersion: 2
-        x: 595
-        y: 304
-        width: 42
-        height: 13
+        x: 596
+        y: 305
+        width: 40
+        height: 11
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -665,12 +665,12 @@ TextureImporter:
       name: Ocean_props_21
       rect:
         serializedVersion: 2
-        x: 687
-        y: 300
-        width: 42
-        height: 13
+        x: 688
+        y: 301
+        width: 40
+        height: 11
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -687,12 +687,12 @@ TextureImporter:
       name: Ocean_props_22
       rect:
         serializedVersion: 2
-        x: 631
-        y: 285
-        width: 42
-        height: 13
+        x: 632
+        y: 286
+        width: 40
+        height: 11
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -709,12 +709,12 @@ TextureImporter:
       name: Ocean_props_23
       rect:
         serializedVersion: 2
-        x: 26
-        y: 211
-        width: 164
-        height: 55
+        x: 21
+        y: 212
+        width: 168
+        height: 53
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -731,12 +731,12 @@ TextureImporter:
       name: Ocean_props_24
       rect:
         serializedVersion: 2
-        x: 235
-        y: 221
-        width: 170
-        height: 51
+        x: 236
+        y: 218
+        width: 168
+        height: 53
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -753,12 +753,12 @@ TextureImporter:
       name: Ocean_props_25
       rect:
         serializedVersion: 2
-        x: 577
-        y: 111
-        width: 15
-        height: 23
+        x: 578
+        y: 112
+        width: 13
+        height: 21
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -775,12 +775,12 @@ TextureImporter:
       name: Ocean_props_26
       rect:
         serializedVersion: 2
-        x: 603
-        y: 111
-        width: 15
-        height: 31
+        x: 604
+        y: 112
+        width: 13
+        height: 29
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -797,12 +797,12 @@ TextureImporter:
       name: Ocean_props_27
       rect:
         serializedVersion: 2
-        x: 630
-        y: 111
-        width: 15
-        height: 42
+        x: 631
+        y: 112
+        width: 13
+        height: 40
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -819,12 +819,12 @@ TextureImporter:
       name: Ocean_props_28
       rect:
         serializedVersion: 2
-        x: 657
-        y: 111
-        width: 15
-        height: 58
+        x: 658
+        y: 112
+        width: 13
+        height: 56
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -841,12 +841,12 @@ TextureImporter:
       name: Ocean_props_29
       rect:
         serializedVersion: 2
-        x: 685
-        y: 111
-        width: 15
-        height: 79
+        x: 686
+        y: 112
+        width: 13
+        height: 77
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -863,7 +863,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: b19e0415c22faed4ca7e873507aae6ef
     internalID: 0
     vertices: []
     indices: 
