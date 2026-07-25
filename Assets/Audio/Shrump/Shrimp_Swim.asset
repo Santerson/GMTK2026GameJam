@@ -1,0 +1,104 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1233149941 &-6089750948015959982
+AudioContainerElement:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Shrimp_Swim-005_{-6089750948015959982}
+  m_AudioClip: {fileID: 8300000, guid: 7a6c86000549b51409197359f3f8022b, type: 3}
+  m_Volume: 0
+  m_Enabled: 1
+--- !u!1233149941 &-5351771667997166558
+AudioContainerElement:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Shrimp_Swim-007_{-5351771667997166558}
+  m_AudioClip: {fileID: 8300000, guid: 8accd14c9947c5d4889a92f6536e29ba, type: 3}
+  m_Volume: 0
+  m_Enabled: 1
+--- !u!1233149941 &-3587455145982813144
+AudioContainerElement:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Shrimp_Swim-002_{-3587455145982813144}
+  m_AudioClip: {fileID: 8300000, guid: 1c2ed0c4132c7af41958317fe28e6ba8, type: 3}
+  m_Volume: 0
+  m_Enabled: 1
+--- !u!1233149941 &-1180913437660993665
+AudioContainerElement:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Shrimp_Swim-003_{-1180913437660993665}
+  m_AudioClip: {fileID: 8300000, guid: 4e12b0bebdd6c9840a9ebc0278a5a557, type: 3}
+  m_Volume: 0
+  m_Enabled: 1
+--- !u!1233149941 &4016881049966053136
+AudioContainerElement:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Shrimp_Swim-004_{4016881049966053136}
+  m_AudioClip: {fileID: 8300000, guid: 6337fdaa5bdbe8448b5b42bb37a8a110, type: 3}
+  m_Volume: 0
+  m_Enabled: 1
+--- !u!1233149941 &6191197714382521458
+AudioContainerElement:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Shrimp_Swim-001_{6191197714382521458}
+  m_AudioClip: {fileID: 8300000, guid: fed81e0a6b655914293b7cd2f56cb9af, type: 3}
+  m_Volume: 0
+  m_Enabled: 1
+--- !u!1307931743 &6418180475301049370
+AudioRandomContainer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Shrimp_Swim
+  m_Volume: 0
+  m_Pitch: 0
+  m_AutomaticTriggerTime: 0
+  m_LoopCount: 1
+  m_VolumeRandomizationRange: {x: 0, y: 0}
+  m_PitchRandomizationRange: {x: 0, y: 0}
+  m_AutomaticTriggerTimeRandomizationRange: {x: 0, y: 0}
+  m_LoopCountRandomizationRange: {x: 0, y: 0}
+  m_Elements:
+  - {fileID: 6191197714382521458}
+  - {fileID: -3587455145982813144}
+  - {fileID: -1180913437660993665}
+  - {fileID: 4016881049966053136}
+  - {fileID: -6089750948015959982}
+  - {fileID: 7954598143770696652}
+  - {fileID: -5351771667997166558}
+  m_AvoidRepeatingLast: 0
+  m_PlaybackMode: 1
+  m_TriggerMode: 1
+  m_AutomaticTriggerMode: 1
+  m_LoopMode: 1
+  m_VolumeRandomizationEnabled: 0
+  m_PitchRandomizationEnabled: 0
+  m_AutomaticTriggerTimeRandomizationEnabled: 0
+  m_LoopCountRandomizationEnabled: 0
+--- !u!1233149941 &7954598143770696652
+AudioContainerElement:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Shrimp_Swim-006_{7954598143770696652}
+  m_AudioClip: {fileID: 8300000, guid: 8e7d115b9abf8304fba7b7f0d850a7bf, type: 3}
+  m_Volume: 0
+  m_Enabled: 1
