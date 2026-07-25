@@ -868,7 +868,7 @@ MonoBehaviour:
   SFX_Death: {fileID: 4148738272397210310}
   SFX_Win: {fileID: 654723879353114761}
   SFX_SwimUp: {fileID: 8900819747145906643}
-  SFX_SwimIdle: {fileID: 0}
+  SFX_SwimIdle: {fileID: 8900819747145906643}
   SFX_Walk: {fileID: 6878824795946564389}
   SFX_Sleep: {fileID: 3551429815872639586}
   LeftText: {fileID: 0}

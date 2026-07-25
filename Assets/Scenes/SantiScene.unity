@@ -2635,10 +2635,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1266383068}
     - target: {fileID: 3143963318482094414, guid: 77872cd5696840f49a2132261603aa23, type: 3}
-      propertyPath: SFX_SwimIdle
-      value: 
-      objectReference: {fileID: 1940167640}
-    - target: {fileID: 3143963318482094414, guid: 77872cd5696840f49a2132261603aa23, type: 3}
       propertyPath: GroundedRaycastOffset.y
       value: -0.595
       objectReference: {fileID: 0}
@@ -3148,11 +3144,6 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
---- !u!82 &1940167640 stripped
-AudioSource:
-  m_CorrespondingSourceObject: {fileID: 8900819747145906643, guid: 77872cd5696840f49a2132261603aa23, type: 3}
-  m_PrefabInstance: {fileID: 1583388512}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2068262638
 PrefabInstance:
   m_ObjectHideFlags: 0
