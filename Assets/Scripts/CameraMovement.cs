@@ -48,6 +48,12 @@ public class CameraMovement : MonoBehaviour
 
     private void Awake()
     {
+        if (TargetObject == null)
+        {
+            TargetObject = FindFirstObjectByType<PlayerMovement>().gameObject;
+            if (TargetObject == null)
+                Debug.LogError("Target object is null, bad stuff will happen");
+        }
         // Dont destroy on load stuff
         CameraMovement[] objs = FindObjectsByType<CameraMovement>(FindObjectsSortMode.None);
         if (objs.Count() > 1)
@@ -67,6 +73,12 @@ public class CameraMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (TargetObject == null)
+        {
+            TargetObject = FindFirstObjectByType<PlayerMovement>().gameObject;
+            if (TargetObject == null)
+                Debug.LogError("Target object is null, bad stuff will happen");
+        }
         // slowly move towards the target position
         if (TargetObject != null && camTracking)
         {
@@ -84,10 +96,6 @@ public class CameraMovement : MonoBehaviour
         }
         if (currentCameraState == cameraStates.zoomingOut)
             ZoomToDefaultCamera();
-        if (TargetObject == null)
-        {
-            Debug.LogError("Target object is null, bad stuff will happen");
-        }
     }
 
     /// <summary>
@@ -101,7 +109,7 @@ public class CameraMovement : MonoBehaviour
         {
             TargetObject = FindFirstObjectByType<PlayerMovement>().gameObject;
         }
-        // Debug.Log($"Set offset to {newOffset.x}, {newOffset.y}");
+        Debug.Log($"Set offset to {newOffset.x}, {newOffset.y}");
     }
 
     /// <summary>
