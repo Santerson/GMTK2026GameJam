@@ -54,7 +54,10 @@ public class CrateButton : MonoBehaviour
         // Disable all gameobjects
         foreach (GameObject obj in Objects)
         {
-            obj.SetActive(false);
+            if (obj != null)
+            {
+                DisableWall(obj);
+            }
         }
         // Invoke all enable actions
         foreach (UnityEvent action in EnableActions)
@@ -71,7 +74,7 @@ public class CrateButton : MonoBehaviour
         foreach (GameObject obj in Objects)
         {
             if (obj != null)
-                obj.SetActive(true);
+                EnableWall(obj);
         }
         // Invoke all disable actions
         foreach (UnityEvent action in DisableActions)
@@ -79,5 +82,37 @@ public class CrateButton : MonoBehaviour
             action.Invoke();
         }
         ButtonUp?.Play();
+    }
+
+    void EnableWall(GameObject obj)
+    {
+        Animator refAnimator = obj.GetComponent<Animator>();
+        Collider2D collider2D = obj.GetComponent<Collider2D>();
+        if (refAnimator != null && collider2D != null)
+        {
+            refAnimator.SetBool("Active", false);
+            collider2D.enabled = true;
+        }
+        else
+        {
+            Debug.LogError("Make sure to only assign wall objects to buttons!");
+            obj.SetActive(true);
+        }
+    }
+
+    void DisableWall(GameObject obj)
+    {
+        Animator refAnimator = obj.GetComponent<Animator>();
+        Collider2D collider2D = obj.GetComponent<Collider2D>();
+        if (refAnimator != null && collider2D != null)
+        {
+            refAnimator.SetBool("Active", true);
+            collider2D.enabled = false;
+        }
+        else
+        {
+            Debug.LogError("Make sure to only assign wall objects to buttons!");
+            obj.SetActive(false);
+        }
     }
 }

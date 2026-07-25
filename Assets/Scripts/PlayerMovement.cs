@@ -225,7 +225,7 @@ public class PlayerMovement : MonoBehaviour
             {
                 currentState = AnimState.Jumping;
             }
-            else if (Mathf.Abs(refRB.linearVelocity.x) > 0.1f)
+            else if (Mathf.Abs(refRB.linearVelocity.x) > 0.3f)
             {
                 currentState = AnimState.Walking;
             }
