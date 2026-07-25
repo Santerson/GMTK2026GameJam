@@ -14,6 +14,7 @@ public class TimeBank : MonoBehaviour
         [SerializeField] float CameraZoomInScale = 3f;
     [SerializeField] float UIFlyinTime = 0.5f;
     [SerializeField] GameObject FlyinTargetObj;
+    [SerializeField] GameObject FlyinBaseObj;
 
     [Header("References")]
     [Tooltip("Reference to the player movement script")]
@@ -50,14 +51,10 @@ public class TimeBank : MonoBehaviour
     public bool IsUIActive { get; private set; } = false;
 
     AllocatedTimeStorage refTimeStorage;
-    Vector2 UIBasePositions = Vector2.zero;
-    Vector2 UITargetPos = Vector2.zero;
 
     private void Awake()
     {
         refTimeStorage = FindFirstObjectByType<AllocatedTimeStorage>();
-        UIBasePositions = UI[0].transform.position;
-        UITargetPos = FlyinTargetObj.transform.position;
     }
 
     /// <summary>
@@ -89,19 +86,40 @@ public class TimeBank : MonoBehaviour
     private IEnumerator UISlideInAnimLoop()
     {
         // Get the delta in the positions
-        float startx = UI[0].transform.position.x;
         float timeElapsed = 0f;
-        while (UI[0].transform.position.x - UITargetPos.x > 0.1f)
+        while (UI[0].transform.position.x - FlyinTargetObj.transform.position.x > 0.1f)
         {
+            float startx = FlyinBaseObj.transform.position.x;
+            float targetPos = FlyinTargetObj.transform.position.x;
             // Move the UI towards the target position
             foreach (GameObject ui in UI)
-                ui.transform.position = new(Mathf.SmoothStep(startx, UITargetPos.x, timeElapsed / UIFlyinTime), UITargetPos.y);
+                ui.transform.position = new(Mathf.SmoothStep(startx, targetPos, timeElapsed / UIFlyinTime), FlyinBaseObj.transform.position.y);
             timeElapsed += Time.deltaTime;
             yield return null;
         }
         foreach (GameObject ui in UI)
         {
-            ui.transform.position = new(UITargetPos.x, UITargetPos.y);
+            ui.transform.position = new(FlyinTargetObj.transform.position.x, FlyinTargetObj.transform.position.y);
+        }
+    }
+
+    private IEnumerator UISlideOutAnimLoop()
+    {
+        // Get the delta in the positions
+        float timeElapsed = 0f;
+        while (Mathf.Abs(UI[0].transform.position.x - FlyinBaseObj.transform.position.x) > 0.1f)
+        {
+            float startx = FlyinTargetObj.transform.position.x;
+            float targetPos = FlyinBaseObj.transform.position.x;
+            // Move the UI towards the target position
+            foreach (GameObject ui in UI)
+                ui.transform.position = new(Mathf.SmoothStep(startx, targetPos, timeElapsed / UIFlyinTime), FlyinBaseObj.transform.position.y);
+            timeElapsed += Time.deltaTime;
+            yield return null;
+        }
+        foreach (GameObject ui in UI)
+        {
+            ui.transform.position = new(FlyinBaseObj.transform.position.x, FlyinBaseObj.transform.position.y);
         }
     }
 
@@ -181,9 +199,6 @@ public class TimeBank : MonoBehaviour
             // SFXs
             FadeOutSFX.Play();
             FindFirstObjectByType<PlayUIClickSFX>()?.PlayUIClick();
-            // Disable the ui
-            foreach (GameObject ui in UI)
-                ui.SetActive(false);
             // Save the selected times
             SaveSelectedTimes();
             // Reset the camera
@@ -192,6 +207,7 @@ public class TimeBank : MonoBehaviour
             // Allow the player to move
             refPlayer.canMove = true;
             IsUIActive = false;
+            StartCoroutine(UISlideOutAnimLoop());
         }
     }
 
