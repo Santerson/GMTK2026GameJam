@@ -88,6 +88,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] TextMeshProUGUI LeftText;
     [SerializeField] TextMeshProUGUI RightText;
     [SerializeField] TextMeshProUGUI JumpText;
+    [SerializeField] Color TextDrainingColor = Color.red;
+    [SerializeField] bool TextGoToDrainColorOnEnd = true;
     public float LeftMovementTimeLeft = 0f;
     public float RightMovementTimeLeft = 0f;
     public float JumpMovementTimeLeft = 0f;
@@ -112,6 +114,7 @@ public class PlayerMovement : MonoBehaviour
     float timeSpentSwimming = 0f;
     float tickStoppedTime = 0f;
     float timeHoldingR = 0f;
+    Color textNormalColor = Color.white;
 
     public bool canMove = true;
     public bool IsHoldingObject { get; private set; } = false;
@@ -143,6 +146,7 @@ public class PlayerMovement : MonoBehaviour
         refRenderer = GetComponent<SpriteRenderer>();
         refAnimator = GetComponent<Animator>();
         currentSwimSpeedCap = maxSwimSpeed;
+        textNormalColor = RightText.color;
     }
 
     private void OnDrawGizmosSelected()
@@ -250,10 +254,15 @@ public class PlayerMovement : MonoBehaviour
             velocity += Vector2.right * currAccel;
             RightMovementTimeLeft -= Time.deltaTime;
             R_timeUntilNextTickSound -= Time.deltaTime;
+            RightText.color = TextDrainingColor;
             if (AudioPriority == MoveType.None)
             {
                 AudioPriority = MoveType.Right;
             }
+        }
+        else
+        {
+            RightText.color = textNormalColor;
         }
         if (Input.GetKey(KeyCode.A) && LeftMovementTimeLeft > 0)
         {
@@ -261,10 +270,15 @@ public class PlayerMovement : MonoBehaviour
             velocity += Vector2.left * currAccel;
             LeftMovementTimeLeft -= Time.deltaTime;
             L_timeUntilNextTickSound -= Time.deltaTime;
+            LeftText.color = TextDrainingColor;
             if (AudioPriority == MoveType.None)
             {
                 AudioPriority = MoveType.Left;
             }
+        }
+        else
+        {
+            LeftText.color = textNormalColor;
         }
         // Accelerate the player
         if (velocity != Vector2.zero)
@@ -343,11 +357,16 @@ public class PlayerMovement : MonoBehaviour
             // Reduce time for jump
             JumpMovementTimeLeft -= Time.deltaTime;
             J_timeUntilNextTickSound -= Time.deltaTime;
+            JumpText.color = TextDrainingColor;
             // Adjust audio priority
             if (AudioPriority == MoveType.None)
             {
                 AudioPriority = MoveType.Jump;
             }
+        }
+        else
+        {
+            JumpText.color = textNormalColor;
         }
         if (IsGrounded() && refRB.linearVelocityY < -0.1f)
         {
@@ -363,7 +382,6 @@ public class PlayerMovement : MonoBehaviour
         }
         if (Input.GetKey(KeyCode.Space) && !IsGrounded() && JumpMovementTimeLeft > 0 && !SFX_SwimUp.isPlaying)
         {
-            Debug.Log("Swim up play");
             SFX_SwimUp.Play();
             SFX_SwimUp.loop = true;
         }
@@ -381,28 +399,8 @@ public class PlayerMovement : MonoBehaviour
         //Priority:
         // Lowest tick if it is in the threshold
         // otherwise, most old press
-
-        // See if any movement type is in the low time threshold and set the priority to that if so
-        MoveType PlayAudioPriority = AudioPriority;
-        if (LeftMovementTimeLeft <= MaxLeftMovementTime * lowTimeThreshold && LeftMovementTimeLeft > 0 && Input.GetKey(KeyCode.A))
-        {
-            PlayAudioPriority = MoveType.Left;
-        }
-        else if (RightMovementTimeLeft <= MaxRightMovementTime * lowTimeThreshold && RightMovementTimeLeft > 0 && Input.GetKey(KeyCode.D))
-        {
-            PlayAudioPriority = MoveType.Right;
-        }
-        else if (JumpMovementTimeLeft <= MaxJumpMovementTime * lowTimeThreshold && JumpMovementTimeLeft > 0 && Input.GetKey(KeyCode.Space))
-        {
-            PlayAudioPriority = MoveType.Jump;
-        }
-        else
-        {
-            PlayAudioPriority = AudioPriority;
-        }
-
         // Play the tick sounds
-        if (LeftMovementTimeLeft > 0 && Input.GetKey(KeyCode.A) && L_timeUntilNextTickSound <= 0 && PlayAudioPriority == MoveType.Left
+        if (LeftMovementTimeLeft > 0 && Input.GetKey(KeyCode.A) && L_timeUntilNextTickSound <= 0
             && tickStoppedTime <= 0)
         {
             if (LeftMovementTimeLeft <= MaxLeftMovementTime * lowTimeThreshold)
@@ -415,7 +413,7 @@ public class PlayerMovement : MonoBehaviour
             }
             L_timeUntilNextTickSound = tickInterval;
         }
-        if (RightMovementTimeLeft > 0 && Input.GetKey(KeyCode.D) && R_timeUntilNextTickSound <= 0 && PlayAudioPriority == MoveType.Right
+        if (RightMovementTimeLeft > 0 && Input.GetKey(KeyCode.D) && R_timeUntilNextTickSound <= 0
             && tickStoppedTime <= 0)
         {
             if (RightMovementTimeLeft <= MaxRightMovementTime * lowTimeThreshold)
@@ -428,7 +426,7 @@ public class PlayerMovement : MonoBehaviour
             }
             R_timeUntilNextTickSound = tickInterval;
         }
-        if (JumpMovementTimeLeft > 0 && Input.GetKey(KeyCode.Space) && J_timeUntilNextTickSound <= 0 && PlayAudioPriority == MoveType.Jump
+        if (JumpMovementTimeLeft > 0 && Input.GetKey(KeyCode.Space) && J_timeUntilNextTickSound <= 0
             && tickStoppedTime <= 0)
         {
             if (JumpMovementTimeLeft <= MaxJumpMovementTime * lowTimeThreshold)
@@ -496,6 +494,22 @@ public class PlayerMovement : MonoBehaviour
         if (!Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.D) && !Input.GetKey(KeyCode.Space))
         {
             SFX_LowTick.Stop();
+        }
+
+        if (TextGoToDrainColorOnEnd)
+        {
+            if (LeftMovementTimeLeft <= 0)
+            {
+                LeftText.color = TextDrainingColor;
+            }
+            if (RightMovementTimeLeft <= 0)
+            {
+                RightText.color = TextDrainingColor;
+            }
+            if (JumpMovementTimeLeft <= 0)
+            {
+                JumpText.color = TextDrainingColor;
+            }
         }
     }
 

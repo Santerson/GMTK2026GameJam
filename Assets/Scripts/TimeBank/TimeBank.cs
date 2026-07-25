@@ -13,6 +13,7 @@ public class TimeBank : MonoBehaviour
     [Tooltip("The camera zoom in scale for the camera while this menu is open")]
         [SerializeField] float CameraZoomInScale = 3f;
     [SerializeField] float UIFlyinTime = 0.5f;
+    [SerializeField] float GameUIFlyinTime = 0.2f;
     [SerializeField] GameObject FlyinTargetObj;
     [SerializeField] GameObject FlyinBaseObj;
 
@@ -23,6 +24,10 @@ public class TimeBank : MonoBehaviour
         [SerializeField] CameraMovement refCameraMovement;
     [Tooltip("The UI for the time bank (this will be set inactive)")]
         [SerializeField] GameObject[] UI;
+    [Tooltip("The actual game UI CANVAS")]
+        [SerializeField] GameObject GameUICanvas;
+    [Tooltip("The actual game UI not the canvas")]
+        [SerializeField] GameObject GameUINotCanvas;
 
     [Header("Text References")]
     [Tooltip("The text for the time bank")]
@@ -84,6 +89,8 @@ public class TimeBank : MonoBehaviour
         IsUIActive = true;
         // Move in the ui
         StartCoroutine(UISlideInAnimLoop());
+        // Hide game ui (should be hidden already, this is a caution)
+        GameUICanvas.SetActive(false);
     }
 
     private IEnumerator UISlideInAnimLoop()
@@ -124,6 +131,24 @@ public class TimeBank : MonoBehaviour
         {
             ui.transform.position = new(FlyinBaseObj.transform.position.x, FlyinBaseObj.transform.position.y);
         }
+    }
+
+    private IEnumerator GameUISlideIn()
+    {
+        GameUICanvas.SetActive(true);
+        // set the scale of the actual ui gameobject
+        GameUINotCanvas.transform.localScale = Vector3.one * 1.5f;
+        float elapsedTime = 0;
+        // make it fly in at the same speed as the UI slide out
+        while (GameUINotCanvas.transform.localScale.x > 1)
+        {
+            float currentScale = GameUINotCanvas.transform.localScale.x;
+            float newScale = Mathf.SmoothStep(1.5f, 1f, elapsedTime / GameUIFlyinTime);
+            GameUINotCanvas.transform.localScale = new(newScale, newScale, 1);
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+        GameUINotCanvas.transform.localScale = Vector3.one * 1f;
     }
 
     public void LeftButtonTimeAdd()
@@ -221,6 +246,7 @@ public class TimeBank : MonoBehaviour
             refPlayer.canMove = true;
             IsUIActive = false;
             StartCoroutine(UISlideOutAnimLoop());
+            StartCoroutine(GameUISlideIn());
         }
     }
 
