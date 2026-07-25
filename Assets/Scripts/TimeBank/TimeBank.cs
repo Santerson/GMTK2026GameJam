@@ -90,7 +90,10 @@ public class TimeBank : MonoBehaviour
         // Move in the ui
         StartCoroutine(UISlideInAnimLoop());
         // Hide game ui (should be hidden already, this is a caution)
-        GameUICanvas.SetActive(false);
+        if (GameUICanvas.activeSelf)
+        {
+            StartCoroutine(GameUISlideOut());
+        }
     }
 
     private IEnumerator UISlideInAnimLoop()
@@ -152,12 +155,11 @@ public class TimeBank : MonoBehaviour
     }
     private IEnumerator GameUISlideOut()
     {
-        GameUICanvas.SetActive(true);
         // set the scale of the actual ui gameobject
         GameUINotCanvas.transform.localScale = Vector3.one * 1f;
         float elapsedTime = 0;
         // make it fly in at the same speed as the UI slide out
-        while (GameUINotCanvas.transform.localScale.x > 1)
+        while (GameUINotCanvas.transform.localScale.x < 1.5)
         {
             float currentScale = GameUINotCanvas.transform.localScale.x;
             float newScale = Mathf.SmoothStep(1f, 1.5f, elapsedTime / GameUIFlyinTime);
@@ -166,6 +168,8 @@ public class TimeBank : MonoBehaviour
             yield return null;
         }
         GameUINotCanvas.transform.localScale = Vector3.one * 1.5f;
+        GameUICanvas.SetActive(false);
+
     }
 
     public void LeftButtonTimeAdd()
