@@ -270,6 +270,7 @@ MonoBehaviour:
   PlayerRotationSpeed: 2.1
   IdleSound: {fileID: 7967176025984490306}
   kablamoSound: {fileID: 7823417304141556828, guid: f77b38c3cb00e1142b1f0256eab4fe9a, type: 3}
+  KablamoEffect: {fileID: 7987654851932417746, guid: c02576e26d2d8ba4ab97cb6c174a7293, type: 3}
 --- !u!1 &9050481213025698473
 GameObject:
   m_ObjectHideFlags: 0

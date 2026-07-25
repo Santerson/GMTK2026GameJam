@@ -7,18 +7,21 @@ public class RestoreAnchor : MonoBehaviour
     [SerializeField] bool BringUpUI = false;
     [SerializeField] bool repeatable = false;
     [SerializeField] GameObject popupUI;
+    [SerializeField] AudioSource sfx;
     bool activatable = false;
     bool deactivated = false;
     Animator RefAnimator;
+    PlayerMovement refPlayer;
 
     private void Start()
     {
         RefAnimator = GetComponent<Animator>();
+        refPlayer = FindFirstObjectByType<PlayerMovement>();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player") && !deactivated)
+        if (collision.CompareTag("Player") && !deactivated && refPlayer.canMove)
         {
             activatable = true;
         }
@@ -57,6 +60,7 @@ public class RestoreAnchor : MonoBehaviour
 
     void RestoreAnchorFunction()
     {
+        sfx.Play();
         // Logic to restore the anchor goes here
         if (BringUpUI)
         {

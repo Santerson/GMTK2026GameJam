@@ -9,6 +9,7 @@ public class SeaMineHitbox : MonoBehaviour
     [SerializeField] float PlayerRotationSpeed = 50f;
     [SerializeField] AudioSource IdleSound;
     [SerializeField] AudioSource kablamoSound;
+    [SerializeField] ParticleSystem KablamoEffect;
     PlayerMovement refPlayer;
 
     private void Start()
@@ -46,6 +47,7 @@ public class SeaMineHitbox : MonoBehaviour
 
         // Play kablamo sound
         Instantiate(kablamoSound, transform.position, Quaternion.identity);
+        Instantiate(KablamoEffect, transform.position, Quaternion.identity);
         // Destroy mine
         Destroy(transform.parent.gameObject);
     }
