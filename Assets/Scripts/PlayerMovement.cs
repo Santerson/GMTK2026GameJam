@@ -45,6 +45,8 @@ public class PlayerMovement : MonoBehaviour
         [SerializeField] float respawnTime = 1f;
     [Tooltip("The physics the player gets while dead")]
         [SerializeField] PhysicsMaterial2D deadPhysicsMaterial;
+    [SerializeField] float DeadLinearDamping = 5f;
+    [SerializeField] float DeadVelocityMultiplier = 1f;
     [SerializeField] BoxCollider2D normalCollider;
     [SerializeField] BoxCollider2D deadBoxCollider;
 
@@ -547,8 +549,9 @@ public class PlayerMovement : MonoBehaviour
             // Stop the player's velocity
             if (stopPlayer)
             {
-                refRB.linearVelocityX = 0;
-                refRB.AddTorque(0.2f, ForceMode2D.Impulse);
+                refRB.linearVelocity *= DeadVelocityMultiplier;
+                refRB.linearDamping = DeadLinearDamping;
+                refRB.angularVelocity = 0;
             }
             // Play death sound
             if (SFX_Death != null)
@@ -559,8 +562,9 @@ public class PlayerMovement : MonoBehaviour
         else
         {
             StopAllCoroutines();
-            if (stopPlayer) refRB.linearVelocity = Vector2.zero;
+            if (stopPlayer) refRB.linearVelocity *= DeadVelocityMultiplier;
             refRB.rotation = 0;
+            refRB.linearDamping = DeadLinearDamping;
             refRB.angularVelocity = 0;
         }
         // Wait for a few seconds and then respawn the player

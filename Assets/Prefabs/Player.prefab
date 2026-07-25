@@ -850,6 +850,8 @@ MonoBehaviour:
   midAirDecelerationDampen: 0.12
   respawnTime: 2.5
   deadPhysicsMaterial: {fileID: 6200000, guid: 1a234a8acf946a041a3fb2d9f1ae423a, type: 2}
+  DeadLinearDamping: 70
+  DeadVelocityMultiplier: 0.1
   normalCollider: {fileID: 257658475075677966}
   deadBoxCollider: {fileID: 2839972182181442780}
   timeUntilLevelChangeOnWin: 2.5

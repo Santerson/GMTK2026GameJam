@@ -143,7 +143,7 @@ GameObject:
   - component: {fileID: 4078499470159613332}
   m_Layer: 0
   m_Name: radius
-  m_TagString: Hazard
+  m_TagString: Bomb
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
