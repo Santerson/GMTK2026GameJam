@@ -409,7 +409,7 @@ public class PlayerMovement : MonoBehaviour
             }
             L_timeUntilNextTickSound = tickInterval;
         }
-        if (RightMovementTimeLeft > 0 && Input.GetKey(KeyCode.D) && R_timeUntilNextTickSound <= 0 && PlayAudioPriority == MoveType.Right 
+        if (RightMovementTimeLeft > 0 && Input.GetKey(KeyCode.D) && R_timeUntilNextTickSound <= 0 && PlayAudioPriority == MoveType.Right
             && tickStoppedTime <= 0)
         {
             if (RightMovementTimeLeft <= MaxRightMovementTime * lowTimeThreshold)
@@ -485,6 +485,11 @@ public class PlayerMovement : MonoBehaviour
         if (tickStoppedTime > 0)
         {
             tickStoppedTime -= Time.deltaTime;
+        }
+
+        if (!Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.D) && !Input.GetKey(KeyCode.Space))
+        {
+            SFX_LowTick.Stop();
         }
     }
 

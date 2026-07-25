@@ -54,7 +54,7 @@ public class TimeBank : MonoBehaviour
 
     AllocatedTimeStorage refTimeStorage;
 
-    private void Awake()
+    private void Start()
     {
         refTimeStorage = FindFirstObjectByType<AllocatedTimeStorage>();
         TextOutOfHowMuch.text = $"/{MaxTime}s";
@@ -263,8 +263,12 @@ public class TimeBank : MonoBehaviour
     {
         if (refTimeStorage == null)
         {
-            Debug.LogWarning("No Time Storage Gameobject found on this scene! This might be because you forgot to put the empty on this scene!");
-            return;
+            refTimeStorage = FindFirstObjectByType<AllocatedTimeStorage>();
+            if (refTimeStorage == null)
+            {
+                Debug.LogWarning("No Time Storage Gameobject found on this scene! This might be because you forgot to put the empty on this scene!");
+                return;
+            }
         }
         allocatedTimeJump = refTimeStorage.allocatedTimeJump;
         allocatedTimeLeft = refTimeStorage.allocatedTimeLeft;
