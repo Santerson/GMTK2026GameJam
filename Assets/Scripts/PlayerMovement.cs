@@ -588,7 +588,7 @@ public class PlayerMovement : MonoBehaviour
         {
             StopAllCoroutines();
             if (stopPlayer) refRB.linearVelocity *= DeadVelocityMultiplier;
-            refRB.linearDamping = DeadLinearDamping;
+            if (stopPlayer) refRB.linearDamping = DeadLinearDamping;
             refRB.angularVelocity = 0;
         }
         // Wait for a few seconds and then respawn the player

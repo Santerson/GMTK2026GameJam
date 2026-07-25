@@ -101,7 +101,7 @@ public class CameraMovement : MonoBehaviour
         {
             TargetObject = FindFirstObjectByType<PlayerMovement>().gameObject;
         }
-        Debug.Log($"Set offset to {newOffset.x}, {newOffset.y}");
+        // Debug.Log($"Set offset to {newOffset.x}, {newOffset.y}");
     }
 
     /// <summary>
