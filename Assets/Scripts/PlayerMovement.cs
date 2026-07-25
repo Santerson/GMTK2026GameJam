@@ -603,8 +603,17 @@ public class PlayerMovement : MonoBehaviour
         currentState = AnimState.Sleeping;
         // Stop the player's velocity
         refRB.linearVelocity = Vector2.zero;
+        // Apply dead physics
+        refRB.sharedMaterial = deadPhysicsMaterial;
+        // Circle collider instead of box collider
+        normalCollider.enabled = false;
+        deadBoxCollider.enabled = true;
         // Rotate the player a little
-        refRB.AddTorque(5f);
+        gameObject.GetComponent<CircleCollider2D>().enabled = true;
+        refRB.constraints = RigidbodyConstraints2D.None;
+        refRenderer.flipY = true;
+        refRB.AddTorque(-5f);
+        
         // Play death sound
         if (SFX_Sleep != null)
         {
