@@ -118,6 +118,9 @@ MonoBehaviour:
   RightSeaDragonPrefab: {fileID: 2343531067157454193, guid: 0d0a575f67c37c9409ed5d4c4e28fb30, type: 3}
   SeaDragon_SpawnInterval: {x: 20, y: 30}
   SeaDragon_SpawnHeight: {x: -200, y: 200}
+  FishiesPrefab: {fileID: 2343531067157454193, guid: 15d1cb52c4bb7074ba756717122327e2, type: 3}
+  Fishies_SpawnInterval: {x: 10, y: 15}
+  Fishies_SpawnHeight: {x: -200, y: 200}
 --- !u!1 &2917554976432852979
 GameObject:
   m_ObjectHideFlags: 0
