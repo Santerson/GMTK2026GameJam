@@ -27,11 +27,14 @@ public class CrateButton : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.GetComponent<ButtonEligible>() != null && !buttonEnabled)
+        if (collision.GetComponent<ButtonEligible>() != null)
         {
-            EnableButton();
+            if (!buttonEnabled)
+            {
+                EnableButton();
+                buttonEnabled = true;
+            }
             ButtonEligibleCollisions.Add(collision.gameObject);
-            buttonEnabled = true;
         }
     }
 

@@ -2308,7 +2308,7 @@ GameObject:
   - component: {fileID: 1077125622}
   - component: {fileID: 1077125624}
   - component: {fileID: 1077125623}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Particle System
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7415,6 +7415,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 286415879069931336, guid: 77872cd5696840f49a2132261603aa23, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1254177502480085253, guid: 77872cd5696840f49a2132261603aa23, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 2148308682029586206, guid: 77872cd5696840f49a2132261603aa23, type: 3}
       propertyPath: m_LocalPosition.x
       value: -8.16
@@ -7455,6 +7463,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2865152895504953458, guid: 77872cd5696840f49a2132261603aa23, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 3143963318482094414, guid: 77872cd5696840f49a2132261603aa23, type: 3}
       propertyPath: JumpText
       value: 
@@ -7468,28 +7480,48 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1266383068}
     - target: {fileID: 3143963318482094414, guid: 77872cd5696840f49a2132261603aa23, type: 3}
-      propertyPath: leftDropOffset.x
-      value: -0.9
-      objectReference: {fileID: 0}
-    - target: {fileID: 3143963318482094414, guid: 77872cd5696840f49a2132261603aa23, type: 3}
-      propertyPath: leftDropOffset.y
-      value: -0.35
-      objectReference: {fileID: 0}
-    - target: {fileID: 3143963318482094414, guid: 77872cd5696840f49a2132261603aa23, type: 3}
-      propertyPath: rightDropOffset.x
-      value: 0.9
-      objectReference: {fileID: 0}
-    - target: {fileID: 3143963318482094414, guid: 77872cd5696840f49a2132261603aa23, type: 3}
-      propertyPath: rightDropOffset.y
-      value: -0.3
-      objectReference: {fileID: 0}
-    - target: {fileID: 3143963318482094414, guid: 77872cd5696840f49a2132261603aa23, type: 3}
       propertyPath: GroundedRaycastOffset.y
       value: -0.595
+      objectReference: {fileID: 0}
+    - target: {fileID: 4655641239333058251, guid: 77872cd5696840f49a2132261603aa23, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4919116275411727937, guid: 77872cd5696840f49a2132261603aa23, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5102432068375659729, guid: 77872cd5696840f49a2132261603aa23, type: 3}
+      propertyPath: m_Layer
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5331027616943971336, guid: 77872cd5696840f49a2132261603aa23, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 6303746377818126540, guid: 77872cd5696840f49a2132261603aa23, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6793341897567589808, guid: 77872cd5696840f49a2132261603aa23, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7297374350955857224, guid: 77872cd5696840f49a2132261603aa23, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7306989072858025307, guid: 77872cd5696840f49a2132261603aa23, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7466135778388713922, guid: 77872cd5696840f49a2132261603aa23, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7801233745271405681, guid: 77872cd5696840f49a2132261603aa23, type: 3}
+      propertyPath: m_Layer
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
