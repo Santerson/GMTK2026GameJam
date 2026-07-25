@@ -247,12 +247,12 @@ TextureImporter:
       name: Ocean_props_2
       rect:
         serializedVersion: 2
-        x: 652
-        y: 372
-        width: 40
-        height: 11
+        x: 522
+        y: 276
+        width: 261
+        height: 125
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -261,116 +261,6 @@ TextureImporter:
       bones: []
       spriteID: f1a1ebe9ba46088d0800000000000000
       internalID: -2846164276232709601
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Ocean_props_3
-      rect:
-        serializedVersion: 2
-        x: 714
-        y: 362
-        width: 40
-        height: 11
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 2ce6b4b833f719fd0800000000000000
-      internalID: -2336946872271540542
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Ocean_props_4
-      rect:
-        serializedVersion: 2
-        x: 563
-        y: 359
-        width: 40
-        height: 11
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: d16d9fc28aaf0a270800000000000000
-      internalID: 8259877316813510173
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Ocean_props_5
-      rect:
-        serializedVersion: 2
-        x: 606
-        y: 355
-        width: 40
-        height: 11
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: a097298504f00c520800000000000000
-      internalID: 2720190943970097418
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Ocean_props_6
-      rect:
-        serializedVersion: 2
-        x: 659
-        y: 354
-        width: 40
-        height: 11
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: d015390a1c9c6fed0800000000000000
-      internalID: -2380493519558848243
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Ocean_props_7
-      rect:
-        serializedVersion: 2
-        x: 712
-        y: 349
-        width: 40
-        height: 11
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 8f85944115f129eb0800000000000000
-      internalID: -4714671426810324744
       vertices: []
       indices: 
       edges: []
@@ -420,211 +310,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Ocean_props_10
-      rect:
-        serializedVersion: 2
-        x: 535
-        y: 337
-        width: 40
-        height: 11
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 42eec1bb51f726930800000000000000
-      internalID: 4135007139189812772
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Ocean_props_11
-      rect:
-        serializedVersion: 2
-        x: 585
-        y: 339
-        width: 40
-        height: 11
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: c82d50cdeb989ade0800000000000000
-      internalID: -1321373562828369268
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Ocean_props_12
-      rect:
-        serializedVersion: 2
-        x: 630
-        y: 332
-        width: 40
-        height: 11
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 1f8613810d1351540800000000000000
-      internalID: 4977939732956801265
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Ocean_props_13
-      rect:
-        serializedVersion: 2
-        x: 684
-        y: 337
-        width: 40
-        height: 11
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: c2944e2a793f3e730800000000000000
-      internalID: 4027330324397836588
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Ocean_props_14
-      rect:
-        serializedVersion: 2
-        x: 735
-        y: 329
-        width: 40
-        height: 11
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: ec559e3c123178c80800000000000000
-      internalID: -8320660750802004530
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Ocean_props_15
-      rect:
-        serializedVersion: 2
-        x: 564
-        y: 324
-        width: 40
-        height: 11
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: c97e31256b5664d40800000000000000
-      internalID: 5568249823025686428
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Ocean_props_16
-      rect:
-        serializedVersion: 2
-        x: 614
-        y: 316
-        width: 40
-        height: 11
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: b6b09bea7e6b72410800000000000000
-      internalID: 1452330511035337579
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Ocean_props_17
-      rect:
-        serializedVersion: 2
-        x: 657
-        y: 320
-        width: 40
-        height: 11
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 8230eedbc8cf9ad80800000000000000
-      internalID: -8238776361885498584
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Ocean_props_18
-      rect:
-        serializedVersion: 2
-        x: 728
-        y: 317
-        width: 40
-        height: 11
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 8113f7bc4310cef10800000000000000
-      internalID: 2300214835943518488
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: Ocean_props_19
       rect:
         serializedVersion: 2
         x: 532
         y: 182
         width: 107
-        height: 131
+        height: 46
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -635,72 +327,6 @@ TextureImporter:
       bones: []
       spriteID: 2e097d8ca8a1628f0800000000000000
       internalID: -565735519811039006
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Ocean_props_20
-      rect:
-        serializedVersion: 2
-        x: 596
-        y: 305
-        width: 40
-        height: 11
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 83121da065869b070800000000000000
-      internalID: 8122638121697354040
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Ocean_props_21
-      rect:
-        serializedVersion: 2
-        x: 688
-        y: 301
-        width: 40
-        height: 11
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: edb2fa6a459c29970800000000000000
-      internalID: 8760285590599969758
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Ocean_props_22
-      rect:
-        serializedVersion: 2
-        x: 632
-        y: 286
-        width: 40
-        height: 11
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 26d5609b270bb32d0800000000000000
-      internalID: -3297848295341793950
       vertices: []
       indices: 
       edges: []
@@ -897,6 +523,7 @@ TextureImporter:
       Ocean_props_28: 700543760886033173
       Ocean_props_29: -7641841657364566802
       Ocean_props_3: -2336946872271540542
+      Ocean_props_30: -377531613
       Ocean_props_4: 8259877316813510173
       Ocean_props_5: 2720190943970097418
       Ocean_props_6: -2380493519558848243
