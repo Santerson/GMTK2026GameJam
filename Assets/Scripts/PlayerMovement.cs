@@ -503,6 +503,7 @@ public class PlayerMovement : MonoBehaviour
         RaycastHit2D lHit = Physics2D.Raycast((Vector2)transform.position + LeftGroundedRaycastOffset, Vector2.down, 0.1f);
         RaycastHit2D rHit = Physics2D.Raycast((Vector2)transform.position + RightGroundedRaycastOffset, Vector2.down, 0.1f);
         RaycastHit2D cHit = Physics2D.Raycast((Vector2)transform.position + CLGroundedRaycastOffset, Vector2.down, 0.1f);
+        RaycastHit2D crHit = Physics2D.Raycast((Vector2)transform.position + CRGroundedRaycastOffset, Vector2.down, 0.1f);
         if (lHit.collider != null && lHit.collider.CompareTag("Ground"))
         {
             return true;
@@ -512,6 +513,10 @@ public class PlayerMovement : MonoBehaviour
             return true;
         }
         if (rHit.collider != null && rHit.collider.CompareTag("Ground"))
+        {
+            return true;
+        }
+        if (crHit.collider != null && crHit.collider.CompareTag("Ground"))
         {
             return true;
         }
