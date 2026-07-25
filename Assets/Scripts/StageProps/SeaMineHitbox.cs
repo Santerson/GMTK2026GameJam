@@ -28,11 +28,11 @@ public class SeaMineHitbox : MonoBehaviour
     {
         if (collision.CompareTag("Player") || collision.GetComponent<ButtonEligible>() != null)
         {
-            StartCoroutine(YeetPlayer(collision.GetComponent<PlayerMovement>()));
+            StartCoroutine(YeetPlayer(collision.gameObject));
         }
     }
 
-    IEnumerator YeetPlayer(PlayerMovement player)
+    IEnumerator YeetPlayer(GameObject player)
     {
         yield return new WaitForEndOfFrame();
         // Yeet the player

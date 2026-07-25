@@ -173,11 +173,14 @@ public class PlayerMovement : MonoBehaviour
             CheckDropItem();
             CheckPlayTickSounds();
             // Check for r key to reset
+        }
+        if (canMove || currentState == AnimState.Dying || currentState == AnimState.Sleeping || currentState == AnimState.EpicDub)
+        {
             if (Input.GetKey(KeyCode.R))
             {
                 timeHoldingR += Time.deltaTime;
                 if (timeHoldingR > 1f)
-                    Skissue(true);
+                    ResetLevel();
             }
             else if (timeHoldingR != 0)
             {
@@ -194,6 +197,7 @@ public class PlayerMovement : MonoBehaviour
         {
             // Kill the player if they touch a hazard
             Skissue(true);
+            
         }
         if (collision.gameObject.CompareTag("Bomb"))
         {
@@ -534,23 +538,30 @@ public class PlayerMovement : MonoBehaviour
             currentState = AnimState.Dying;
             // Apply dead physics
             refRB.sharedMaterial = deadPhysicsMaterial;
+                // Circle collider instead of box collider
+            normalCollider.enabled = false;
+            deadBoxCollider.enabled = true;
+            gameObject.GetComponent<CircleCollider2D>().enabled = true;
+                // unlock z
+            refRB.constraints = RigidbodyConstraints2D.None;
             // Stop the player's velocity
-            if (stopPlayer) refRB.linearVelocity = Vector2.zero;
+            if (stopPlayer)
+            {
+                refRB.linearVelocityX = 0;
+                refRB.AddTorque(0.2f, ForceMode2D.Impulse);
+            }
             // Play death sound
             if (SFX_Death != null)
             {
                 SFX_Death.Play();
             }
-            // Circle collider instead of box collider
-            normalCollider.enabled = false;
-            deadBoxCollider.enabled = true;
-            gameObject.GetComponent<CircleCollider2D>().enabled = true;
-            // unlock z
-            refRB.constraints = RigidbodyConstraints2D.None;
         }
         else
         {
             StopAllCoroutines();
+            if (stopPlayer) refRB.linearVelocity = Vector2.zero;
+            refRB.rotation = 0;
+            refRB.angularVelocity = 0;
         }
         // Wait for a few seconds and then respawn the player
         StartCoroutine(WaitOnRespawn());
