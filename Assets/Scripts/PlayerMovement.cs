@@ -669,7 +669,10 @@ public class PlayerMovement : MonoBehaviour
         // Enable the object's rigidbody
         Rigidbody2D objRB = heldObject.GetComponent<Rigidbody2D>();
         if (objRB != null)
+        {
             objRB.simulated = true;
+            objRB.linearVelocity = refRB.linearVelocity;
+        }
         // Stop holding it
         IsHoldingObject = false;
         this.heldObject = null;
