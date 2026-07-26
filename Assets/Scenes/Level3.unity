@@ -530,6 +530,111 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &2123788995
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 3477071153995635289, guid: dd7fa73c8d991c243bf6dcca7d8c6094, type: 3}
+      propertyPath: m_Pivot.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3477071153995635289, guid: dd7fa73c8d991c243bf6dcca7d8c6094, type: 3}
+      propertyPath: m_Pivot.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3477071153995635289, guid: dd7fa73c8d991c243bf6dcca7d8c6094, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3477071153995635289, guid: dd7fa73c8d991c243bf6dcca7d8c6094, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3477071153995635289, guid: dd7fa73c8d991c243bf6dcca7d8c6094, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3477071153995635289, guid: dd7fa73c8d991c243bf6dcca7d8c6094, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3477071153995635289, guid: dd7fa73c8d991c243bf6dcca7d8c6094, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 403.33337
+      objectReference: {fileID: 0}
+    - target: {fileID: 3477071153995635289, guid: dd7fa73c8d991c243bf6dcca7d8c6094, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 227
+      objectReference: {fileID: 0}
+    - target: {fileID: 3477071153995635289, guid: dd7fa73c8d991c243bf6dcca7d8c6094, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3477071153995635289, guid: dd7fa73c8d991c243bf6dcca7d8c6094, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3477071153995635289, guid: dd7fa73c8d991c243bf6dcca7d8c6094, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3477071153995635289, guid: dd7fa73c8d991c243bf6dcca7d8c6094, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3477071153995635289, guid: dd7fa73c8d991c243bf6dcca7d8c6094, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3477071153995635289, guid: dd7fa73c8d991c243bf6dcca7d8c6094, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3477071153995635289, guid: dd7fa73c8d991c243bf6dcca7d8c6094, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3477071153995635289, guid: dd7fa73c8d991c243bf6dcca7d8c6094, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -7.878354
+      objectReference: {fileID: 0}
+    - target: {fileID: 3477071153995635289, guid: dd7fa73c8d991c243bf6dcca7d8c6094, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 12.44
+      objectReference: {fileID: 0}
+    - target: {fileID: 3477071153995635289, guid: dd7fa73c8d991c243bf6dcca7d8c6094, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3477071153995635289, guid: dd7fa73c8d991c243bf6dcca7d8c6094, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3477071153995635289, guid: dd7fa73c8d991c243bf6dcca7d8c6094, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3494114664623136103, guid: dd7fa73c8d991c243bf6dcca7d8c6094, type: 3}
+      propertyPath: m_Name
+      value: LevelText
+      objectReference: {fileID: 0}
+    - target: {fileID: 9177713503384619524, guid: dd7fa73c8d991c243bf6dcca7d8c6094, type: 3}
+      propertyPath: m_text
+      value: 'Tapping a key is
+
+        more efficient
+
+        than holding!'
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: dd7fa73c8d991c243bf6dcca7d8c6094, type: 3}
 --- !u!114 &2138043803 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3054965713739194556, guid: 71aa445ada3d32248aa0dd4d614b908a, type: 3}
@@ -17065,3 +17170,4 @@ SceneRoots:
   - {fileID: 4037369540395184858}
   - {fileID: 310567991586128981}
   - {fileID: 1265013027}
+  - {fileID: 2123788995}
