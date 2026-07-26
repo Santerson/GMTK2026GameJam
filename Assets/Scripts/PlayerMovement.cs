@@ -749,7 +749,7 @@ public class PlayerMovement : MonoBehaviour
         heldObject.GetComponent<GrabbableCrate>().PlayDropSound();
         heldObject.GetComponent<BoxPlaySoundOnContact>().timeUntilPlay = 0.1f;
         // Try to move the player back if they are against a wall
-        RaycastHit2D hitcast = Physics2D.Raycast(transform.position, (!refRenderer.flipX ? Vector2.left : Vector2.right), (Mathf.Abs(!refRenderer.flipX ? leftDropOffset.x : rightDropOffset.x)));
+        RaycastHit2D hitcast = Physics2D.Raycast(new(transform.position.x, transform.position.y - 0.4f), (!refRenderer.flipX ? Vector2.left : Vector2.right), (Mathf.Abs(!refRenderer.flipX ? leftDropOffset.x : rightDropOffset.x)));
         Vector2 dir = !refRenderer.flipX ? Vector2.left : Vector2.right;
         float dist = Mathf.Abs(!refRenderer.flipX ? leftDropOffset.x : rightDropOffset.x);
         Debug.DrawRay(transform.position, dir * dist, Color.blue); 
@@ -759,7 +759,7 @@ public class PlayerMovement : MonoBehaviour
             // Move the player back a small distance
             Vector2 direction = refRenderer.flipX ? Vector2.left : Vector2.right;
             transform.position = new Vector2(transform.position.x + (direction * 0.03f).x, transform.position.y);
-            hitcast = Physics2D.Raycast(transform.position, (!refRenderer.flipX ? Vector2.left : Vector2.right), Mathf.Abs((!refRenderer.flipX ? leftDropOffset.x : rightDropOffset.x)));
+            hitcast = Physics2D.Raycast(new(transform.position.x, transform.position.y - 0.4f), (!refRenderer.flipX ? Vector2.left : Vector2.right), Mathf.Abs((!refRenderer.flipX ? leftDropOffset.x : rightDropOffset.x)));
         }
 
         heldObject.transform.position = (!refRenderer.flipX ? (Vector2)transform.position + leftDropOffset : (Vector2)transform.position + rightDropOffset);
