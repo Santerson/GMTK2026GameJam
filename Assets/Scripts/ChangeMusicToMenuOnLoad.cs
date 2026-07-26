@@ -2,6 +2,14 @@ using UnityEngine;
 
 public class ChangeMusicToMenuOnLoad : MonoBehaviour
 {
+    private void Awake()
+    {
+        if (FindFirstObjectByType<CameraMovement>() != null)
+        {
+            Destroy(FindFirstObjectByType<CameraMovement>().gameObject);
+        }
+    }
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private void Start()
     {
