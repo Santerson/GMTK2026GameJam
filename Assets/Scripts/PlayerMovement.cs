@@ -21,6 +21,7 @@ public class PlayerMovement : MonoBehaviour
     [Tooltip("Whether or not to flip the player's sprite depending on which way they are going")]
         [SerializeField] bool flipSprite = true;
     [SerializeField] GameObject RkeySprite;
+    [SerializeField] Vector2 RkeyOffset = new(0, 2);
 
     [Header("Grounded Status")]
     [Tooltip("Where the raycast for being grounded is")]
@@ -117,6 +118,7 @@ public class PlayerMovement : MonoBehaviour
     Rigidbody2D refRB;
     SpriteRenderer refRenderer;
     GameObject heldObject;
+    GameObject refRkey;
     Animator refAnimator;
     Animator rKeyAnimator;
 
@@ -203,22 +205,22 @@ public class PlayerMovement : MonoBehaviour
         {
             if (Input.GetKey(KeyCode.R))
             {
-                if (!RkeySprite.activeInHierarchy)
+                if (refRkey == null)
                 {
-                    RkeySprite.SetActive(true);
-                    rKeyAnimator.SetBool("resetting", true);
+                    refRkey = Instantiate(RkeySprite, (Vector2)transform.position + RkeyOffset, Quaternion.identity);
                 }
                 timeHoldingR += Time.deltaTime;
+                refRkey.transform.position = (Vector2)transform.position + RkeyOffset;
                 if (timeHoldingR > 1f)
                     ResetLevel();
             }
             else if (timeHoldingR != 0)
             {
                 timeHoldingR = 0f;
-                if (RkeySprite.activeInHierarchy)
+                if (refRkey != null)
                 {
-                    rKeyAnimator.SetBool("resetting", false);
-                    RkeySprite.SetActive(false);
+                    Destroy(refRkey);
+                    refRkey = null;
                 }
             }
         }
@@ -277,11 +279,11 @@ public class PlayerMovement : MonoBehaviour
         }
         if (IsGrounded())
         {
-            if (Input.GetKey(KeyCode.Space) && JumpMovementTimeLeft > 0)
+            if (Input.GetKey(KeyCode.Space) && JumpMovementTimeLeft > 0 && canMove)
             {
                 currentState = AnimState.Jumping;
             }
-            else if (Mathf.Abs(refRB.linearVelocity.x) > 0.5f)
+            else if (Mathf.Abs(refRB.linearVelocity.x) > 0.5f && canMove)
             {
                 currentState = AnimState.Walking;
             }
@@ -511,19 +513,16 @@ public class PlayerMovement : MonoBehaviour
         // Check for timers out of time
         if (LeftMovementTimeLeft - Time.deltaTime <= 0 && Input.GetKey(KeyCode.A) && LeftMovementTimeLeft > 0)
         {
-            SFX_RunOutTick.Stop();
             SFX_RunOutTick.Play();
             tickStoppedTime = runOutTickStop;
         }
         if (RightMovementTimeLeft - Time.deltaTime <= 0 && Input.GetKey(KeyCode.D) && RightMovementTimeLeft > 0)
         {
-            SFX_RunOutTick.Stop();
             SFX_RunOutTick.Play();
             tickStoppedTime = runOutTickStop;
         }
         if (JumpMovementTimeLeft - Time.deltaTime <= 0 && Input.GetKey(KeyCode.Space) && JumpMovementTimeLeft > 0)
         {
-            SFX_RunOutTick.Stop();
             SFX_RunOutTick.Play();
             tickStoppedTime = runOutTickStop;
         }
