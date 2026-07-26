@@ -20,6 +20,7 @@ public class PlayerMovement : MonoBehaviour
         [SerializeField] float deceleration = 10f;
     [Tooltip("Whether or not to flip the player's sprite depending on which way they are going")]
         [SerializeField] bool flipSprite = true;
+    [SerializeField] GameObject RkeySprite;
 
     [Header("Grounded Status")]
     [Tooltip("Where the raycast for being grounded is")]
@@ -117,6 +118,7 @@ public class PlayerMovement : MonoBehaviour
     SpriteRenderer refRenderer;
     GameObject heldObject;
     Animator refAnimator;
+    Animator rKeyAnimator;
 
     // float timeSpentChargingJump = 0;
     [SerializeField] float currentSwimSpeedCap = 3f;
@@ -156,6 +158,7 @@ public class PlayerMovement : MonoBehaviour
         refAnimator = GetComponent<Animator>();
         currentSwimSpeedCap = maxSwimSpeed;
         textNormalColor = RightText.color;
+        rKeyAnimator = RkeySprite.GetComponent<Animator>();
     }
 
     private void OnDrawGizmosSelected()
@@ -200,6 +203,11 @@ public class PlayerMovement : MonoBehaviour
         {
             if (Input.GetKey(KeyCode.R))
             {
+                if (!RkeySprite.activeInHierarchy)
+                {
+                    RkeySprite.SetActive(true);
+                    rKeyAnimator.SetBool("resetting", true);
+                }
                 timeHoldingR += Time.deltaTime;
                 if (timeHoldingR > 1f)
                     ResetLevel();
@@ -207,6 +215,11 @@ public class PlayerMovement : MonoBehaviour
             else if (timeHoldingR != 0)
             {
                 timeHoldingR = 0f;
+                if (RkeySprite.activeInHierarchy)
+                {
+                    rKeyAnimator.SetBool("resetting", false);
+                    RkeySprite.SetActive(false);
+                }
             }
         }
         UpdateTimeLeft();
