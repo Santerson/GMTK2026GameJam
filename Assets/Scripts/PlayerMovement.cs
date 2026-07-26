@@ -232,7 +232,7 @@ public class PlayerMovement : MonoBehaviour
             {
                 currentState = AnimState.Jumping;
             }
-            else if (Mathf.Abs(refRB.linearVelocity.x) > 0.3f)
+            else if (Mathf.Abs(refRB.linearVelocity.x) > 0.5f)
             {
                 currentState = AnimState.Walking;
             }
@@ -505,15 +505,15 @@ public class PlayerMovement : MonoBehaviour
 
         if (TextGoToDrainColorOnEnd)
         {
-            if (LeftMovementTimeLeft <= 0)
+            if (LeftMovementTimeLeft <= 0.005f)
             {
                 LeftText.color = TextDrainingColor;
             }
-            if (RightMovementTimeLeft <= 0)
+            if (RightMovementTimeLeft <= 0.005f)
             {
                 RightText.color = TextDrainingColor;
             }
-            if (JumpMovementTimeLeft <= 0)
+            if (JumpMovementTimeLeft <= 0.005f)
             {
                 JumpText.color = TextDrainingColor;
             }
@@ -525,7 +525,7 @@ public class PlayerMovement : MonoBehaviour
     /// </summary>
     void UpdateTimeLeft()
     {
-        LeftText.text = Mathf.Max(0, LeftMovementTimeLeft).ToString("F2");
+        LeftText.text = Mathf.Max(0, Mathf.Round(LeftMovementTimeLeft * 100f) / 100f).ToString("F2");
         RightText.text = Mathf.Max(0, RightMovementTimeLeft).ToString("F2");
         JumpText.text = Mathf.Max(0, JumpMovementTimeLeft).ToString("F2");
     }
@@ -578,11 +578,14 @@ public class PlayerMovement : MonoBehaviour
             gameObject.GetComponent<CircleCollider2D>().enabled = true;
                 // unlock z
             refRB.constraints = RigidbodyConstraints2D.None;
+            // Drop held items
+            DropHeldItem();
             // Stop the player's velocity
             if (stopPlayer)
             {
                 refRB.linearVelocity *= DeadVelocityMultiplier;
                 refRB.linearDamping = DeadLinearDamping;
+                refRB.rotation = -90;
                 refRB.angularVelocity = 0;
             }
             // Play death sound
@@ -620,7 +623,7 @@ public class PlayerMovement : MonoBehaviour
         refRB.constraints = RigidbodyConstraints2D.None;
         refRenderer.flipY = true;
         refRB.AddTorque(-5f);
-        
+        DropHeldItem();
         // Play death sound
         if (SFX_Sleep != null)
         {

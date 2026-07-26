@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5596581127559483344}
   - component: {fileID: 9155070610538546248}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: SFX_TimerTickLow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -138,7 +138,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2370696045024581521}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Sounds
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -180,7 +180,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3205333380279201327}
   - component: {fileID: 3551429815872639586}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Shrimp Sleep
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -309,7 +309,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4830227714273176836}
   - component: {fileID: 1444062119143053308}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Shrimp Land
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -438,7 +438,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6450564930623384190}
   - component: {fileID: 6878824795946564389}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Shrimp Walk
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -567,7 +567,7 @@ GameObject:
   m_Component:
   - component: {fileID: 675256997148485493}
   - component: {fileID: 8792431053267898280}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Line
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1078,7 +1078,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8265636003025665913}
   - component: {fileID: 5138173831320760989}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: SFX_TimerTick
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1207,7 +1207,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4825262266818113133}
   - component: {fileID: 650624315928697115}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Shimp Jump
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1336,7 +1336,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1142442764861415250}
   - component: {fileID: 654723879353114761}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Shrimp Win
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1465,7 +1465,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2635423249062844910}
   - component: {fileID: 4148738272397210310}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Shrimp Die
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1594,7 +1594,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8532238175175370091}
   - component: {fileID: 3251407292805827172}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: SFX_TimerOut
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1723,7 +1723,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7837232208389847122}
   - component: {fileID: 8900819747145906643}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Shrimp Swim up
   m_TagString: Untagged
   m_Icon: {fileID: 0}
