@@ -20,15 +20,11 @@ public class GlobalMusicHandlerer : MonoBehaviour
 
     public void PlayMainMenuMusic()
     {
-        gameMusic.Stop();
         gameAmbientMusic.Stop();
-        mainMenuMusicSource.Play();
     }
 
     public void PlayGameMusic()
     {
-        mainMenuMusicSource.Stop();
         gameAmbientMusic.Play();
-        gameMusic.Play();
     }
 }
