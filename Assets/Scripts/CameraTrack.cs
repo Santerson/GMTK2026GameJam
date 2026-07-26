@@ -18,6 +18,7 @@ public class CameraTrack : MonoBehaviour
         [SerializeField] List<CameraTrackNode> TrackNodes = new List<CameraTrackNode>();
     [SerializeField] float EndZoom = 9f;
     [SerializeField] bool pullUpTimeBankUIAfterPan = true;
+    [SerializeField] GameObject IntroSkipPopup;
     CameraMovement refCamera;
     Rigidbody2D refRB;
 
@@ -69,10 +70,15 @@ public class CameraTrack : MonoBehaviour
                     if (obj.allocatedTimeLeft != 0 || obj.allocatedTimeRight != 0 || obj.allocatedTimeJump != 0)
                     {
                         PullUpTimeAllocationUI();
+                        Destroy(IntroSkipPopup);
                         return;
                     }
             }
             StartCoroutine(PlayCameraPan());
+        }
+        else
+        {
+            Destroy(IntroSkipPopup);
         }
     }
 
@@ -152,6 +158,7 @@ public class CameraTrack : MonoBehaviour
         // Reset the camera to follow the original object
         refCamera.SetTrackingObject(trackingObj);
         refCamera.SetOffset(camOffset);
+        Destroy(IntroSkipPopup);
         // Pull up ui after last node
         PullUpTimeAllocationUI();
     }

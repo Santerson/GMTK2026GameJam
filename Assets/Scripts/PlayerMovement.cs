@@ -211,6 +211,21 @@ public class PlayerMovement : MonoBehaviour
         }
         UpdateTimeLeft();
         UpdateAnimState();
+        if (TextGoToDrainColorOnEnd)
+        {
+            if (LeftMovementTimeLeft <= 0.005f || canMove == false)
+            {
+                LeftText.color = TextDrainingColor;
+            }
+            if (RightMovementTimeLeft <= 0.005f || canMove == false)
+            {
+                RightText.color = TextDrainingColor;
+            }
+            if (JumpMovementTimeLeft <= 0.005f || canMove == false)
+            {
+                JumpText.color = TextDrainingColor;
+            }
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -524,21 +539,7 @@ public class PlayerMovement : MonoBehaviour
             SFX_LowTick.Stop();
         }
 
-        if (TextGoToDrainColorOnEnd)
-        {
-            if (LeftMovementTimeLeft <= 0.005f)
-            {
-                LeftText.color = TextDrainingColor;
-            }
-            if (RightMovementTimeLeft <= 0.005f)
-            {
-                RightText.color = TextDrainingColor;
-            }
-            if (JumpMovementTimeLeft <= 0.005f)
-            {
-                JumpText.color = TextDrainingColor;
-            }
-        }
+        
     }
 
     /// <summary>
