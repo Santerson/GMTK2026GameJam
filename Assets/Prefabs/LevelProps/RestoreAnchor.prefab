@@ -345,15 +345,15 @@ MonoBehaviour:
       m_Calls: []
   m_text: Press F to refresh energy
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 4e62e988a50bc314c80f358014a17a17, type: 2}
+  m_sharedMaterial: {fileID: 2545579804221985399, guid: 4e62e988a50bc314c80f358014a17a17, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4294960529
+  m_fontColor: {r: 0.5691823, g: 0.89824903, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -409,7 +409,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 33.11418, y: 0, z: 27.971954, w: 0}
+  m_margin: {x: 44.081463, y: 0, z: 40.767097, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0

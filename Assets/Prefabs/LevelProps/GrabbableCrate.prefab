@@ -67,15 +67,15 @@ MonoBehaviour:
       m_Calls: []
   m_text: Press E to pick up
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 4e62e988a50bc314c80f358014a17a17, type: 2}
+  m_sharedMaterial: {fileID: 2545579804221985399, guid: 4e62e988a50bc314c80f358014a17a17, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4294960529
+  m_fontColor: {r: 0.5691823, g: 0.89824903, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -92,8 +92,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 38.91
+  m_fontSizeBase: 38.91
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -451,6 +451,7 @@ MonoBehaviour:
   refGrabTooltip: {fileID: 7528676402927239500}
   grabSound: {fileID: 9161369550571659979}
   dropSound: {fileID: 5651022665556896274}
+  MuteTime: 0
 --- !u!114 &4641598459412029852
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -464,6 +465,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BumpSound: {fileID: 5013180282393118763}
+  timeUntilPlay: 1
 --- !u!114 &1965954172946586411
 MonoBehaviour:
   m_ObjectHideFlags: 0
