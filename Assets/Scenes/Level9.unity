@@ -195,6 +195,258 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 614769254062176890, guid: 224be626d56aca747900a34f6f87bf01, type: 3}
+      propertyPath: StartPoint.x
+      value: 40.79
+      objectReference: {fileID: 0}
+    - target: {fileID: 614769254062176890, guid: 224be626d56aca747900a34f6f87bf01, type: 3}
+      propertyPath: StartPoint.y
+      value: -12.02
+      objectReference: {fileID: 0}
+    - target: {fileID: 614769254062176890, guid: 224be626d56aca747900a34f6f87bf01, type: 3}
+      propertyPath: TrackNodes.Array.size
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 614769254062176890, guid: 224be626d56aca747900a34f6f87bf01, type: 3}
+      propertyPath: TrackNodes.Array.data[1].camZoom
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 614769254062176890, guid: 224be626d56aca747900a34f6f87bf01, type: 3}
+      propertyPath: TrackNodes.Array.data[3].camZoom
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 614769254062176890, guid: 224be626d56aca747900a34f6f87bf01, type: 3}
+      propertyPath: TrackNodes.Array.data[4].camZoom
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 614769254062176890, guid: 224be626d56aca747900a34f6f87bf01, type: 3}
+      propertyPath: TrackNodes.Array.data[5].camZoom
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 614769254062176890, guid: 224be626d56aca747900a34f6f87bf01, type: 3}
+      propertyPath: TrackNodes.Array.data[6].camZoom
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 614769254062176890, guid: 224be626d56aca747900a34f6f87bf01, type: 3}
+      propertyPath: TrackNodes.Array.data[7].camZoom
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 614769254062176890, guid: 224be626d56aca747900a34f6f87bf01, type: 3}
+      propertyPath: TrackNodes.Array.data[8].camZoom
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 614769254062176890, guid: 224be626d56aca747900a34f6f87bf01, type: 3}
+      propertyPath: TrackNodes.Array.data[9].camZoom
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 614769254062176890, guid: 224be626d56aca747900a34f6f87bf01, type: 3}
+      propertyPath: TrackNodes.Array.data[0].camSpeed
+      value: 3.08
+      objectReference: {fileID: 0}
+    - target: {fileID: 614769254062176890, guid: 224be626d56aca747900a34f6f87bf01, type: 3}
+      propertyPath: TrackNodes.Array.data[10].camZoom
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 614769254062176890, guid: 224be626d56aca747900a34f6f87bf01, type: 3}
+      propertyPath: TrackNodes.Array.data[11].camZoom
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 614769254062176890, guid: 224be626d56aca747900a34f6f87bf01, type: 3}
+      propertyPath: TrackNodes.Array.data[12].camZoom
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 614769254062176890, guid: 224be626d56aca747900a34f6f87bf01, type: 3}
+      propertyPath: TrackNodes.Array.data[13].camZoom
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 614769254062176890, guid: 224be626d56aca747900a34f6f87bf01, type: 3}
+      propertyPath: TrackNodes.Array.data[14].camZoom
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 614769254062176890, guid: 224be626d56aca747900a34f6f87bf01, type: 3}
+      propertyPath: TrackNodes.Array.data[1].camSpeed
+      value: 3.34
+      objectReference: {fileID: 0}
+    - target: {fileID: 614769254062176890, guid: 224be626d56aca747900a34f6f87bf01, type: 3}
+      propertyPath: TrackNodes.Array.data[2].camSpeed
+      value: 3.44
+      objectReference: {fileID: 0}
+    - target: {fileID: 614769254062176890, guid: 224be626d56aca747900a34f6f87bf01, type: 3}
+      propertyPath: TrackNodes.Array.data[3].camSpeed
+      value: 3.82
+      objectReference: {fileID: 0}
+    - target: {fileID: 614769254062176890, guid: 224be626d56aca747900a34f6f87bf01, type: 3}
+      propertyPath: TrackNodes.Array.data[4].camSpeed
+      value: 4.16
+      objectReference: {fileID: 0}
+    - target: {fileID: 614769254062176890, guid: 224be626d56aca747900a34f6f87bf01, type: 3}
+      propertyPath: TrackNodes.Array.data[5].camSpeed
+      value: 4.44
+      objectReference: {fileID: 0}
+    - target: {fileID: 614769254062176890, guid: 224be626d56aca747900a34f6f87bf01, type: 3}
+      propertyPath: TrackNodes.Array.data[6].camSpeed
+      value: 4.73
+      objectReference: {fileID: 0}
+    - target: {fileID: 614769254062176890, guid: 224be626d56aca747900a34f6f87bf01, type: 3}
+      propertyPath: TrackNodes.Array.data[7].camSpeed
+      value: 5.03
+      objectReference: {fileID: 0}
+    - target: {fileID: 614769254062176890, guid: 224be626d56aca747900a34f6f87bf01, type: 3}
+      propertyPath: TrackNodes.Array.data[8].camSpeed
+      value: 5.24
+      objectReference: {fileID: 0}
+    - target: {fileID: 614769254062176890, guid: 224be626d56aca747900a34f6f87bf01, type: 3}
+      propertyPath: TrackNodes.Array.data[9].camSpeed
+      value: 5.51
+      objectReference: {fileID: 0}
+    - target: {fileID: 614769254062176890, guid: 224be626d56aca747900a34f6f87bf01, type: 3}
+      propertyPath: TrackNodes.Array.data[10].camSpeed
+      value: 6.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 614769254062176890, guid: 224be626d56aca747900a34f6f87bf01, type: 3}
+      propertyPath: TrackNodes.Array.data[11].camSpeed
+      value: 6.36
+      objectReference: {fileID: 0}
+    - target: {fileID: 614769254062176890, guid: 224be626d56aca747900a34f6f87bf01, type: 3}
+      propertyPath: TrackNodes.Array.data[12].camSpeed
+      value: 6.68
+      objectReference: {fileID: 0}
+    - target: {fileID: 614769254062176890, guid: 224be626d56aca747900a34f6f87bf01, type: 3}
+      propertyPath: TrackNodes.Array.data[13].camSpeed
+      value: 7.07
+      objectReference: {fileID: 0}
+    - target: {fileID: 614769254062176890, guid: 224be626d56aca747900a34f6f87bf01, type: 3}
+      propertyPath: TrackNodes.Array.data[14].camSpeed
+      value: 7.36
+      objectReference: {fileID: 0}
+    - target: {fileID: 614769254062176890, guid: 224be626d56aca747900a34f6f87bf01, type: 3}
+      propertyPath: TrackNodes.Array.data[0].Position.x
+      value: 31
+      objectReference: {fileID: 0}
+    - target: {fileID: 614769254062176890, guid: 224be626d56aca747900a34f6f87bf01, type: 3}
+      propertyPath: TrackNodes.Array.data[0].Position.y
+      value: -11.96
+      objectReference: {fileID: 0}
+    - target: {fileID: 614769254062176890, guid: 224be626d56aca747900a34f6f87bf01, type: 3}
+      propertyPath: TrackNodes.Array.data[1].Position.x
+      value: 27.83
+      objectReference: {fileID: 0}
+    - target: {fileID: 614769254062176890, guid: 224be626d56aca747900a34f6f87bf01, type: 3}
+      propertyPath: TrackNodes.Array.data[1].Position.y
+      value: -14.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 614769254062176890, guid: 224be626d56aca747900a34f6f87bf01, type: 3}
+      propertyPath: TrackNodes.Array.data[2].Position.x
+      value: 26.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 614769254062176890, guid: 224be626d56aca747900a34f6f87bf01, type: 3}
+      propertyPath: TrackNodes.Array.data[2].Position.y
+      value: -18.99
+      objectReference: {fileID: 0}
+    - target: {fileID: 614769254062176890, guid: 224be626d56aca747900a34f6f87bf01, type: 3}
+      propertyPath: TrackNodes.Array.data[3].Position.x
+      value: 24.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 614769254062176890, guid: 224be626d56aca747900a34f6f87bf01, type: 3}
+      propertyPath: TrackNodes.Array.data[3].Position.y
+      value: -20.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 614769254062176890, guid: 224be626d56aca747900a34f6f87bf01, type: 3}
+      propertyPath: TrackNodes.Array.data[4].Position.x
+      value: 21.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 614769254062176890, guid: 224be626d56aca747900a34f6f87bf01, type: 3}
+      propertyPath: TrackNodes.Array.data[4].Position.y
+      value: -18.99
+      objectReference: {fileID: 0}
+    - target: {fileID: 614769254062176890, guid: 224be626d56aca747900a34f6f87bf01, type: 3}
+      propertyPath: TrackNodes.Array.data[5].Position.x
+      value: 20.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 614769254062176890, guid: 224be626d56aca747900a34f6f87bf01, type: 3}
+      propertyPath: TrackNodes.Array.data[5].Position.y
+      value: -11.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 614769254062176890, guid: 224be626d56aca747900a34f6f87bf01, type: 3}
+      propertyPath: TrackNodes.Array.data[6].Position.x
+      value: 19.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 614769254062176890, guid: 224be626d56aca747900a34f6f87bf01, type: 3}
+      propertyPath: TrackNodes.Array.data[6].Position.y
+      value: -9.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 614769254062176890, guid: 224be626d56aca747900a34f6f87bf01, type: 3}
+      propertyPath: TrackNodes.Array.data[7].Position.x
+      value: 15.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 614769254062176890, guid: 224be626d56aca747900a34f6f87bf01, type: 3}
+      propertyPath: TrackNodes.Array.data[7].Position.y
+      value: -7.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 614769254062176890, guid: 224be626d56aca747900a34f6f87bf01, type: 3}
+      propertyPath: TrackNodes.Array.data[8].Position.x
+      value: 8.44
+      objectReference: {fileID: 0}
+    - target: {fileID: 614769254062176890, guid: 224be626d56aca747900a34f6f87bf01, type: 3}
+      propertyPath: TrackNodes.Array.data[8].Position.y
+      value: -10.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 614769254062176890, guid: 224be626d56aca747900a34f6f87bf01, type: 3}
+      propertyPath: TrackNodes.Array.data[9].Position.x
+      value: 6.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 614769254062176890, guid: 224be626d56aca747900a34f6f87bf01, type: 3}
+      propertyPath: TrackNodes.Array.data[9].Position.y
+      value: -19.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 614769254062176890, guid: 224be626d56aca747900a34f6f87bf01, type: 3}
+      propertyPath: TrackNodes.Array.data[10].Position.x
+      value: 3.56
+      objectReference: {fileID: 0}
+    - target: {fileID: 614769254062176890, guid: 224be626d56aca747900a34f6f87bf01, type: 3}
+      propertyPath: TrackNodes.Array.data[10].Position.y
+      value: -20.71
+      objectReference: {fileID: 0}
+    - target: {fileID: 614769254062176890, guid: 224be626d56aca747900a34f6f87bf01, type: 3}
+      propertyPath: TrackNodes.Array.data[11].Position.x
+      value: 0.74
+      objectReference: {fileID: 0}
+    - target: {fileID: 614769254062176890, guid: 224be626d56aca747900a34f6f87bf01, type: 3}
+      propertyPath: TrackNodes.Array.data[11].Position.y
+      value: -18.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 614769254062176890, guid: 224be626d56aca747900a34f6f87bf01, type: 3}
+      propertyPath: TrackNodes.Array.data[12].Position.x
+      value: -0.54
+      objectReference: {fileID: 0}
+    - target: {fileID: 614769254062176890, guid: 224be626d56aca747900a34f6f87bf01, type: 3}
+      propertyPath: TrackNodes.Array.data[12].Position.y
+      value: -8.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 614769254062176890, guid: 224be626d56aca747900a34f6f87bf01, type: 3}
+      propertyPath: TrackNodes.Array.data[13].Position.x
+      value: -1.76
+      objectReference: {fileID: 0}
+    - target: {fileID: 614769254062176890, guid: 224be626d56aca747900a34f6f87bf01, type: 3}
+      propertyPath: TrackNodes.Array.data[13].Position.y
+      value: -6.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 614769254062176890, guid: 224be626d56aca747900a34f6f87bf01, type: 3}
+      propertyPath: TrackNodes.Array.data[14].Position.x
+      value: -11.84
+      objectReference: {fileID: 0}
+    - target: {fileID: 614769254062176890, guid: 224be626d56aca747900a34f6f87bf01, type: 3}
+      propertyPath: TrackNodes.Array.data[14].Position.y
+      value: -4.49
+      objectReference: {fileID: 0}
+    - target: {fileID: 614769254062176890, guid: 224be626d56aca747900a34f6f87bf01, type: 3}
+      propertyPath: TrackNodes.Array.data[2].camPauseTime
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 614769254062176890, guid: 224be626d56aca747900a34f6f87bf01, type: 3}
+      propertyPath: TrackNodes.Array.data[14].camPauseTime
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3327595209246546050, guid: 224be626d56aca747900a34f6f87bf01, type: 3}
       propertyPath: m_Name
       value: CameraTrackBeforeLevel
