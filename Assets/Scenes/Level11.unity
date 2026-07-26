@@ -372,19 +372,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 614769254062176890, guid: 224be626d56aca747900a34f6f87bf01, type: 3}
       propertyPath: TrackNodes.Array.data[5].camSpeed
-      value: 4.79
+      value: 11.79
       objectReference: {fileID: 0}
     - target: {fileID: 614769254062176890, guid: 224be626d56aca747900a34f6f87bf01, type: 3}
       propertyPath: TrackNodes.Array.data[6].camSpeed
-      value: 5.11
+      value: 12.2
       objectReference: {fileID: 0}
     - target: {fileID: 614769254062176890, guid: 224be626d56aca747900a34f6f87bf01, type: 3}
       propertyPath: TrackNodes.Array.data[7].camSpeed
-      value: 5.37
+      value: 12.27
       objectReference: {fileID: 0}
     - target: {fileID: 614769254062176890, guid: 224be626d56aca747900a34f6f87bf01, type: 3}
       propertyPath: TrackNodes.Array.data[8].camSpeed
-      value: 5.66
+      value: 11.8
       objectReference: {fileID: 0}
     - target: {fileID: 614769254062176890, guid: 224be626d56aca747900a34f6f87bf01, type: 3}
       propertyPath: TrackNodes.Array.data[0].Position.x
@@ -420,7 +420,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 614769254062176890, guid: 224be626d56aca747900a34f6f87bf01, type: 3}
       propertyPath: TrackNodes.Array.data[5].Position.x
-      value: 9.88
+      value: 9.72
       objectReference: {fileID: 0}
     - target: {fileID: 614769254062176890, guid: 224be626d56aca747900a34f6f87bf01, type: 3}
       propertyPath: TrackNodes.Array.data[5].Position.y
@@ -453,6 +453,10 @@ PrefabInstance:
     - target: {fileID: 614769254062176890, guid: 224be626d56aca747900a34f6f87bf01, type: 3}
       propertyPath: TrackNodes.Array.data[2].camPauseTime
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 614769254062176890, guid: 224be626d56aca747900a34f6f87bf01, type: 3}
+      propertyPath: TrackNodes.Array.data[4].camPauseTime
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 614769254062176890, guid: 224be626d56aca747900a34f6f87bf01, type: 3}
       propertyPath: TrackNodes.Array.data[8].camPauseTime

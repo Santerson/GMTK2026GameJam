@@ -357,6 +357,18 @@ PrefabInstance:
       value: 0.02
       objectReference: {fileID: 0}
     - target: {fileID: 614769254062176890, guid: 224be626d56aca747900a34f6f87bf01, type: 3}
+      propertyPath: TrackNodes.Array.data[0].camSpeed
+      value: 2.78
+      objectReference: {fileID: 0}
+    - target: {fileID: 614769254062176890, guid: 224be626d56aca747900a34f6f87bf01, type: 3}
+      propertyPath: TrackNodes.Array.data[1].camSpeed
+      value: 3.78
+      objectReference: {fileID: 0}
+    - target: {fileID: 614769254062176890, guid: 224be626d56aca747900a34f6f87bf01, type: 3}
+      propertyPath: TrackNodes.Array.data[2].camSpeed
+      value: 4.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 614769254062176890, guid: 224be626d56aca747900a34f6f87bf01, type: 3}
       propertyPath: TrackNodes.Array.data[0].Position.x
       value: -1.56
       objectReference: {fileID: 0}

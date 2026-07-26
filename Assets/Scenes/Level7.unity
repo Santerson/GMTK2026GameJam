@@ -551,19 +551,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 614769254062176890, guid: 224be626d56aca747900a34f6f87bf01, type: 3}
       propertyPath: TrackNodes.Array.data[6].camSpeed
-      value: 5.24
+      value: 10.67
       objectReference: {fileID: 0}
     - target: {fileID: 614769254062176890, guid: 224be626d56aca747900a34f6f87bf01, type: 3}
       propertyPath: TrackNodes.Array.data[7].camSpeed
-      value: 5.7
+      value: 10.93
       objectReference: {fileID: 0}
     - target: {fileID: 614769254062176890, guid: 224be626d56aca747900a34f6f87bf01, type: 3}
       propertyPath: TrackNodes.Array.data[8].camSpeed
-      value: 6.09
+      value: 11.14
       objectReference: {fileID: 0}
     - target: {fileID: 614769254062176890, guid: 224be626d56aca747900a34f6f87bf01, type: 3}
       propertyPath: TrackNodes.Array.data[9].camSpeed
-      value: 6.4
+      value: 12.02
       objectReference: {fileID: 0}
     - target: {fileID: 614769254062176890, guid: 224be626d56aca747900a34f6f87bf01, type: 3}
       propertyPath: TrackNodes.Array.data[0].Position.x
@@ -615,7 +615,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 614769254062176890, guid: 224be626d56aca747900a34f6f87bf01, type: 3}
       propertyPath: TrackNodes.Array.data[6].Position.x
-      value: 1.78
+      value: 1.69
       objectReference: {fileID: 0}
     - target: {fileID: 614769254062176890, guid: 224be626d56aca747900a34f6f87bf01, type: 3}
       propertyPath: TrackNodes.Array.data[6].Position.y
@@ -639,7 +639,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 614769254062176890, guid: 224be626d56aca747900a34f6f87bf01, type: 3}
       propertyPath: TrackNodes.Array.data[9].Position.x
-      value: -16.4
+      value: -16.7
       objectReference: {fileID: 0}
     - target: {fileID: 614769254062176890, guid: 224be626d56aca747900a34f6f87bf01, type: 3}
       propertyPath: TrackNodes.Array.data[9].Position.y
