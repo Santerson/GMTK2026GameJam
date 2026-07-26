@@ -13,6 +13,11 @@ public class GameSceneManager : MonoBehaviour
         SceneManager.LoadScene("Level" + levelIndex);
     }
 
+    public void LoadTutorial()
+    {
+        SceneManager.LoadScene("Tutorial Level");
+    }
+
     public void LoadCreditsScene()
     {
         SceneManager.LoadScene("Credits");

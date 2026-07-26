@@ -27,6 +27,7 @@ public class TimeBank : MonoBehaviour
         [SerializeField] GameObject GameUICanvas;
     [Tooltip("The actual game UI not the canvas")]
         [SerializeField] GameObject GameUINotCanvas;
+    [SerializeField] GameObject[] TutorialPopups;
 
     [Header("Text References")]
     [Tooltip("The text for the time bank")]
@@ -118,6 +119,10 @@ public class TimeBank : MonoBehaviour
 
     private IEnumerator UISlideOutAnimLoop()
     {
+        foreach (GameObject obj in TutorialPopups)
+        {
+            obj.SetActive(true);
+        }
         // Get the delta in the positions
         float timeElapsed = 0f;
         while (Mathf.Abs(UI[0].transform.position.x - FlyinBaseObj.transform.position.x) > 0.1f)
@@ -169,6 +174,7 @@ public class TimeBank : MonoBehaviour
         }
         GameUINotCanvas.transform.localScale = Vector3.one * 1.5f;
         GameUICanvas.SetActive(false);
+
 
     }
 
