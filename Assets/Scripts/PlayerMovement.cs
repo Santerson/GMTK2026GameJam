@@ -88,6 +88,11 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] AudioSource SFX_Walk;
     [SerializeField] AudioSource SFX_Sleep;
 
+    [Header("Particle Effects")]
+    [SerializeField] ParticleSystem BubblePX;
+    [SerializeField] Vector2 leftFacingBubbleLocation;
+    [SerializeField] Vector2 rightFacingBubbleLocation;
+
     [Header("Movement Time")]
     [SerializeField] TextMeshProUGUI LeftText;
     [SerializeField] TextMeshProUGUI RightText;
@@ -170,6 +175,9 @@ public class PlayerMovement : MonoBehaviour
         Gizmos.color = Color.blue;
         Gizmos.DrawLine((Vector2)transform.position + leftDropOffset, (Vector2)transform.position + leftDropOffset + Vector2.up * 0.1f);
         Gizmos.DrawLine((Vector2)transform.position + rightDropOffset, (Vector2)transform.position + rightDropOffset + Vector2.up * 0.1f);
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawLine((Vector2)transform.position + leftFacingBubbleLocation, (Vector2)transform.position + leftFacingBubbleLocation + Vector2.up * 0.1f);
+        Gizmos.DrawLine((Vector2)transform.position + rightFacingBubbleLocation, (Vector2)transform.position + rightFacingBubbleLocation + Vector2.up * 0.1f);
     }
 
     // Update is called once per frame
@@ -221,10 +229,23 @@ public class PlayerMovement : MonoBehaviour
 
     void UpdateAnimState()
     {
+        if (currentState == AnimState.Dying || currentState == AnimState.Sleeping)
+        {
+            BubblePX.Stop();
+        }
         if (currentState == AnimState.Dying || currentState == AnimState.Sleeping || currentState == AnimState.EpicDub)
         {
             refAnimator.SetInteger("PlayerState", (int)currentState);
             return;
+        }
+        if (refRenderer.flipX)
+        {
+            BubblePX.transform.position = (Vector2)transform.position + rightFacingBubbleLocation;
+        }
+        else
+        {
+            BubblePX.transform.position = (Vector2)transform.position + leftFacingBubbleLocation;
+
         }
         if (IsGrounded())
         {
@@ -579,7 +600,10 @@ public class PlayerMovement : MonoBehaviour
                 // unlock z
             refRB.constraints = RigidbodyConstraints2D.None;
             // Drop held items
-            DropHeldItem();
+            if (IsHoldingObject)
+            {
+                DropHeldItem();
+            }
             // Stop the player's velocity
             if (stopPlayer)
             {
@@ -623,8 +647,10 @@ public class PlayerMovement : MonoBehaviour
         refRB.constraints = RigidbodyConstraints2D.None;
         refRenderer.flipY = true;
         refRB.AddTorque(-5f);
-        DropHeldItem();
-        // Play death sound
+        if (IsHoldingObject)
+        {
+            DropHeldItem();
+        }       
         if (SFX_Sleep != null)
         {
             SFX_Sleep.Play();
