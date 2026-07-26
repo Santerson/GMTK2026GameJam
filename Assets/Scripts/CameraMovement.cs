@@ -1,8 +1,5 @@
 using System.Linq;
-using UnityEditor.Rendering.LookDev;
 using UnityEngine;
-using UnityEngine.Rendering;
-using UnityEngine.SceneManagement;
 
 public class CameraMovement : MonoBehaviour
 {
