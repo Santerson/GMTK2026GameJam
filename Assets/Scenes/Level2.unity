@@ -1983,6 +1983,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: LevelText
       objectReference: {fileID: 0}
+    - target: {fileID: 9177713503384619524, guid: dd7fa73c8d991c243bf6dcca7d8c6094, type: 3}
+      propertyPath: m_text
+      value: 'Spikes are bad for you.
+
+        Very Scary'
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

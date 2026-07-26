@@ -628,7 +628,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 244606611733929671, guid: dd7fa73c8d991c243bf6dcca7d8c6094, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -58
+      value: -71
       objectReference: {fileID: 0}
     - target: {fileID: 244606611733929671, guid: dd7fa73c8d991c243bf6dcca7d8c6094, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -667,6 +667,18 @@ PrefabInstance:
       value: 227
       objectReference: {fileID: 0}
     - target: {fileID: 3477071153995635289, guid: dd7fa73c8d991c243bf6dcca7d8c6094, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.004039778
+      objectReference: {fileID: 0}
+    - target: {fileID: 3477071153995635289, guid: dd7fa73c8d991c243bf6dcca7d8c6094, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.004039778
+      objectReference: {fileID: 0}
+    - target: {fileID: 3477071153995635289, guid: dd7fa73c8d991c243bf6dcca7d8c6094, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.004039778
+      objectReference: {fileID: 0}
+    - target: {fileID: 3477071153995635289, guid: dd7fa73c8d991c243bf6dcca7d8c6094, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -696,11 +708,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3477071153995635289, guid: dd7fa73c8d991c243bf6dcca7d8c6094, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 14.602484
+      value: 18.881
       objectReference: {fileID: 0}
     - target: {fileID: 3477071153995635289, guid: dd7fa73c8d991c243bf6dcca7d8c6094, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -24.17649
+      value: -22.03
       objectReference: {fileID: 0}
     - target: {fileID: 3477071153995635289, guid: dd7fa73c8d991c243bf6dcca7d8c6094, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -720,7 +732,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9177713503384619524, guid: dd7fa73c8d991c243bf6dcca7d8c6094, type: 3}
       propertyPath: m_text
-      value: Light green only restores^ your time
+      value: Light green only restores your time
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
